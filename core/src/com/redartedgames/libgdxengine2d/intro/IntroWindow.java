@@ -1,7 +1,10 @@
 package com.redartedgames.libgdxengine2d.intro;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.redartedgames.libgdxengine2d.main.GameScreen;
 import com.redartedgames.libgdxengine2d.main.Window;
 
@@ -9,7 +12,7 @@ public class IntroWindow extends Window{
 
 	public IntroWindow(float x, float y, int width, int height) {
 		super(x, y, width, height);
-		viewport = new ScreenViewport(new OrthographicCamera(width, height));
+		viewport = new FillViewport(width, height, new OrthographicCamera(100, 100));
 		addScreen(new IntroScreen(viewport, width, height));
 	}
 	
@@ -21,7 +24,7 @@ public class IntroWindow extends Window{
 	
 	public void render() {
 		for (GameScreen screen : screens) {
-			viewport.setCamera(screen.getCam());
+			//viewport.setCamera(screen.getCam());
 			screen.render();
 		}
 	}

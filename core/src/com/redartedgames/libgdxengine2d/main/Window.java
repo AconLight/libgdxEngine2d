@@ -20,10 +20,13 @@ public class Window {
 		sclY = 1;
 	}
 	
-	public void resize(float sclx, float scly) {
-		sclX = sclx;
-		sclY = scly;
-		viewport.setScreenBounds((int)(x*sclX), (int)(y*sclY), (int)(width*sclX), (int)(height*sclY));
+	public void resize(float width, float height) {
+
+		//viewport.setScreenBounds((int)(x*sclX), (int)(y*sclY), (int)(width*sclX), (int)(height*sclY));
+		//viewport.setScreenSize(100, 100);
+		//viewport.apply();
+		viewport.setWorldSize((int)(width), (int)(height));
+		viewport.apply();
 	}
 	
 	public void addScreen(GameScreen screen) {
@@ -40,5 +43,8 @@ public class Window {
 		for (GameScreen screen : screens) {
 			screen.render();
 		}
+	}
+	public void updateWindow(int width, int height) {
+		viewport.update(width, height);
 	}
 }

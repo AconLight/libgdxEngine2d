@@ -22,6 +22,8 @@ public class GameScreen {
 		shapeBatch = new ShapeRenderer();
 		cam = new OrthographicCamera(width, height);
 		batch.setProjectionMatrix(cam.combined);
+		viewport.setCamera(cam);
+		viewport.apply();
 		this.visibility = visibility;
 	}
 	
