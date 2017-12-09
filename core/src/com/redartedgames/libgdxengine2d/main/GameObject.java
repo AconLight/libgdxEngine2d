@@ -121,9 +121,9 @@ public class GameObject {
 		return movement;
 	}
 
-	public GameObject addSprite(SpriteObject e) {
+	public SpriteObject addSprite(SpriteObject e) {
 		gameObjects.add(e);
-		return gameObjects.get(gameObjects.size()-1);
+		return (SpriteObject) gameObjects.get(gameObjects.size()-1);
 	}
 	
 	public GameObject addGameObject(GameObject obj) {
