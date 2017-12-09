@@ -9,8 +9,8 @@ public class Guard extends GameObject{
 	
 	public Guard(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
-		//konstruktor guard animation
-		//addGameObject(guardAnimation);
+		guardAnimation = new GuardAnimation(x, y, parent, isAttached);
+		addGameObject(guardAnimation);
 	}
 	
 	public void move(float accx, float accy) {
