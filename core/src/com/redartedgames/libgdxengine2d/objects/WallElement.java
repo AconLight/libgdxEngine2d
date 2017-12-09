@@ -2,13 +2,14 @@ package com.redartedgames.libgdxengine2d.objects;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
 
 public class WallElement extends GameObject{
 	private int wallType;
-	private int rotation;
+	private int rot;
 	private GameObject hitbox1, hitbox2, hitbox3, hitbox4; //poszczególne hitboxy 25x25
 	private SpriteObject sprite; //poszczególne pixele 25x25
 	public WallElement(float x, float y, GameObject parent, int wallType, int rotation) {
@@ -19,10 +20,10 @@ public class WallElement extends GameObject{
 		hitbox4 = new GameObject(12.5f,-12.5f,this,true);
 		sprite = new SpriteObject(0,0,this,true);
 		this.wallType = wallType;
-		this.rotation = rotation;
+		this.rot = rotation%360;
 		setType();
-		addSprite(sprite);
 		setRotation();
+		addSprite(sprite);
 	}
 	
 	//TODO
@@ -34,16 +35,15 @@ public class WallElement extends GameObject{
 		switch (wallType){
 			default:
 			case 1:
-				sprite.addTexture("graphic/sciany/sciana1.png");
+				sprite.addTexture("graphic/sciany/sciana4.png");
 				break;
 			case 2:
-				sprite.addTexture("graphic/sciany/sciana2.png");
 				break;
 			case 3:
 				sprite.addTexture("graphic/sciany/sciana3.png");
 				break;
 			case 4:
-				sprite.addTexture("graphic/sciany/sciana4.png");
+				sprite.addTexture("graphic/sciany/sciana1.png");
 				break;
 		}
 
@@ -54,17 +54,17 @@ public class WallElement extends GameObject{
 	}
 
 	private void setRotation(){
-		switch (wallType){
+		switch (rot) {
 			default:
 			case 0:
-				sprite.alfa = (float)Math.PI/2;
-				sprite.regionList.get(0).flip(false,false);
-				switch (rotation){
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2.png");
+				switch (wallType) {
 					default:
 					case 1:
 						hitboxSet(hitbox4);
 						break;
 					case 2:
+						//sprite.addTexture("graphic/sciany/sciana2.png");
 						hitboxSet(hitbox3);
 						break;
 					case 3:
@@ -76,8 +76,9 @@ public class WallElement extends GameObject{
 				}
 				break;
 			case 90:
-				sprite.regionList.get(0).flip(true,false);
-				switch (rotation){
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2p.png");
+				sprite.regionList.get(0).flip(true, false);
+				switch (wallType) {
 					default:
 					case 1:
 						hitboxSet(hitbox2);
@@ -98,8 +99,9 @@ public class WallElement extends GameObject{
 				}
 				break;
 			case 180:
-				sprite.regionList.get(0).flip(true,true);
-				switch (rotation){
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2.png");
+				sprite.regionList.get(0).flip(true, true);
+				switch (wallType) {
 					default:
 					case 1:
 						hitboxSet(hitbox2);
@@ -124,7 +126,31 @@ public class WallElement extends GameObject{
 				}
 				break;
 			case 270:
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2p.png");
 				sprite.regionList.get(0).flip(false,true);
+				switch (wallType) {
+					default:
+					case 1:
+						hitboxSet(hitbox2);
+						hitboxSet(hitbox4);
+						hitboxSet(hitbox3);
+						break;
+					case 2:
+						hitboxSet(hitbox1);
+						hitboxSet(hitbox4);
+						hitboxSet(hitbox3);
+						break;
+					case 3:
+						hitboxSet(hitbox2);
+						hitboxSet(hitbox1);
+						hitboxSet(hitbox3);
+						break;
+					case 4:
+						hitboxSet(hitbox2);
+						hitboxSet(hitbox4);
+						hitboxSet(hitbox1);
+						break;
+				}
 				hitbox1.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
 				hitbox2.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
 				hitbox3.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
@@ -133,4 +159,22 @@ public class WallElement extends GameObject{
 		}
 	}
 
+	public void rotate(){
+		if(sprite.regionList.get(0).isFlipX()){
+			if(sprite.regionList.get(0).isFlipY()) {
+				Gdx.app.log("Test rotacji",Boolean.toString(sprite.regionList.get(0).isFlipX()));
+				Gdx.app.log("Test rotacji",Boolean.toString(sprite.regionList.get(0).isFlipY()));
+				sprite.regionList.get(0).flip(true, false);
+			}
+			else
+				sprite.regionList.get(0).flip(false,false);
+		}
+		else{
+			if(sprite.regionList.get(0).isFlipY())
+				sprite.regionList.get(0).flip(true,true);
+			else
+				sprite.regionList.get(0).flip(false,true);
+		}
+
+	}
 }
