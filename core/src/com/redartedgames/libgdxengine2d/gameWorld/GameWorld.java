@@ -17,23 +17,22 @@ public class GameWorld extends World{
 
 	Biurko b;
 	Guard g;
+	KafelekWorld kafelekWorld;
 	
 	public GameWorld(OrthographicCamera cam, GameScreen gameScreen) {
 		super(cam, gameScreen);
-		addGameObject(b = new Biurko(0, 0, 0, null, false));
-		addGameObject(g = new Guard(400, 0, null, false));
-		b.collidableObjects.add(g);
-		g.collidableObjects.add(b);
+		kafelekWorld = new KafelekWorld(100);
+		for (ArrayList<Kafelek> k : kafelekWorld.kafelki) {
+			gameObjects.addAll(k);
+		}
+		//addGameObject(b = new Biurko(0, 0, 0, null, false));
+		//addGameObject(g = new Guard(400, 0, null, false));
+		//b.collidableObjects.add(g);
+		//g.collidableObjects.add(b);
 	}
 	
 	public void update(float delta) {
 		super.update(delta);
-		Gdx.app.log("gW",  "col size: " +g.collidableObjects.size());
-		Gdx.app.log("gW",  "col2 size: " +gameObjects.get(1).collidableObjects.size());
-		for (GameObject obj: gameObjects) {
-			//obj.applyPhysicsToAcceleration();
-			Gdx.app.log("gW",  "col3 size: " +obj.collidableObjects.size());
-		}
 	}
 
 }
