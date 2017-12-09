@@ -38,12 +38,12 @@ public class GuardAnimation extends GameObject{
 	}
 	public void beginWalking(Vector2 mov){
 		guardspritenotWalking.visibility=0;
-		this.movement.setVelocity(mov);
+		//this.movement.setVelocity(mov);
 		guardspriteisWalking.visibility= 1;
 	}
 	public void endWalking(){
 		guardspriteisWalking.visibility= 0;
-		this.movement.setVelocity(new Vector2(0,0));
+		//this.movement.setVelocity(new Vector2(0,0));
 		guardspritenotWalking.visibility=1;
 
 		
