@@ -93,7 +93,7 @@ public class WallElement extends GameObject{
 				}
 				break;
 			case 90:
-				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2p.png");
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2b.png");
 				sprite.regionList.get(0).flip(true, false);
 				switch (wallType) {
 					default:
@@ -155,7 +155,7 @@ public class WallElement extends GameObject{
 				}
 				break;
 			case 270:
-				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2p.png");
+				if(wallType==2)sprite.addTexture("graphic/sciany/sciana2b.png");
 				sprite.regionList.get(0).flip(false,true);
 				switch (wallType) {
 					default:
