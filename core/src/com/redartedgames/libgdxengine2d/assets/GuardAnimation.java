@@ -23,10 +23,10 @@ public class GuardAnimation extends GameObject{
 	}
 	 public void update (float delta){
 		super.update(delta);
-		float deltamod;
 		delta *= 100;
-		deltamod = delta % 180;
-		guardhead.alfa += deltamod;
+		guardhead.alfa += delta;
+		if(guardhead.alfa >= 90) guardhead.alfa -= delta*2;
+		
 		
 	}
 	//TODO Dopisaæ get hitbox 
