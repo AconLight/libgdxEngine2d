@@ -19,7 +19,9 @@ public class World {
 	}
 	
 	public void update(float delta) {
-		
+		for (GameObject obj: gameObjects) {
+			obj.update(delta);
+		}
 	}
 	
 	public ArrayList<GameObject> getGameObjects() {

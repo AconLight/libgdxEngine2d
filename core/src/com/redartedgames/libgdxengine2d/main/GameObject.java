@@ -49,7 +49,9 @@ public class GameObject {
 		movement.getPosition().y += y;
 	}
 	public void update(float delta) {
-		
+		for (GameObject obj : gameObjects) {
+			obj.update(delta);
+		}
 	}
 	
 	public void updateBefore(float delta, float vx, float vy) {
@@ -81,6 +83,17 @@ public class GameObject {
 		GameObject itr = this;
 		while (this.parent != null) itr = itr.parent; 
 		return itr;
+	}
+	
+	public float getRealpositionX(float oldx) {
+		oldx = this.movement.getPosition().x;
+		if(this.parent != null) parent.getRealpositionX(oldx) ;
+		return oldx;
+	}
+	public float getRealpositionY(float oldy) {
+		oldy = this.movement.getPosition().y;
+		if(this.parent != null) parent.getRealpositionX(oldy) ;
+		return oldy;
 	}
 	
 	public void collide(GameObject obj) {
