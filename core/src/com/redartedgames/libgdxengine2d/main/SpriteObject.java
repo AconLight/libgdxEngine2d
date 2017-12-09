@@ -23,6 +23,9 @@ public class SpriteObject extends GameObject {
 	private int animatoinCounter;
 	public float sclX = 1, sclY = 1;
 	public float visibility =1;
+	public float R;
+	public float G;
+	public float B;
 	 
 	public void setStoped(boolean isStoped) {
 		this.isStoped = isStoped;
@@ -40,6 +43,9 @@ public class SpriteObject extends GameObject {
 		isPingPong=false;
 		isStoped=false;
 		animatoinCounter=0;
+		R=1;
+		G=1;
+		B=1;
 		this.parent = parent;
 	}	
 	
@@ -112,7 +118,7 @@ public class SpriteObject extends GameObject {
 		//batch.draw(regionList.get(frameNum), position.x - regionList.get(frameNum).getRegionWidth()/2,
 				//position.y - regionList.get(frameNum).getRegionHeight()/2);
 		if (isVisible && regionList.size() != 0) {
-			batch.setColor(1, 1, 1, visibility*this.visibility);
+			batch.setColor(R, G, B, visibility*this.visibility);
 			batch.draw(regionList.get(frameNum), movement.position.x + dx - regionList.get(frameNum).getRegionWidth()/2,
 				movement.position.y + dy - regionList.get(frameNum).getRegionHeight()/2,
 				regionList.get(frameNum).getRegionWidth()/2, regionList.get(frameNum).getRegionHeight()/2,
