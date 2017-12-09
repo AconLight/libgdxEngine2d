@@ -16,23 +16,23 @@ public class KafelekWorld {
 		origins = new ArrayList<Kafelek>();
 		generate(width);
 		generateOrigins(width, 0, 50);
-		int r = 10;
-		for (Kafelek k : origins) {
-			for (int i = 0; i < 4; i++) {
-				if (!generatePath(k, 0, r*(i+1))) {
-					break;
-				}
+		
+	}
+	
+	public void generateSquares(int x, int y, int width) {
+		for (int i = x; i < width; i++) {
+			for (int j = y; j < width; j++) {
+				
 			}
 		}
 	}
-	
+	public void myCover(int x, int y) {
+		
+	}
+
 	public void cover(int x, int y) {
 		if (kafelki.get(x).get(y).type == KafelekType.normal) {
-			kafelki.get(x).get(y).type = KafelekType.covered;
-			cover(x+1, y);
-			cover(x-1, y);
-			cover(x, y+1);
-			cover(x, y-1);
+			//kafelki.get(x).get(y).type = KafelekType.covered;
 		}
 	}
 	
@@ -66,6 +66,11 @@ public class KafelekWorld {
 			
 			while(tempX == (int) (Math.cos(alfa+prealfa)*radius) && tempY == (int) (Math.sin(alfa+prealfa)*radius) && alfa < Math.PI*2) {
 				alfa += 0.1f;
+				for(int i = 1; i < radius; i++) {
+					if (kafelki.get(myX+(int) (Math.cos(alfa+prealfa)*i)).get(myY+(int) (Math.sin(alfa+prealfa)*i)).type == KafelekType.normal) {
+						kafelki.get(myX+(int) (Math.cos(alfa+prealfa)*i)).get(myY+(int) (Math.sin(alfa+prealfa)*i)).type = KafelekType.covered;
+					}
+				}
 			}
 			tempX = (int) (Math.cos(alfa+prealfa)*radius);
 			tempY = (int) (Math.sin(alfa+prealfa)*radius);

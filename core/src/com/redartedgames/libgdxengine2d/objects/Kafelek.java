@@ -1,5 +1,6 @@
 package com.redartedgames.libgdxengine2d.objects;
 
+import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
 
@@ -26,11 +27,11 @@ public class Kafelek extends GameObject{
 	}
 	
 	public void update(float delta) {
-		if (type == KafelekType.covered) sprite.visibility = 0.6f;
-		if (type == KafelekType.path) sprite.visibility = 0.1f;
-		if (type == KafelekType.normal) sprite.visibility = 0.3f;
+		if (type == KafelekType.covered) sprite.visibility = 0.1f;
+		if (type == KafelekType.path) sprite.visibility = 1f;
+		if (type == KafelekType.normal) sprite.visibility = 0.2f;
 		if (type == KafelekType.origin) sprite.visibility = 0.8f;
-		
+		Gdx.app.log("Kafelek", "update");
 	}
 
 }
