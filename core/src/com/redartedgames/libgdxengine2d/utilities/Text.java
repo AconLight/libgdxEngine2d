@@ -9,14 +9,14 @@ import com.redartedgames.libgdxengine2d.main.SpriteObject;
 
 public class Text extends SpriteObject{
 
-    private String txt;
-    private BitmapFont font;
-    private float x;
-    private float y;
-    private float visibility;
+    protected String txt;
+    protected BitmapFont font;
+    protected float x;
+    protected float y;
+    protected float visibility;
 
-    public Text(float x, float y, GameObject parent, boolean isAtt, int size, String tekst, float visibility){
-        super(x,y,parent,isAtt);
+    public Text(float x, float y, GameObject parent, boolean isAttached, int size, String tekst, float visibility){
+        super(x,y,parent,isAttached);
         this.txt = tekst;
         this.x = x;
         this.y = y;
@@ -26,7 +26,7 @@ public class Text extends SpriteObject{
                 font = new BitmapFont(Gdx.files.internal("fonts/font_small.fnt"),false);
                 break;
             case 1:
-                font = new BitmapFont(Gdx.files.internal("fonts/font_medium.fnt"),false);
+                font = new BitmapFont(Gdx.files.internal("fonts/best_font.fnt"),false);
                 break;
             case 2:
                 font = new BitmapFont(Gdx.files.internal("fonts/font_big.fnt"),false);
@@ -38,7 +38,9 @@ public class Text extends SpriteObject{
     }
 
     public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
-        font.setColor(Color.BLACK);
-        font.draw(batch, txt,x,y);
+        batch.setColor(1, 1, 1, 0);
+        font.setColor(new Color(1, 1, 1, visibility*this.visibility));
+        font.draw(batch, txt, x, y);
+        batch.setColor(1, 1, 1, visibility);
     }
 }
