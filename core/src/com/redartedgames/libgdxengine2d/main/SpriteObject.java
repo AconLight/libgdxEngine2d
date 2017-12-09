@@ -17,7 +17,7 @@ public class SpriteObject extends GameObject {
 	private float frameDt;
 	private boolean isPingPong;
 	private boolean isLeft;
-	protected float alfa;
+	public float alfa;
 	public boolean isVisible;
 	private boolean isStoped;
 	private int animatoinCounter;
