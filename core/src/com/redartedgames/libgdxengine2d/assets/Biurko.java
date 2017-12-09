@@ -91,7 +91,7 @@ public class Biurko extends GameObject {
         float coulorrr = generatttttor.nextFloat();
 
         if (licznik%podzielna==0) {
-            if (biurko_poswiata.visibility == 0.8f) {
+            if (biurko_poswiata.visibility == 0.75f) {
                 biurko_poswiata.visibility = 1f;
                 biurko_poswiata.R=0;
                 biurko_poswiata.G=coulorr;
