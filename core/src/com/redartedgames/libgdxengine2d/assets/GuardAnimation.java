@@ -12,13 +12,15 @@ public class GuardAnimation extends GameObject{
 	public Vector2 mov;
 	public int alfa;
 	public SpriteObject guardhead;
+	public GameObject guadHitbox;
 	public boolean isWalking = false;
 	public GuardAnimation(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		// TODO Auto-generated constructor stub
-		//GameObject guadHitbox = new GameObject(23, 0,this, true);
+		guadHitbox = new GameObject(23, 0,this, true);
 		hitbox = new Hitbox(getRealpositionX(0),getRealpositionY(0),90,90,Hitbox.none);
-		setHitbox(hitbox);
+		guadHitbox.setHitbox(hitbox);
+		
 		guardspritenotWalking = new SpriteObject(0,0,this,true);
 		addSprite(guardspritenotWalking);
 		guardspritenotWalking.addTexture("graphic/plajer/s0.png");
@@ -31,9 +33,16 @@ public class GuardAnimation extends GameObject{
 		guardspriteisWalking.addTexture("graphic/plajer/w3.png");
 		guardspriteisWalking.setIsPingpong(true);
 
-		guardhead = new SpriteObject(47,0,this,true);
+		guardhead = new SpriteObject(0,0,this,true);
 		addSprite(guardhead);
-		guardhead.addTexture("graphic/plajer/glowa.png");
+		guardhead.addTexture("graphic/plajer/glowa_v2.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob1_5.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob1.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob1_5.png");
+		guardhead.addTexture("graphic/plajer/glowa_v2.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob2_5.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob2.png");
+		guardhead.addTexture("graphic/plajer/glowa_ob2_5.png");
 		
 	}
 	public void beginWalking(Vector2 mov){
@@ -45,8 +54,11 @@ public class GuardAnimation extends GameObject{
 		guardspriteisWalking.visibility= 0;
 		this.movement.setVelocity(new Vector2(0,0));
 		guardspritenotWalking.visibility=1;
-
-		
+	}
+	public void setalfa(int alfa){
+		guardspriteisWalking.alfa = alfa;
+		guardspritenotWalking.alfa = alfa;
+		guardhead.alfa =alfa;
 	}
 	int dupa=0;
 	 public void update (float delta){
@@ -55,13 +67,8 @@ public class GuardAnimation extends GameObject{
 		movement.updateAfter(delta/40);
 		guardspriteisWalking.updateFrames(delta/50);
 		guardspritenotWalking.updateFrames(delta/40);
-		if (guardhead.alfa >=65) dupa = 1;
-		if (dupa == 0) guardhead.alfa += delta;
-		if (guardhead.alfa <=-65) dupa = 0;
-		if (dupa == 1) guardhead.alfa -= delta;
-		
-		
-		
+		guardhead.updateFrames(delta/20);
+		System.out.println("pos x= " + guadHitbox.getRealpositionX(0) + " pos y= "+ guadHitbox.getRealpositionY(0));
 	}
 	//TODO Dopisaæ get hitbox 
 }
