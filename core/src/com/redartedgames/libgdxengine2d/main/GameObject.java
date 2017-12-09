@@ -52,6 +52,7 @@ public class GameObject {
 		for (GameObject obj : gameObjects) {
 			obj.update(delta);
 		}
+		updateBefore(delta, 0, 0);
 	}
 	
 	public void updateBefore(float delta, float vx, float vy) {
