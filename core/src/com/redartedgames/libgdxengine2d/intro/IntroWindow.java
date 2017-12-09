@@ -13,7 +13,7 @@ public class IntroWindow extends Window{
 	public IntroWindow(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		viewport = new FillViewport(width, height, new OrthographicCamera(100, 100));
-		addScreen(new IntroScreen(viewport, width, height));
+		addScreen(new IntroScreen(viewport, x, y, width, height, this));
 	}
 	
 	public void update(float delta) {

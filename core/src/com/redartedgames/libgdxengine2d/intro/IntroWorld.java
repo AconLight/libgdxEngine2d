@@ -1,14 +1,15 @@
 package com.redartedgames.libgdxengine2d.intro;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.redartedgames.libgdxengine2d.main.GameScreen;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.main.World;
 
 public class IntroWorld extends World{
 	float time;
 	SpriteObject made, red;
-	public IntroWorld(OrthographicCamera cam) {
-		super(cam);
+	public IntroWorld(OrthographicCamera cam, GameScreen gameScreen) {
+		super(cam, gameScreen);
 		time = 0;
 		made = new SpriteObject(0, 0, null, false);
 		made.addTexture("graphic/intro/madewithjava.png");
@@ -17,7 +18,7 @@ public class IntroWorld extends World{
 		addSpriteObject(made).visibility = 0;
 		addSpriteObject(red).visibility = 0;
 	}
-	
+	int i = 0;
 	public void update(float delta) {
 		super.update(delta);
 		time += delta/2;
@@ -39,6 +40,14 @@ public class IntroWorld extends World{
 		}
 		if (time > 7) {
 			made.visibility = 1;
+		}
+		
+		if (time > 8 && time <= 9 && i < 20) { 
+			i++;
+			time = 7.8f;
+			gameScreen.screenShaker.shakePosition(10);
+			gameScreen.screenShaker.shakeAlfa(10);
+			gameScreen.screenShaker.shakeDeep(10);
 		}
 	}
 

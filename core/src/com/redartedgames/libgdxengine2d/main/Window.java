@@ -25,6 +25,7 @@ public class Window {
 		//viewport.setScreenBounds((int)(x*sclX), (int)(y*sclY), (int)(width*sclX), (int)(height*sclY));
 		//viewport.setScreenSize(100, 100);
 		//viewport.apply();
+		
 		viewport.setWorldSize((int)(width), (int)(height));
 		viewport.apply();
 	}
