@@ -15,16 +15,55 @@ public class KafelekWorld {
 		kafelki = new ArrayList<ArrayList<Kafelek>>();
 		origins = new ArrayList<Kafelek>();
 		generate(width);
-		generateOrigins(width, 0, 50);
+		generateOrigins(width, 0, 25);
+		for (Kafelek k : origins) {
+			generateSquares(k.x, k.y, 20);
+		}
+		for (Kafelek k : origins) {
+			generateSquares(k.x, k.y, 15);
+		}
+		for (Kafelek k : origins) {
+			generateSquares(k.x, k.y, 10);
+		}
+		for (Kafelek k : origins) {
+			generateSquares(k.x, k.y, 5);
+		}
 		
 	}
 	
 	public void generateSquares(int x, int y, int width) {
-		for (int i = x; i < width; i++) {
-			for (int j = y; j < width; j++) {
-				
+		for (int i = x-width+1; i < x + width; i++) {
+			for (int j = y-width+1; j < y+width; j++) {
+				if (i >= 0 && i < kafelki.size())
+					if (j >= 0 && j < kafelki.get(i).size())
+						kafelki.get(i).get(j).type = KafelekType.covered;
 			}
 		}
+		
+		for (int j = y-width; j < y+width+1; j++) {
+			int i = x + width;
+			//if (i >= 0 && i < kafelki.size())
+				//if (j >= 0 && j < kafelki.get(i).size())
+			kafelki.get(x + width).get(j).type = KafelekType.path;
+			
+			i = x - width;
+			//if (i >= 0 && i < kafelki.size())
+				//if (j >= 0 && j < kafelki.get(i).size())
+			kafelki.get(x - width).get(j).type = KafelekType.path;
+		}
+		
+		for (int j = x-width; j < x+width; j++) {
+			int i = y + width;
+			//if (i >= 0 && i < kafelki.size())
+				//if (j >= 0 && j < kafelki.get(i).size())
+			kafelki.get(j).get(y+width).type = KafelekType.path;
+			
+			i = y - width;
+			//if (j >= 0 && j < kafelki.size())
+				//if (i >= 0 && i < kafelki.get(i).size())
+			kafelki.get(j).get(y-width).type = KafelekType.path;
+		}
+		
 	}
 	public void myCover(int x, int y) {
 		
