@@ -93,15 +93,15 @@ public class Biurko extends GameObject {
         if (licznik%podzielna==0) {
             if (biurko_poswiata.visibility == 0.8f) {
                 biurko_poswiata.visibility = 1f;
-                biurko_poswiata.R=coulor;
+                biurko_poswiata.R=0;
                 biurko_poswiata.G=coulorr;
-                biurko_poswiata.B=0;
+                biurko_poswiata.B=coulorrr;
             }
             else {
-                biurko_poswiata.visibility = 0.8f;
-                biurko_poswiata.R=coulor;
+                biurko_poswiata.visibility = 0.75f;
+                biurko_poswiata.R=0;
                 biurko_poswiata.G=coulorr;
-                biurko_poswiata.B=0;
+                biurko_poswiata.B=coulorrr;
             }
         }
         //if (time>endTime) biurkoSprite.visibility=0f;
