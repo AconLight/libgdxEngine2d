@@ -57,6 +57,7 @@ public class WallElement extends GameObject{
 		switch (wallType){
 			default:
 			case 0:
+				sprite.alfa = (float)Math.PI/2;
 				sprite.regionList.get(0).flip(false,false);
 				switch (rotation){
 					default:
