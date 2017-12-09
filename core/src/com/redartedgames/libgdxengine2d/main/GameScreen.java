@@ -59,7 +59,7 @@ public class GameScreen {
 	}
 	
 	public void render() {
-		Gdx.app.log("GameScreen", "render");
+		//Gdx.app.log("GameScreen", "render");
 		batch.begin();
 		world.render(batch, visibility);
 		batch.end();
