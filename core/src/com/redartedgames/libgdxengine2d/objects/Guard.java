@@ -14,7 +14,7 @@ public class Guard extends GameObject{
 	public Guard(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		guardAnimation = new GuardAnimation(0, 0, this, true);
-		setHitbox(new Hitbox(x,y,90,90,Hitbox.dynamic));
+		setHitbox(new Hitbox(x+15,y,120,90,Hitbox.dynamic));
 		addGameObject(guardAnimation);
 		movement.setVelocity(new Vector2(-80, 0));
 	}
@@ -24,7 +24,7 @@ public class Guard extends GameObject{
 	}
 	
 	public void update(float delta) {
-		hitbox.update(movement.getPosition().x, movement.getPosition().y);
+		//hitbox.update(movement.getPosition().x+29, movement.getPosition().y);
 	}
 	
 	
@@ -35,7 +35,7 @@ public class Guard extends GameObject{
 	
 	
 	public void collide(GameObject obj) {
-		hitbox.update(movement.getPosition().x, movement.getPosition().y);
+		hitbox.update(movement.getPosition().x+15, movement.getPosition().y);
 		super.collide(obj);
 		c = hitbox.checkCol(obj.getHitbox());
 		collisionAccX = collisionAccX+c.disX;
