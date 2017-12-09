@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.objects;
 
 import com.badlogic.gdx.math.Vector2;
+import com.redartedgames.libgdxengine2d.generation.KafelekWorld;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 
 import java.util.ArrayList;
@@ -11,12 +12,13 @@ public class Wall extends GameObject{
 	private int changeY;
 	private int defChangeY;
 	public ArrayList<ArrayList<ArrayList<GameObject>>> plansza;
+	private ArrayList<ArrayList<Boolean>> map;
 	private ArrayList<Vector2> positions;
 	private Boolean e1,e2,e3,e4;
 	private WallElement we1, we2, we3, we4; // poszczególne kawalki kafelka 50x50
 	private WallElement pom;
 	private int rotation;
-	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map) {
+	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map, KafelekWorld kafelekWorld) {
 		super(x, y, parent, isAttached);
 
 		defChangeY = (int)y;
@@ -28,8 +30,9 @@ public class Wall extends GameObject{
 		e3 = false;
 		e4 = false;
 
-		plansza = new ArrayList<ArrayList<ArrayList<GameObject>>>();
-		positions = new ArrayList<Vector2>();
+		map = new ArrayList<>();
+		plansza = new ArrayList<>();
+		positions = new ArrayList<>();
 		positions.add(new Vector2(-25,25));
 		positions.add(new Vector2(25,25));
 		positions.add(new Vector2(25,-25));
@@ -42,7 +45,22 @@ public class Wall extends GameObject{
 		//we3 = solveWallElement(wallType,3);
 		//we4 = solveWallElement(wallType,4);
 
+		mapMap(kafelekWorld);
+
 		generate(map);
+	}
+
+	private void mapMap(KafelekWorld kafelekWorld){
+		for(int i=0; i<kafelekWorld.kafelki.size(); i++) {
+			map.add(new ArrayList<>());
+			for (int j = 0; i < kafelekWorld.kafelki.get(i).size(); j++) {
+				if (kafelekWorld.kafelki.get(1).get(1).type == Kafelek.KafelekType.path)
+					map.get(i).add(new Boolean(true));
+				else
+					map.get(i).add(new Boolean(false));
+			}
+		}
+
 	}
 
 	private void generate(ArrayList<ArrayList<Boolean>> map){

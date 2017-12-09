@@ -14,23 +14,21 @@ public class WallElement extends GameObject{
 	private SpriteObject sprite; //poszczególne pixele 25x25
 	public WallElement(float x, float y, GameObject parent, int wallType, int rotation) {
 		super(x, y, parent, true);
+
 		hitbox1 = new GameObject(-12.5f,12.5f,this,true);
 		hitbox2 = new GameObject(12.5f,12.5f,this,true);
 		hitbox3 = new GameObject(12.5f,-12.5f,this,true);
 		hitbox4 = new GameObject(-12.5f,-12.5f,this,true);
+
 		sprite = new SpriteObject(0,0,this,true);
+
 		this.wallType = wallType;
 		this.rot = rotation%360;
+
 		setType();
 		setRotation();
+
 		if(wallType!=6) addSprite(sprite);
-		Gdx.app.log("Wx",Float.toString(x));
-		Gdx.app.log("Wy",Float.toString(y));
-	}
-	
-	//TODO
-	public ArrayList<GameObject> getHitboxes() {
-		return null;
 	}
 
 	private void setType(){
@@ -52,7 +50,6 @@ public class WallElement extends GameObject{
 			case 6:
 				break;
 		}
-
 	}
 
 	private void hitboxSet(GameObject hitbox){
@@ -184,30 +181,20 @@ public class WallElement extends GameObject{
 					case 6:
 						break;
 				}
-				hitbox1.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
-				hitbox2.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
-				hitbox3.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
-				hitbox4.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
-				break;
+			break;
 		}
 	}
 
 	public void rotate(){
-		if(sprite.regionList.get(0).isFlipX()){
-			if(sprite.regionList.get(0).isFlipY()) {
-				Gdx.app.log("Test rotacji",Boolean.toString(sprite.regionList.get(0).isFlipX()));
-				Gdx.app.log("Test rotacji",Boolean.toString(sprite.regionList.get(0).isFlipY()));
+		if(sprite.regionList.get(0).isFlipX())
+			if(sprite.regionList.get(0).isFlipY())
 				sprite.regionList.get(0).flip(true, false);
-			}
 			else
 				sprite.regionList.get(0).flip(false,false);
-		}
-		else{
+		else
 			if(sprite.regionList.get(0).isFlipY())
 				sprite.regionList.get(0).flip(true,true);
 			else
 				sprite.regionList.get(0).flip(false,true);
-		}
-
 	}
 }
