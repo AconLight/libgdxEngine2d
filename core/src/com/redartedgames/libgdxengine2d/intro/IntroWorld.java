@@ -27,7 +27,7 @@ public class IntroWorld extends World{
 		super.update(delta);
 		time += delta/2;
 		
-		if (time > 8 && time <= 10 && i < 20) { 
+		if (time > 9 && time <= 10 && i < 20) { 
 			i++;
 			time = 9.8f;
 			gameScreen.screenShaker.shakePosition(10);
