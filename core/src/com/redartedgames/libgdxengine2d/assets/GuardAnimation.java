@@ -9,7 +9,8 @@ public class GuardAnimation extends GameObject{
 	public Hitbox hitbox;
 	public SpriteObject guardspritenotWalking;
 	public SpriteObject guardspriteisWalking;
-
+	public Vector2 mov;
+	public int alfa;
 	public SpriteObject guardhead;
 	public boolean isWalking = false;
 	public GuardAnimation(float x, float y, GameObject parent, boolean isAttached) {
@@ -35,14 +36,14 @@ public class GuardAnimation extends GameObject{
 		guardhead.addTexture("graphic/plajer/glowa.png");
 		
 	}
-	public void beginWalking(){
+	public void beginWalking(Vector2 mov){
 		guardspritenotWalking.visibility=0;
-		this.movement.setVelocity(new Vector2(20,0));
+		//this.movement.setVelocity(mov);
 		guardspriteisWalking.visibility= 1;
 	}
 	public void endWalking(){
 		guardspriteisWalking.visibility= 0;
-		this.movement.setVelocity(new Vector2(0,0));
+		//this.movement.setVelocity(new Vector2(0,0));
 		guardspritenotWalking.visibility=1;
 
 		
@@ -51,6 +52,7 @@ public class GuardAnimation extends GameObject{
 	 public void update (float delta){
 		super.update(delta);
 		delta *= 50;
+		movement.updateAfter(delta/40);
 		guardspriteisWalking.updateFrames(delta/50);
 		guardspritenotWalking.updateFrames(delta/40);
 		if (guardhead.alfa >=65) dupa = 1;
