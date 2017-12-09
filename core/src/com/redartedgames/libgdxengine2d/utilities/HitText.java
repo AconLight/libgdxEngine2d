@@ -7,6 +7,7 @@ import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.utilities.Text;
 
 import java.io.Console;
+import java.util.Random;
 
 public class HitText extends Text{
 
@@ -25,7 +26,10 @@ public class HitText extends Text{
         super.update(delta);
         time += delta/2;
 
-        if (licznik%7==0 && time<=endTime) {
+        Random generattor = new Random();
+        int podzielna = generattor.nextInt(13)+4;
+
+        if (licznik%podzielna==0 && time<=endTime) {
             if (visibility == 0.5f) visibility = 1f;
             else visibility = 0.5f;
         }

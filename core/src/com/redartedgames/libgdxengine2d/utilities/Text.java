@@ -26,11 +26,13 @@ public class Text extends SpriteObject{
                 font = new BitmapFont(Gdx.files.internal("fonts/font_small.fnt"),false);
                 break;
             case 1:
-                font = new BitmapFont(Gdx.files.internal("fonts/best_font.fnt"),false);
+                font = new BitmapFont(Gdx.files.internal("fonts/font_medium.fnt"),false);
                 break;
             case 2:
                 font = new BitmapFont(Gdx.files.internal("fonts/font_big.fnt"),false);
                 break;
+            case 3:
+                font = new BitmapFont(Gdx.files.internal("fonts/best_font.fnt"),false);
             default:
                 break;
         }
