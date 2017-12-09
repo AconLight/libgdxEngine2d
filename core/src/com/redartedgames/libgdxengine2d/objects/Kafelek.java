@@ -27,9 +27,9 @@ public class Kafelek extends GameObject{
 	}
 	
 	public void update(float delta) {
-		if (type == KafelekType.covered) sprite.visibility = 0.1f;
-		if (type == KafelekType.path) sprite.visibility = 1f;
-		if (type == KafelekType.normal) sprite.visibility = 0.2f;
+		if (type == KafelekType.covered) sprite.visibility = 0f;
+		if (type == KafelekType.path) sprite.visibility = 0.5f;
+		if (type == KafelekType.normal) sprite.visibility = 1f;
 		if (type == KafelekType.origin) sprite.visibility = 0.8f;
 		Gdx.app.log("Kafelek", "update");
 	}

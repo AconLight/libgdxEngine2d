@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.redartedgames.libgdxengine2d.gameWorld.GameWindow;
 import com.redartedgames.libgdxengine2d.intro.IntroWindow;
+import com.redartedgames.libgdxengine2d.main.InputHandler;
 import com.redartedgames.libgdxengine2d.main.Window;
 
 public class LibgdxEngine2dGame extends ApplicationAdapter {
@@ -16,11 +17,12 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 	boolean isVerticalBlack = true;
 	IntroWindow introWin;
 	GameWindow gw;
-	float gameWidth = 1280*1.5f, gameHeight = 720*1.5f;
+	float gameWidth = 1280*1.5f*4, gameHeight = 720*1.5f*4f;
 	ArrayList<Window> windows;
 	
 	@Override
 	public void create () {
+		Gdx.input.setInputProcessor(new InputHandler());
 		windows = new ArrayList<Window>();
 		introWin = new IntroWindow(0, 0, (int)gameWidth, (int) gameHeight);
 		gw = new GameWindow(0, 0, (int)gameWidth, (int) gameHeight);
