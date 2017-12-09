@@ -10,9 +10,11 @@ public class World {
 
 	protected ArrayList<GameObject> gameObjects;
 	protected OrthographicCamera cam;
+	protected GameScreen gameScreen;
 	
-	public World(OrthographicCamera cam) {
+	public World(OrthographicCamera cam, GameScreen gameScreen) {
 		gameObjects = new ArrayList<GameObject>();
+		this.gameScreen = gameScreen;
 		this.cam = cam;
 	}
 	
