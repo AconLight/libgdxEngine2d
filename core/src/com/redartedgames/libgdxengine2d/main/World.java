@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.main;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -19,8 +20,27 @@ public class World {
 	}
 	
 	public void update(float delta) {
+		
+		
+		
 		for (GameObject obj: gameObjects) {
 			obj.update(delta);
+		}
+		
+		for (GameObject obj: gameObjects) {
+			obj.updateBefore(delta, 0, 0);
+		}
+		
+		for (GameObject obj: gameObjects) {
+			Gdx.app.log("world size: ", "" + obj.collidableObjects.size());
+		}
+		
+		for (GameObject obj: gameObjects) {
+			obj.applyPhysicsToAcceleration();
+		}
+		
+		for (GameObject obj: gameObjects) {
+			obj.updateAfter(delta, 0, 0);
 		}
 	}
 	

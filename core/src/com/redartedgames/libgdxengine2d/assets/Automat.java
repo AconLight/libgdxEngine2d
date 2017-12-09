@@ -34,6 +34,11 @@ public class Automat extends GameObject {
                 addSprite(AutomatPoswiata);
                 AutomatPoswiata.addTexture("graphic/automat/automatPos.png");
                 AutomatPoswiata.visibility = 0;
+
+                AutomatGlitch2 = new SpriteObject(0,0,this,true);
+                addSprite(AutomatGlitch2);
+                AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
+                AutomatGlitch2.visibility = 0f;
                 break;
 
             case 90:
@@ -54,6 +59,12 @@ public class Automat extends GameObject {
                 AutomatPoswiata.addTexture("graphic/automat/automatPos.png");
                 AutomatPoswiata.visibility = 0;
                 AutomatPoswiata.alfa = 270;
+
+                AutomatGlitch2 = new SpriteObject(0,0,this,true);
+                addSprite(AutomatGlitch2);
+                AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
+                AutomatGlitch2.alfa = 270;
+                AutomatGlitch2.visibility = 0f;
                 break;
 
             case 180:
@@ -74,6 +85,12 @@ public class Automat extends GameObject {
                 AutomatPoswiata.addTexture("graphic/automat/automatPos.png");
                 AutomatPoswiata.visibility = 0;
                 AutomatPoswiata.alfa = 180;
+
+                AutomatGlitch2 = new SpriteObject(0,0,this,true);
+                addSprite(AutomatGlitch2);
+                AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
+                AutomatGlitch2.alfa = 180;
+                AutomatGlitch2.visibility = 0f;
                 break;
 
             case 270:
@@ -94,6 +111,12 @@ public class Automat extends GameObject {
                 AutomatPoswiata.addTexture("graphic/automat/automatPos.png");
                 AutomatPoswiata.visibility = 0;
                 AutomatPoswiata.alfa = 90;
+
+                AutomatGlitch2 = new SpriteObject(0,0,this,true);
+                addSprite(AutomatGlitch2);
+                AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
+                AutomatGlitch2.alfa = 90;
+                AutomatGlitch2.visibility = 0f;
                 break;
 
             default:
@@ -111,6 +134,11 @@ public class Automat extends GameObject {
                 addSprite(AutomatPoswiata);
                 AutomatPoswiata.addTexture("graphic/automat/automatPos.png");
                 AutomatPoswiata.visibility = 0;
+
+                AutomatGlitch2 = new SpriteObject(0,0,this,true);
+                addSprite(AutomatGlitch2);
+                AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
+                AutomatGlitch2.visibility = 0f;
                 break;
         }
     }
@@ -120,6 +148,15 @@ public class Automat extends GameObject {
     }
 
     private float licznik=0;
+
+    public void onoff(boolean set){
+        float zamiana;
+        if (set == true) zamiana=1;
+        else zamiana=0;
+
+        AutomatGlitch2.visibility=zamiana;
+        setIsEnabled(set);
+    }
 
     public void update(float delta){
         super.update(delta);
@@ -136,6 +173,12 @@ public class Automat extends GameObject {
         Random generrrrator = new Random();
         float colourr = generrrrator.nextFloat();
 
+        //Random generrrrrator = new Random();
+        //int interator = generrrrrator.nextInt(5000)+1;
+
+        Random generrrrrrator = new Random();
+        int poddzielna = generrrrrrator.nextInt(1000)+1;
+
         if (AutomatGlitch.visibility == 1f) AutomatGlitch.visibility = 0f;
         if (licznik%podzielna == 0){
             if (AutomatGlitch.visibility == 0f){
@@ -144,7 +187,6 @@ public class Automat extends GameObject {
 
             }
         }
-
         if (IsEnabled == true) {
             AutomatPoswiata.visibility = 1f;
             if (licznik%podzielna_poswiata == 0){
@@ -161,6 +203,11 @@ public class Automat extends GameObject {
                 }
             }
         }
+
+        if (licznik%poddzielna==0){
+            if (AutomatGlitch2.visibility==1f) AutomatGlitch2.visibility=0f;
+        }
+
         licznik++;
     }
 }
