@@ -45,6 +45,8 @@ public class WallElement extends GameObject{
 			case 4:
 				sprite.addTexture("graphic/sciany/sciana1.png");
 				break;
+			case 5:
+				sprite.addTexture("graphic/sciany/sciana5.png");
 		}
 
 	}
@@ -64,14 +66,21 @@ public class WallElement extends GameObject{
 						hitboxSet(hitbox4);
 						break;
 					case 2:
-						//sprite.addTexture("graphic/sciany/sciana2.png");
 						hitboxSet(hitbox3);
+
+
 						break;
 					case 3:
 						hitboxSet(hitbox1);
+
+
 						break;
 					case 4:
 						hitboxSet(hitbox2);
+
+
+						break;
+					case 5:
 						break;
 				}
 				break;
@@ -82,19 +91,29 @@ public class WallElement extends GameObject{
 					default:
 					case 1:
 						hitboxSet(hitbox2);
-						hitboxSet(hitbox4);
+						hitboxSet(hitbox3);
+
+
 						break;
 					case 2:
 						hitboxSet(hitbox3);
 						hitboxSet(hitbox4);
+
+
 						break;
 					case 3:
 						hitboxSet(hitbox1);
 						hitboxSet(hitbox3);
+
+
 						break;
 					case 4:
 						hitboxSet(hitbox1);
 						hitboxSet(hitbox2);
+
+
+						break;
+					case 5:
 						break;
 				}
 				break;
@@ -123,6 +142,8 @@ public class WallElement extends GameObject{
 						hitboxSet(hitbox4);
 						hitboxSet(hitbox1);
 						break;
+					case 5:
+						break;
 				}
 				break;
 			case 270:
@@ -149,6 +170,8 @@ public class WallElement extends GameObject{
 						hitboxSet(hitbox2);
 						hitboxSet(hitbox4);
 						hitboxSet(hitbox1);
+						break;
+					case 5:
 						break;
 				}
 				hitbox1.setHitbox(new Hitbox(0,0,25,25,Hitbox.kinematic));
