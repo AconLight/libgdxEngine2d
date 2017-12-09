@@ -1,5 +1,6 @@
 package com.redartedgames.libgdxengine2d.assets;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
@@ -16,7 +17,7 @@ public class Biurko extends GameObject {
         //SpriteObject poswiata = new SpriteObject(0,0,null,false);
 		switch(alfa){
 		case 0:
-		biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.none);
+		biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.kinematic);
 		setHitbox(biurkoHitbox);
 		biurkoSprite = new SpriteObject(0,0,this,true);
 		addSprite(biurkoSprite);
@@ -26,7 +27,7 @@ public class Biurko extends GameObject {
 		biurko_poswiata.addTexture("graphic/biurko/biurko_poswiata.png");
 		break;
 		case 90:
-			biurkoHitbox = new Hitbox(x, y, 100, 200, Hitbox.none);
+			biurkoHitbox = new Hitbox(x, y, 100, 200, Hitbox.kinematic);
 			setHitbox(biurkoHitbox);
 			biurkoSprite = new SpriteObject(0,0,this,true);
 			addSprite(biurkoSprite);
@@ -37,7 +38,7 @@ public class Biurko extends GameObject {
             biurko_poswiata.alfa=270;
 		break;
 		case 180:
-			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.none);
+			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.kinematic);
 			setHitbox(biurkoHitbox);
 			biurkoSprite = new SpriteObject(0,0,this,true);
 			addSprite(biurkoSprite);
@@ -48,7 +49,7 @@ public class Biurko extends GameObject {
             biurko_poswiata.alfa=180;
 		break;
 		case 270:
-			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.none);
+			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.kinematic);
 			setHitbox(biurkoHitbox);
 			biurkoSprite = new SpriteObject(0,0,this,true);
 			addSprite(biurkoSprite);
@@ -59,7 +60,7 @@ public class Biurko extends GameObject {
             biurko_poswiata.alfa=90;
 		break;
 		default:
-			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.none);
+			biurkoHitbox = new Hitbox(x, y, 200, 100, Hitbox.kinematic);
 			setHitbox(biurkoHitbox);
 			biurkoSprite = new SpriteObject(0,0,this,true);
 			addSprite(biurkoSprite);
@@ -107,4 +108,8 @@ public class Biurko extends GameObject {
         //if (time>endTime) biurkoSprite.visibility=0f;
         licznik++;
     }
+	public void collide(GameObject obj) {
+		super.collide(obj);
+		Gdx.app.log("biurko", "hb: " + hitbox.rectangle.x + ", " + hitbox.rectangle.y);
+	}
 }

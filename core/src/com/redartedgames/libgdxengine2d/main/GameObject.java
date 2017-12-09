@@ -2,18 +2,21 @@ package com.redartedgames.libgdxengine2d.main;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.main.Hitbox.BehaviorMode;
 
 public class GameObject {
+	protected CollisionHandle c;
 	protected boolean isAttached;
 	protected Movement movement;
 	protected GameObject parent;
 	protected ArrayList<GameObject> gameObjects;
 	protected Hitbox hitbox;
-	private float collisionAccX, collisionAccY;
+	protected float collisionAccX;
+	protected float collisionAccY;
 	public ArrayList<GameObject> collidableObjects;
 	
 	public ArrayList<GameObject> getGameObjects() {
@@ -52,7 +55,7 @@ public class GameObject {
 		for (GameObject obj : gameObjects) {
 			obj.update(delta);
 		}
-		updateBefore(delta, 0, 0);
+		Gdx.app.log("GO", "u");
 	}
 	
 	public void updateBefore(float delta, float vx, float vy) {
@@ -110,11 +113,14 @@ public class GameObject {
 			
 			for(int i = 0; i < collidableObjects.size(); i++) {
 				collide(collidableObjects.get(i));
+				Gdx.app.log("GO", "i");
 			}
+			
+			Gdx.app.log("GO", "app: " + collidableObjects.size());
 
 		}
 		for (GameObject obj : gameObjects) {
-			obj.applyPhysicsToAcceleration();
+			//obj.applyPhysicsToAcceleration();
 		}
 	}
 	

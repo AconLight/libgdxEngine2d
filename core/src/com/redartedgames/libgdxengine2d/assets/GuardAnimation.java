@@ -17,8 +17,8 @@ public class GuardAnimation extends GameObject{
 		super(x, y, parent, isAttached);
 		// TODO Auto-generated constructor stub
 		//GameObject guadHitbox = new GameObject(23, 0,this, true);
-		hitbox = new Hitbox(getRealpositionX(0),getRealpositionY(0),90,90,Hitbox.none);
-		setHitbox(hitbox);
+		//hitbox = new Hitbox(parent.getMovement().getPosition().x,parent.getMovement().getPosition().y,90,90,Hitbox.dynamic);
+		//setHitbox(hitbox);
 		guardspritenotWalking = new SpriteObject(0,0,this,true);
 		addSprite(guardspritenotWalking);
 		guardspritenotWalking.addTexture("graphic/plajer/s0.png");
@@ -52,14 +52,14 @@ public class GuardAnimation extends GameObject{
 	 public void update (float delta){
 		super.update(delta);
 		delta *= 50;
-		movement.updateAfter(delta/40);
+		//movement.updateAfter(delta/40);
 		guardspriteisWalking.updateFrames(delta/50);
 		guardspritenotWalking.updateFrames(delta/40);
 		if (guardhead.alfa >=65) dupa = 1;
 		if (dupa == 0) guardhead.alfa += delta;
 		if (guardhead.alfa <=-65) dupa = 0;
 		if (dupa == 1) guardhead.alfa -= delta;
-		
+		//hitbox.update(parent.getMovement().getPosition().x, parent.getMovement().getPosition().y);
 		
 		
 	}
