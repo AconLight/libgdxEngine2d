@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Biurko extends GameObject {
-    SpriteObject biurkoSprite;
+    public SpriteObject biurkoSprite;
     SpriteObject biurko_poswiata;
 
 	private float time=0;
