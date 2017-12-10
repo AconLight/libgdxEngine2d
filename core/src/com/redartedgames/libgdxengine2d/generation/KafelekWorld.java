@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import com.redartedgames.libgdxengine2d.objects.Guard;
 import com.redartedgames.libgdxengine2d.objects.Kafelek;
 import com.redartedgames.libgdxengine2d.objects.Kafelek.KafelekType;
 
@@ -65,12 +66,15 @@ public class KafelekWorld {
 			kafelki.get(x-m*width-m*4).get(j+b-6).type = KafelekType.covered;
 			
 			biurka.add(kafelki.get(j+-3).get(x-m*width-m*1));
-			//kafelki.get(j+-3).get(x-m*width-m*1).guard = new
-			if (m == -1)
-			kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 90;
-			else
-				kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 270;
 			
+			if (m == -1) {
+				kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 90;
+				kafelki.get(j+-3).get(x-m*width-m*1).guard = new Guard(0+120, 0, null, true, 0);
+			}
+			else {
+				kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 270;
+				kafelki.get(j+-3).get(x-m*width-m*1).guard = new Guard(-120, 0, null, true, 180);
+			}
 			int c = g.nextInt(5);
 			for (int i = 0; i < c+1; i++) {
 				kafelki.get(x-m*width-m*1).get(j+i-5+a).type = KafelekType.path;

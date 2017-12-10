@@ -60,6 +60,7 @@ public class GuardAnimation extends GameObject{
 		guardhead360.addTexture("graphic/plajer/glowa360/10.png");
 		guardhead360.addTexture("graphic/plajer/glowa360/11.png");
 	
+		endWalking();
 	}
 	public void beginWalking(){
 		

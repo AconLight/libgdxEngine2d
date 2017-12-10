@@ -21,6 +21,8 @@ public class Biurko extends GameObject {
     public Biurko (float x, float y, int alfa, GameObject parent,boolean isAttached, Guard guard){
 		super(x, y, parent,isAttached);
 		Hitbox biurkoHitbox;
+		if (guard != null)
+		addGameObject(guard);
 		connections = new ArrayList<Connection>();
         //SpriteObject poswiata = new SpriteObject(0,0,null,false);
 		switch(alfa){
