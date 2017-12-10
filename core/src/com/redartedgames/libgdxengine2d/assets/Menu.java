@@ -17,7 +17,7 @@ public class Menu extends GameObject{
 	private SoundGlitch g;
 	private Random rand;
 	private float delta, wdupe = 0; 
-	boolean endMenu = false;
+	boolean endMenu = false, ison = false;
 	public Menu(float x, float y, GameObject parent, boolean isAttached){
 		super(x, y, parent, isAttached);
 		MySound.create();
@@ -68,7 +68,9 @@ public class Menu extends GameObject{
 		super.update(delta);
 		delta = Gdx.graphics.getDeltaTime();
 		wdupe += delta;
-		menuGlitch.updateFrames(delta/2);
+		
+		if(ison){
+		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE) == true && z == false){
 			z = true;
@@ -97,6 +99,7 @@ public class Menu extends GameObject{
 				menu.isVisible = false;
 				menuGlitch.visibility = 1;
 				g.play(1);
+				menuGlitch.updateFrames(delta/2);
 				f = false;
 				if(wdupe >= (dupa + 0.25)){
 					menu.isVisible = true;
@@ -112,11 +115,12 @@ public class Menu extends GameObject{
 				menu.updateFrames(delta/20);
 		}
 		
-		
+		}
 	}
 	
 	public void setMenuVisi(float vis){
 		menu.visibility = vis;
+		//menuGlitch.visibility = vis;
 	}
 	public void setMenuGlitchVisi(float vis){
 		menuGlitch.visibility = vis;
@@ -126,5 +130,7 @@ public class Menu extends GameObject{
 		return endMenu;
 		
 	}
-
+	public void isOnMenu(boolean ison){
+		this.ison = ison;
+	}
 }

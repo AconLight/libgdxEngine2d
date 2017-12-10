@@ -11,15 +11,25 @@ import com.redartedgames.libgdxengine2d.gameWorld.GameWindow;
 import com.redartedgames.libgdxengine2d.gameWorld.GameWorld;
 import com.redartedgames.libgdxengine2d.intro.IntroWindow;
 import com.redartedgames.libgdxengine2d.main.InputHandler;
+import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.main.Window;
+import com.redartedgames.libgdxengine2d.sound.MySound;
+import com.redartedgames.libgdxengine2d.sound.SoundGlitch;
 
 public class LibgdxEngine2dGame extends ApplicationAdapter {
 	
 	boolean isVerticalBlack = true;
 	IntroWindow introWin;
-	GameWindow gw;
+	public GameWindow gw;
 	float gameWidth = 1920, gameHeight = 1080;
 	ArrayList<Window> windows;
+	SoundGlitch g;
+	SpriteObject menu;
+	public void startGame() {
+		
+		windows.remove(introWin);
+		windows.add(gw);
+	}
 	
 	@Override
 	public void create () {
@@ -28,10 +38,19 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 		introWin = new IntroWindow(0, 0, (int)gameWidth, (int) gameHeight, this);
 		gw = new GameWindow(0, 0, (int)gameWidth, (int) gameHeight, this);
 		if(gameWidth/gameHeight < Gdx.graphics.getWidth()/Gdx.graphics.getHeight())
-		gw.resize(Gdx.graphics.getWidth()*gameHeight/Gdx.graphics.getHeight(), gameHeight);
+			introWin.resize(Gdx.graphics.getWidth()*gameHeight/Gdx.graphics.getHeight(), gameHeight);
+		else
+		introWin.resize(gameWidth, Gdx.graphics.getHeight()*gameWidth/Gdx.graphics.getWidth());
+		
+		if(gameWidth/gameHeight < Gdx.graphics.getWidth()/Gdx.graphics.getHeight())
+			gw.resize(Gdx.graphics.getWidth()*gameHeight/Gdx.graphics.getHeight(), gameHeight);
 		else
 		gw.resize(gameWidth, Gdx.graphics.getHeight()*gameWidth/Gdx.graphics.getWidth());
-		windows.add(gw);
+		
+		//gw.screens.get(0).visibility = 0;
+		//windows.add(gw);
+		
+		windows.add(introWin);
 		Gdx.input.setInputProcessor(new InputHandler((GameWorld) gw.screens.get(0).world));
 	}
 
