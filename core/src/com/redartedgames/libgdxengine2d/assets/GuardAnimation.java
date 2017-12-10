@@ -66,8 +66,6 @@ public class GuardAnimation extends GameObject{
 	public void beginWalking(){
 		
 		guardspritenotWalking.visibility=0;
-		
-		guardspriteisWalking.alfa=this.movement.getVelocity().angle();
 		guardspriteisWalking.visibility= 1;
 	}
 	public void endWalking(){
@@ -109,9 +107,7 @@ public class GuardAnimation extends GameObject{
 			}
 		}
 		else
-			guardhead.updateFrames(delta/20);
-		
-		System.out.println("pos x= " + guadHitbox.getRealpositionX(0) + " pos y= "+ guadHitbox.getRealpositionY(0));
+			guardhead.updateFrames(delta/20);	
 	}
 	//TODO Dopisaæ get hitbox 
 }

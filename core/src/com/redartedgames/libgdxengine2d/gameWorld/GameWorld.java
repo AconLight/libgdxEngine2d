@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.gameWorld;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,9 +13,7 @@ import com.redartedgames.libgdxengine2d.generation.KafelekWorld;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.GameScreen;
 import com.redartedgames.libgdxengine2d.main.World;
-import com.redartedgames.libgdxengine2d.objects.Guard;
-import com.redartedgames.libgdxengine2d.objects.Kafelek;
-import com.redartedgames.libgdxengine2d.objects.Wall;
+import com.redartedgames.libgdxengine2d.objects.*;
 
 import javax.swing.plaf.ViewportUI;
 
@@ -27,6 +26,8 @@ public class GameWorld extends World{
 	KafelekWorld kafelekWorld;
 	Wall wall;
 	public Vector2 camVel;
+
+	Wajha w1;
 	
 	public GameWorld(OrthographicCamera cam, GameScreen gameScreen) {
 		super(cam, gameScreen);
@@ -61,9 +62,16 @@ public class GameWorld extends World{
 			biurka.add(btest);
 			addGameObject(biurka.get(biurka.size()-1));
 		}
+		for(Biurko b : biurka)
+		    for(Connection c : b.connections)
+		        addGameObject(c);
 		for (int i = 0; i < kafelekWorld.origins.size(); i++) {
 			addGameObject(new Biurko(kafelekWorld.origins.get(i).x*100, kafelekWorld.origins.get(i).y*100, 180, null, false, null));
 		}
+        w1 = new Wajha(1000,1000,biurka);
+		for(Connection2 c : w1.polaczenia)
+		    addGameObject(c);
+		addGameObject(w1);
 		//addGameObject(b = new Biurko(0, 0, 0, null, false));
 		//addGameObject(g = new Guard(400, 0, null, false));
 		//b.collidableObjects.add(g);
@@ -72,6 +80,7 @@ public class GameWorld extends World{
 	
 	public void update(float delta) {
 		super.update(delta);
+		if(new Random().nextInt(10)==0)w1.press();
 		gameScreen.camPosition.x += camVel.x*delta;
 		gameScreen.camPosition.y += camVel.y*delta;
 	}

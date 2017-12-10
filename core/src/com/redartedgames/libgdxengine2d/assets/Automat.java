@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.assets;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
@@ -195,6 +196,7 @@ public class Automat extends GameObject {
     public boolean isTriggered = false;
 
     public void trigger(){
+        Vector2 guardVector = new Vector2();
         if (isTriggered==true) {
             iter=100;
             isTriggered=false;
@@ -206,7 +208,8 @@ public class Automat extends GameObject {
                 guard_y = guardList.get(i).getMovement().getPosition().y;
                 distance = Math.sqrt(((x - guard_x) * (x - guard_x)) + ((y - guard_y) * (y - guard_y)));
                 if (distance <= 200) {
-                    //guardList.get(i).trigger(x,y);
+                    guardVector.set(guard_x, guard_y);
+                    guardList.get(i).trigger(guardVector);
                     onoff(true);
                     triggeredGuards.add(guardList.get(i));
                 }
