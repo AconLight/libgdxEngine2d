@@ -52,12 +52,8 @@ public class KafelekWorld {
 				kafelki.get(x-m*width-m*3).get(j+i-5).type = KafelekType.covered;
 			}
 			int b = g.nextInt(a-2)+2;
-			biurka.add(kafelki.get(x-m*width-m*1).get(j+b-7));
-			if (m == -1)
-			kafelki.get(x-m*width-m*1).get(j+b-7).alfa_biurko = 0;
-			else
-			kafelki.get(x-m*width-m*1).get(j+b-7).alfa_biurko = 180;
-			//b = g.nextInt(a-1)+1;
+			
+			
 			kafelki.get(x-m*width-m*1).get(j+b-5).type = KafelekType.covered;
 			kafelki.get(x-m*width-m*2).get(j+b-5).type = KafelekType.covered;
 			kafelki.get(x-m*width-m*3).get(j+b-5).type = KafelekType.covered;
@@ -67,6 +63,12 @@ public class KafelekWorld {
 			kafelki.get(x-m*width-m*2).get(j+b-6).type = KafelekType.covered;
 			kafelki.get(x-m*width-m*3).get(j+b-6).type = KafelekType.covered;
 			kafelki.get(x-m*width-m*4).get(j+b-6).type = KafelekType.covered;
+			
+			biurka.add(kafelki.get(j+-3).get(x-m*width-m*1));
+			if (m == -1)
+			kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 90;
+			else
+				kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 270;
 			
 			int c = g.nextInt(5);
 			for (int i = 0; i < c+1; i++) {
@@ -109,6 +111,13 @@ public class KafelekWorld {
 			kafelki.get(j+b-6).get(y-m*width-m*2).type = KafelekType.covered;
 			kafelki.get(j+b-6).get(y-m*width-m*3).type = KafelekType.covered;
 			kafelki.get(j+b-6).get(y-m*width-m*4).type = KafelekType.covered;
+			
+			biurka.add(kafelki.get(x-m*width-m*1).get(j+-3));
+			if (m == -1)
+			kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 0;
+			else
+				kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 180;
+			
 			int c = g.nextInt(5);
 			
 			for (int i = 0; i < c+1; i++) {
