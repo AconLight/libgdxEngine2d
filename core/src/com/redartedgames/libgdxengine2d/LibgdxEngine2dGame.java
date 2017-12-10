@@ -17,7 +17,7 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 	boolean isVerticalBlack = true;
 	IntroWindow introWin;
 	GameWindow gw;
-	float gameWidth = 1280*1.5f, gameHeight = 720*1.5f;
+	float gameWidth = 1280*1.5f*4, gameHeight = 720*1.5f*4f;
 	ArrayList<Window> windows;
 	
 	@Override
@@ -29,8 +29,8 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 		if(gameWidth/gameHeight < Gdx.graphics.getWidth()/Gdx.graphics.getHeight())
 		gw.resize(Gdx.graphics.getWidth()*gameHeight/Gdx.graphics.getHeight(), gameHeight);
 		else
-		introWin.resize(gameWidth, Gdx.graphics.getHeight()*gameWidth/Gdx.graphics.getWidth());
-		windows.add(introWin);
+		gw.resize(gameWidth, Gdx.graphics.getHeight()*gameWidth/Gdx.graphics.getWidth());
+		windows.add(gw);
 	}
 
 	@Override
