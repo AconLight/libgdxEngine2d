@@ -65,6 +65,7 @@ public class KafelekWorld {
 			kafelki.get(x-m*width-m*4).get(j+b-6).type = KafelekType.covered;
 			
 			biurka.add(kafelki.get(j+-3).get(x-m*width-m*1));
+			//kafelki.get(j+-3).get(x-m*width-m*1).guard = new
 			if (m == -1)
 			kafelki.get(j+-3).get(x-m*width-m*1).alfa_biurko = 90;
 			else

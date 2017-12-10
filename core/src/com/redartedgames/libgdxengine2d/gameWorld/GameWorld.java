@@ -46,7 +46,7 @@ public class GameWorld extends World{
 		}
 		
 		for (int i = 0; i < kafelekWorld.biurka.size(); i++) {
-			Biurko btest = new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false);
+			Biurko btest = new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false, kafelekWorld.biurka.get(i).guard);
 			for(Biurko b : biurka){
 				if(Math.abs(b.getMovement().getPosition().x-btest.getMovement().getPosition().x)<1000 &&
 						Math.abs(b.getMovement().getPosition().y-btest.getMovement().getPosition().y)<1000){
@@ -58,7 +58,7 @@ public class GameWorld extends World{
 			addGameObject(biurka.get(biurka.size()-1));
 		}
 		for (int i = 0; i < kafelekWorld.origins.size(); i++) {
-			addGameObject(new Biurko(kafelekWorld.origins.get(i).x*100, kafelekWorld.origins.get(i).y*100, 180, null, false));
+			addGameObject(new Biurko(kafelekWorld.origins.get(i).x*100, kafelekWorld.origins.get(i).y*100, 180, null, false, null));
 		}
 		//addGameObject(b = new Biurko(0, 0, 0, null, false));
 		//addGameObject(g = new Guard(400, 0, null, false));
