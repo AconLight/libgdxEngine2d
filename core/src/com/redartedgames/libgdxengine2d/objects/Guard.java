@@ -30,14 +30,17 @@ public class Guard extends GameObject{
 	public void update(float delta) {
 		hitbox.update(movement.getPosition().x, movement.getPosition().y);
 		guardAnimation.update(delta);
-		trigger(init_pos.add(-50, 50));
 		if(isTriggerd){
 			float alfa2=0;
 			Vector2 dupa;
-			Vector2 dupa2=new Vector2((float) Math.sin(alfa2)*10,(float) Math.cos(alfa2)*10);
-			dupa = new Vector2 ((init_pos.x + pos.x)/10 ,(init_pos.y+pos.y)/10);
-			alfa2 +=delta;
+			Vector2 dupa2=new Vector2((float) Math.sin(alfa2)*1,(float) Math.cos(alfa2)*1);
+			dupa = new Vector2 ((movement.getPosition().x + pos.x)/10 ,(movement.getPosition().y+pos.y)/10);
+			alfa2 +=delta*5;
 			movement.setVelocity(dupa.add(dupa2));
+			if(movement.getPosition().x -pos.x<0.01f && movement.getPosition().y-pos.y<0.01){
+				guardAnimation.endWalking();
+				isTriggerd =false;
+			}
 		}
 	}
 	
