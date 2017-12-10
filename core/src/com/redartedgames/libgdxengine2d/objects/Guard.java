@@ -14,9 +14,10 @@ public class Guard extends GameObject{
 	public Guard(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		guardAnimation = new GuardAnimation(0, 0, this, true);
-		setHitbox(new Hitbox(x+15,y,120,90,Hitbox.dynamic));
+		setHitbox(new Hitbox(x,y,80,Hitbox.dynamic));
 		addGameObject(guardAnimation);
 		movement.setVelocity(new Vector2(-80, 0));
+		//guardAnimation.beginWalking(new Vector2(-80,0));
 	}
 	
 	public void move(float accx, float accy) {
@@ -24,7 +25,10 @@ public class Guard extends GameObject{
 	}
 	
 	public void update(float delta) {
-		//hitbox.update(movement.getPosition().x+29, movement.getPosition().y);
+		hitbox.update(movement.getPosition().x, movement.getPosition().y);
+		
+		guardAnimation.update(delta);
+		//System.out.println("alfa = "+movement.getVelocity().angle());
 	}
 	
 	
@@ -35,16 +39,16 @@ public class Guard extends GameObject{
 	
 	
 	public void collide(GameObject obj) {
-		hitbox.update(movement.getPosition().x+15, movement.getPosition().y);
+		hitbox.update(movement.getPosition().x, movement.getPosition().y);
 		super.collide(obj);
 		c = hitbox.checkCol(obj.getHitbox());
 		collisionAccX = collisionAccX+c.disX;
 		collisionAccY = collisionAccY+c.disY;
 		//Gdx.app.log("ColSpriteObject", "collide - col: " + collisionAccY );
 		//if (getHitbox().bMode == BehaviorMode.dynamic)
-			movement.addCollisionAcc(new Vector2(c.disX, c.disY));
+		movement.addCollisionAcc(new Vector2(c.disX, c.disY));
 		
-		Gdx.app.log("guard", "hb: " + hitbox.rectangle.x + ", " + hitbox.rectangle.y);
+		//Gdx.app.log("guard", "hb: " + hitbox.rectangle.x + ", " + hitbox.rectangle.y);
 	}
 
 }

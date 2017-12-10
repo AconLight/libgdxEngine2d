@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Biurko extends GameObject {
-    SpriteObject biurkoSprite;
+    public SpriteObject biurkoSprite;
     SpriteObject biurko_poswiata;
 
 	private float time=0;
@@ -20,7 +20,7 @@ public class Biurko extends GameObject {
     public Biurko (float x, float y, int alfa, GameObject parent,boolean isAttached){
 		super(x, y, parent,isAttached);
 		Hitbox biurkoHitbox;
-		connections = new ArrayList<>();
+		connections = new ArrayList<Connection>();
         //SpriteObject poswiata = new SpriteObject(0,0,null,false);
 		switch(alfa){
 		case 0:
