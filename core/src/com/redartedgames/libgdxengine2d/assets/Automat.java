@@ -6,6 +6,8 @@ import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.sound.MySound;
 import com.redartedgames.libgdxengine2d.sound.SoundGlitch;
+import com.redartedgames.libgdxengine2d.utilities.HitText;
+
 
 import java.util.Random;
 
@@ -16,6 +18,7 @@ public class Automat extends GameObject {
     SpriteObject AutomatGlitch;
     SpriteObject AutomatGlitch2;
     boolean IsEnabled=false;
+    HitText tekst;
 
     public Automat(float x, float y, int alfa, GameObject parent, boolean isAttached){
         super(x, y, parent, isAttached);
@@ -41,6 +44,10 @@ public class Automat extends GameObject {
                 addSprite(AutomatGlitch2);
                 AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
                 AutomatGlitch2.visibility = 0f;
+
+                tekst = new HitText(x,y,this,true,-1,"NullPointerExcepiton",0,50);
+                addSprite(tekst);
+
                 break;
 
             case 90:

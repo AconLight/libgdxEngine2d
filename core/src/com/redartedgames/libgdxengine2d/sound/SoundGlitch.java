@@ -28,10 +28,14 @@ public class SoundGlitch {
 		list.add(glitch3);
 	}
 	
-
+	public int soundNum = 0;
 	public void play(float vol){
-		
-		list.get(new Random().nextInt(4)).play(vol);
+		soundNum = new Random().nextInt(4);
+		list.get(soundNum).play(vol);
+	}
+	
+	public void setVol(float vol){
+		list.get(soundNum).setVolume(soundNum, vol);
 	}
 	
 }
