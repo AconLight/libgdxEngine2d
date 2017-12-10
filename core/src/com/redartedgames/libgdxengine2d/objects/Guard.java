@@ -10,6 +10,9 @@ import com.redartedgames.libgdxengine2d.main.Hitbox.BehaviorMode;
 public class Guard extends GameObject{
 	
 	private GuardAnimation guardAnimation;
+	public Vector2 pos;
+	public boolean isTriggerd=false;
+	public Vector2 init_pos;
 	
 	public Guard(float x, float y, GameObject parent, boolean isAttached, float alfa) {
 		super(x, y, parent, isAttached);
@@ -17,8 +20,7 @@ public class Guard extends GameObject{
 		guardAnimation.setalfa(alfa);
 		setHitbox(new Hitbox(x,y,80,Hitbox.dynamic));
 		addGameObject(guardAnimation);
-		//movement.setVelocity(new Vector2(-80, 0));
-		//guardAnimation.beginWalking(new Vector2(-80,0));
+		init_pos = new Vector2(x,y);
 	}
 	
 	public void move(float accx, float accy) {
@@ -27,9 +29,19 @@ public class Guard extends GameObject{
 	
 	public void update(float delta) {
 		hitbox.update(movement.getPosition().x, movement.getPosition().y);
-		
 		guardAnimation.update(delta);
-		//System.out.println("alfa = "+movement.getVelocity().angle());
+		if(isTriggerd){
+			float alfa2=0;
+			Vector2 dupa;
+			Vector2 dupa2=new Vector2((float) Math.sin(alfa2)*1,(float) Math.cos(alfa2)*1);
+			dupa = new Vector2 ((movement.getPosition().x + pos.x)/10 ,(movement.getPosition().y+pos.y)/10);
+			alfa2 +=delta*5;
+			movement.setVelocity(dupa.add(dupa2));
+			if(movement.getPosition().x -pos.x<0.01f && movement.getPosition().y-pos.y<0.01){
+				guardAnimation.endWalking();
+				isTriggerd =false;
+			}
+		}
 	}
 	
 	
@@ -50,6 +62,14 @@ public class Guard extends GameObject{
 		movement.addCollisionAcc(new Vector2(c.disX, c.disY));
 		
 		//Gdx.app.log("guard", "hb: " + hitbox.rectangle.x + ", " + hitbox.rectangle.y);
+	}
+	public void trigger(Vector2 pos_trig){
+		guardAnimation.beginWalking();
+		isTriggerd=true;
+		pos = pos_trig;
+		
+		
+		
 	}
 
 }

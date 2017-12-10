@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.assets;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
@@ -13,6 +14,8 @@ import com.redartedgames.libgdxengine2d.utilities.RandomizeRandomTextToAutomat;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+
 
 public class Automat extends GameObject {
 
@@ -28,6 +31,8 @@ public class Automat extends GameObject {
     private float y;
     private GameObject parent;
     private ArrayList<Guard> guardList;
+    public ArrayList<Guard> triggeredGuards;
+    private int iter;
 
     public Automat(float x, float y, int alfa, GameObject parent, boolean isAttached){
         super(x, y, parent, isAttached);
@@ -38,8 +43,9 @@ public class Automat extends GameObject {
         Hitbox AutomatHitbox;
         rnd = new RandomizeRandomTextToAutomat();
         stringi = rnd.getRandomTekst();
-
+        iter = 0;
         guardList = new ArrayList<>();
+        triggeredGuards = new ArrayList<>();
 
         switch (alfa){
             case 0:
@@ -187,22 +193,43 @@ public class Automat extends GameObject {
         setIsEnabled(set);
     }
 
+    public boolean isTriggered = false;
+
     public void trigger(){
-        float guard_x;
-        float guard_y;
-        double distance;
-        for (int i=0;i<guardList.size();i++){
-            guard_x = guardList.get(i).getMovement().getPosition().x;
-            guard_y = guardList.get(i).getMovement().getPosition().y;
-            distance = Math.sqrt(((x-guard_x)*(x-guard_x))+((y-guard_y)*(y-guard_y)));
-            if (distance <= 200){
-                //guardList.get(i).trigger();
-                onoff(true);
+        Vector2 guardVector = new Vector2();
+        if (isTriggered==true) {
+            iter=100;
+            isTriggered=false;
+            float guard_x;
+            float guard_y;
+            double distance;
+            for (int i = 0; i < guardList.size(); i++) {
+                guard_x = guardList.get(i).getMovement().getPosition().x;
+                guard_y = guardList.get(i).getMovement().getPosition().y;
+                distance = Math.sqrt(((x - guard_x) * (x - guard_x)) + ((y - guard_y) * (y - guard_y)));
+                if (distance <= 200) {
+                    guardVector.set(guard_x, guard_y);
+                    guardList.get(i).trigger(guardVector);
+                    onoff(true);
+                    triggeredGuards.add(guardList.get(i));
+                }
             }
         }
+        if (iter==1){
+            //guard untrigger, turn off automat
+            onoff(false);
+            for (int i=0;i<triggeredGuards.size();i++){
+                 //triggeredGuards.get(i).untrigger();
+                triggeredGuards.remove(i);
+            }
+        }
+        if (iter>1) iter--;
     }
+
     public void update(float delta){
         super.update(delta);
+
+        trigger();
 
         Random generator = new Random();
         int podzielna = generator.nextInt(150)+5;
@@ -217,13 +244,13 @@ public class Automat extends GameObject {
         float colourr = generrrrator.nextFloat();
 
         Random generrrrrator = new Random();
-        int miganie = generrrrrator.nextInt(2500)+1;
+        int miganie = generrrrrator.nextInt(1000)+1;
 
         Random generrrrrrator = new Random();
         int poddzielna = generrrrrrator.nextInt(1000)+1;
 
         Random randTimeGen = new Random();
-        int randTimeEnd = randTimeGen.nextInt(2)+1;
+        int randTimeEnd = randTimeGen.nextInt(10)+1;
 
         if (AutomatGlitch.visibility == 1f) AutomatGlitch.visibility = 0f;
         if (licznik%podzielna == 0){
