@@ -30,9 +30,9 @@ public class Wall extends GameObject{
 		e3 = false;
 		e4 = false;
 
-		map = new ArrayList<>();
-		plansza = new ArrayList<>();
-		positions = new ArrayList<>();
+		map = new ArrayList<ArrayList<Boolean>>();
+		plansza = new ArrayList<ArrayList<ArrayList<GameObject>>>();
+		positions = new ArrayList<Vector2>();
 		positions.add(new Vector2(-25,25));
 		positions.add(new Vector2(25,25));
 		positions.add(new Vector2(25,-25));
@@ -52,7 +52,7 @@ public class Wall extends GameObject{
 
 	private void mapMap(KafelekWorld kafelekWorld){
 		for(int i=0; i<kafelekWorld.kafelki.size(); i++) {
-			map.add(new ArrayList<>());
+			map.add(new ArrayList<Boolean>());
 			for (int j = 0; i < kafelekWorld.kafelki.get(i).size(); j++) {
 				if (kafelekWorld.kafelki.get(1).get(1).type == Kafelek.KafelekType.path)
 					map.get(i).add(new Boolean(true));

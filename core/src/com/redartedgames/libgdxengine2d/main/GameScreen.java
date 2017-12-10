@@ -46,6 +46,7 @@ public class GameScreen {
 		cam.zoom = 1 + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
+		shapeBatch.setProjectionMatrix(cam.combined);
 	}
 	
 	public void setWorld(World world) {

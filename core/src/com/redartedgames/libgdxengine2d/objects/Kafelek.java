@@ -17,7 +17,7 @@ public class Kafelek extends GameObject{
 	SpriteObject sprite;
 	
 	public Kafelek(int x, int y, GameObject parent, boolean isAttached, KafelekType type) {
-		super(x*20, y*20, parent, isAttached);
+		super((x-75)*20, (y-75)*20, parent, isAttached);
 		this.x = x;
 		this.y = y;
 		this.type = type;
