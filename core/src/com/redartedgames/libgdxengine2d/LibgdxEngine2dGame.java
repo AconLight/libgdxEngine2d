@@ -25,8 +25,8 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 	public void create () {
 		
 		windows = new ArrayList<Window>();
-		introWin = new IntroWindow(0, 0, (int)gameWidth, (int) gameHeight);
-		gw = new GameWindow(0, 0, (int)gameWidth, (int) gameHeight);
+		introWin = new IntroWindow(0, 0, (int)gameWidth, (int) gameHeight, this);
+		gw = new GameWindow(0, 0, (int)gameWidth, (int) gameHeight, this);
 		if(gameWidth/gameHeight < Gdx.graphics.getWidth()/Gdx.graphics.getHeight())
 		gw.resize(Gdx.graphics.getWidth()*gameHeight/Gdx.graphics.getHeight(), gameHeight);
 		else
