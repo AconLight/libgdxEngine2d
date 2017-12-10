@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Window {
 
 	protected Viewport viewport;
-	protected ArrayList<GameScreen> screens;
+	public ArrayList<GameScreen> screens;
 	protected float x, y, width, height, sclX, sclY;
 	
 	public Window(float x, float y, float width, float height) {
