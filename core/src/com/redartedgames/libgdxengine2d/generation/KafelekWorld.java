@@ -13,10 +13,12 @@ public class KafelekWorld {
 	public ArrayList<Kafelek> origins;
 	public ArrayList<Kafelek> paths;
 	public ArrayList<Kafelek> biurka;
+	public ArrayList<Kafelek> randomy;
 	private Random g;
 	
 	public KafelekWorld(int width) {
 		g = new Random();
+		randomy = new ArrayList<Kafelek>();
 		kafelki = new ArrayList<ArrayList<Kafelek>>();
 		origins = new ArrayList<Kafelek>();
 		biurka = new ArrayList<Kafelek>();
@@ -99,6 +101,14 @@ public class KafelekWorld {
 			int a = g.nextInt(4) + 4;
 			
 			
+			//losuj obiekt
+			Kafelek kaf = kafelki.get(x-width+0).get(y-m*width-m*(5 + g.nextInt(3)));
+			kaf.randomObj = new Guard(kaf.x*100, kaf.y*100, null, false, 0);
+			randomy.add(kaf);
+			
+			
+			
+			
 			for (int i = 1; i < a-1; i++) {
 				kafelki.get(j+i-5).get(y-m*width-m*1).type = KafelekType.covered;
 				kafelki.get(j+i-5).get(y-m*width-m*2).type = KafelekType.covered;
@@ -118,10 +128,14 @@ public class KafelekWorld {
 			kafelki.get(j+b-6).get(y-m*width-m*4).type = KafelekType.covered;
 			
 			biurka.add(kafelki.get(x-m*width-m*1).get(j+-3));
-			if (m == -1)
-			kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 0;
-			else
+			if (m == -1) {
+				kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 0;
+				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, 120, null, true, 0);
+			}
+			else {
 				kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 180;
+				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, -120, null, true, 0);
+			}
 			
 			int c = g.nextInt(5);
 			

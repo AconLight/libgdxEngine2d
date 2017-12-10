@@ -15,6 +15,8 @@ public class Kafelek extends GameObject{
 	
 	public Guard guard;
 	
+	public GameObject randomObj;
+	
 	public int alfa_biurko;
 	
 	public KafelekType type;
