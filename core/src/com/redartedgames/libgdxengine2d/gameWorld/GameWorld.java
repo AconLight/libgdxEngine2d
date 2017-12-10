@@ -45,6 +45,10 @@ public class GameWorld extends World{
 			}
 		}
 		
+		for (int i = 0; i < kafelekWorld.randomy.size(); i++) {
+			addGameObject(kafelekWorld.randomy.get(i).randomObj);
+		}
+		
 		for (int i = 0; i < kafelekWorld.biurka.size(); i++) {
 			Biurko btest = new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false, kafelekWorld.biurka.get(i).guard);
 			for(Biurko b : biurka){
