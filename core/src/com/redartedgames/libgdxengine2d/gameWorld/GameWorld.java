@@ -16,7 +16,11 @@ import com.redartedgames.libgdxengine2d.objects.Guard;
 import com.redartedgames.libgdxengine2d.objects.Kafelek;
 import com.redartedgames.libgdxengine2d.objects.Wall;
 
+import javax.swing.plaf.ViewportUI;
+
 public class GameWorld extends World{
+
+	ArrayList<Biurko> biurka;
 
 	Biurko b;
 	Guard g;
@@ -27,6 +31,7 @@ public class GameWorld extends World{
 	public GameWorld(OrthographicCamera cam, GameScreen gameScreen) {
 		super(cam, gameScreen);
 		camVel = new Vector2(0, 0);
+		biurka = new ArrayList<Biurko>();
 		gameScreen.camPosition.x = 1000;
 		gameScreen.camPosition.y = 1000;
 		kafelekWorld = new KafelekWorld(80);
@@ -41,7 +46,16 @@ public class GameWorld extends World{
 		}
 		
 		for (int i = 0; i < kafelekWorld.biurka.size(); i++) {
-			addGameObject(new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false));
+			Biurko btest = new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false);
+			for(Biurko b : biurka){
+				if(Math.abs(b.getMovement().getPosition().x-btest.getMovement().getPosition().x)<1000 &&
+						Math.abs(b.getMovement().getPosition().y-btest.getMovement().getPosition().y)<1000){
+					b.addConnecton(btest);
+					btest.addConnecton(b);
+				}
+			}
+			biurka.add(btest);
+			addGameObject(biurka.get(biurka.size()-1));
 		}
 		for (int i = 0; i < kafelekWorld.origins.size(); i++) {
 			addGameObject(new Biurko(kafelekWorld.origins.get(i).x*100, kafelekWorld.origins.get(i).y*100, 180, null, false));
