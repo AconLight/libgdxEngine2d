@@ -13,14 +13,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class GameScreen {
 	private Viewport viewport;
 	public OrthographicCamera cam;
-	protected World world;
+	public World world;
 	private SpriteBatch batch;
 	private ShapeRenderer shapeBatch;
 	private float visibility;
-	private Vector2 camPosition;
+	public Vector2 camPosition;
 	private Vector2 screenPosition;
 	public ScreenShaker screenShaker;
-	protected Window window;
+	public Window window;
 	
 	public GameScreen(Viewport viewport, float visibility, float x, float y, int width, int height, Window window) {
 		this.window = window;

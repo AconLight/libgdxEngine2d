@@ -5,6 +5,7 @@ import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.objects.Connection;
+import com.redartedgames.libgdxengine2d.objects.Guard;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,9 +18,11 @@ public class Biurko extends GameObject {
 	private float licznik=0;
     public ArrayList<Connection> connections;
 
-    public Biurko (float x, float y, int alfa, GameObject parent,boolean isAttached){
+    public Biurko (float x, float y, int alfa, GameObject parent,boolean isAttached, Guard guard){
 		super(x, y, parent,isAttached);
 		Hitbox biurkoHitbox;
+		if (guard != null)
+		addGameObject(guard);
 		connections = new ArrayList<Connection>();
         //SpriteObject poswiata = new SpriteObject(0,0,null,false);
 		switch(alfa){

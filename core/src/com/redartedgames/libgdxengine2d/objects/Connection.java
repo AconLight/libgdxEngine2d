@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.objects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -29,27 +30,31 @@ public class Connection extends GameObject{
     }
 
     public void changeStatus(){
-        if(isActive) isActive = false;
-        else isActive = true;
-    }
-
-    private void drawActive(ShapeRenderer shape){
-        shape.setAutoShapeType(true);
-        Gdx.gl20.glLineWidth(10);
-        shape.begin();
-        shape.setColor(183,177,20,1);
-        shape.line(x1,y1,x2,y2);
-        shape.end();
-        shape.setAutoShapeType(false);
+        if(isActive) {
+            isActive = false;
+            for(Connection c : finishPosition.connections)
+                if(c.finishPosition==this.startingPosition) c.isActive=false;
+        }
+        else {
+                isActive = true;
+                for(Connection c : finishPosition.connections)
+                    if(c.finishPosition==this.startingPosition) c.isActive=true;
+        }
     }
 
     private void drawInactive(ShapeRenderer shape){
         shape.setAutoShapeType(true);
-        Gdx.gl20.glLineWidth(10);
-        shape.begin();
-        shape.setColor(72,72,72,1);
-        shape.line(x1,y1,x2,y2);
-        shape.end();
+        Gdx.gl20.glLineWidth(20);
+        shape.setColor(Color.GRAY);
+        shape.rectLine(x1+1,y1+1,x2+1,y2+1,10);
+        shape.setAutoShapeType(false);
+    }
+
+    private void drawActive(ShapeRenderer shape){
+        shape.setAutoShapeType(true);
+        Gdx.gl20.glLineWidth(20);
+        shape.setColor(Color.GOLD);
+        shape.rectLine(x1+1,y1+1,x2+1,y2+1,10);
         shape.setAutoShapeType(false);
     }
 

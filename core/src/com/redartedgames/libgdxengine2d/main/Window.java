@@ -3,14 +3,15 @@ package com.redartedgames.libgdxengine2d.main;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.redartedgames.libgdxengine2d.LibgdxEngine2dGame;
 
 public class Window {
 
 	protected Viewport viewport;
-	protected ArrayList<GameScreen> screens;
+	public ArrayList<GameScreen> screens;
 	protected float x, y, width, height, sclX, sclY;
 	
-	public Window(float x, float y, float width, float height) {
+	public Window(float x, float y, float width, float height, LibgdxEngine2dGame game) {
 		screens = new ArrayList<GameScreen>();
 		this.x = x;
 		this.y = y;

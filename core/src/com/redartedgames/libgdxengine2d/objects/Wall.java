@@ -18,7 +18,7 @@ public class Wall extends GameObject{
 	private WallElement we1, we2, we3, we4; // poszczególne kawalki kafelka 50x50
 	private WallElement pom;
 	private int rotation;
-	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map, KafelekWorld kafelekWorld) {
+	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map2, KafelekWorld kafelekWorld) {
 		super(x, y, parent, isAttached);
 
 		defChangeY = (int)y;
@@ -53,8 +53,8 @@ public class Wall extends GameObject{
 	private void mapMap(KafelekWorld kafelekWorld){
 		for(int i=0; i<kafelekWorld.kafelki.size(); i++) {
 			map.add(new ArrayList<Boolean>());
-			for (int j = 0; i < kafelekWorld.kafelki.get(i).size(); j++) {
-				if (kafelekWorld.kafelki.get(1).get(1).type == Kafelek.KafelekType.path)
+			for (int j = 0; j < kafelekWorld.kafelki.get(i).size(); j++) {
+				if (kafelekWorld.kafelki.get(i).get(j).type == Kafelek.KafelekType.path)
 					map.get(i).add(new Boolean(true));
 				else
 					map.get(i).add(new Boolean(false));

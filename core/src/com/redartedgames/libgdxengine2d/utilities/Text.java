@@ -15,6 +15,7 @@ public class Text extends SpriteObject{
     protected float y;
     protected float visibility;
 
+
     public Text(float x, float y, GameObject parent, boolean isAttached, int size, String tekst, float visibility){
         super(x,y,parent,isAttached);
         this.txt = tekst;
@@ -33,6 +34,10 @@ public class Text extends SpriteObject{
                 break;
             case 3:
                 font = new BitmapFont(Gdx.files.internal("fonts/best_font.fnt"),false);
+                break;
+            case -1:
+                font = new BitmapFont(Gdx.files.internal("fonts/font_extraSmall.fnt"),false);
+                break;
             default:
                 break;
         }
