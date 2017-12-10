@@ -110,4 +110,5 @@ public class GuardAnimation extends GameObject{
 			guardhead.updateFrames(delta/20);	
 	}
 	//TODO Dopisaæ get hitbox 
+	
 }
