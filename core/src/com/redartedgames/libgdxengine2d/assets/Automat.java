@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
+import com.redartedgames.libgdxengine2d.sound.MySound;
+import com.redartedgames.libgdxengine2d.sound.SoundGlitch;
 
 import java.util.Random;
 
@@ -153,7 +155,8 @@ public class Automat extends GameObject {
         float zamiana;
         if (set == true) zamiana=1;
         else zamiana=0;
-
+        SoundGlitch snd = new SoundGlitch();
+        snd.play(1);
         AutomatGlitch2.visibility=zamiana;
         setIsEnabled(set);
     }
@@ -182,9 +185,10 @@ public class Automat extends GameObject {
         if (AutomatGlitch.visibility == 1f) AutomatGlitch.visibility = 0f;
         if (licznik%podzielna == 0){
             if (AutomatGlitch.visibility == 0f){
+
                 AutomatGlitch.visibility = 1f;
             } else {
-
+                //????? kurwwa...
             }
         }
         if (IsEnabled == true) {
