@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.redartedgames.libgdxengine2d.assets.Menu;
 
 public class GameScreen {
 	private Viewport viewport;
@@ -16,7 +17,7 @@ public class GameScreen {
 	public World world;
 	private SpriteBatch batch;
 	private ShapeRenderer shapeBatch;
-	private float visibility;
+	public float visibility;
 	public Vector2 camPosition;
 	private Vector2 screenPosition;
 	public ScreenShaker screenShaker;
@@ -43,7 +44,9 @@ public class GameScreen {
 		cam.direction.set(0, 0, -1);
 		cam.up.set(0, 1, 0);
 		cam.rotate(screenShaker.getAlfaDeep().x);
+
 		cam.zoom = 1 + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
+
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 		shapeBatch.setProjectionMatrix(cam.combined);

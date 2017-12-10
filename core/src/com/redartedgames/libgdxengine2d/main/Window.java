@@ -10,9 +10,11 @@ public class Window {
 	protected Viewport viewport;
 	public ArrayList<GameScreen> screens;
 	protected float x, y, width, height, sclX, sclY;
+	public LibgdxEngine2dGame game;
 	
 	public Window(float x, float y, float width, float height, LibgdxEngine2dGame game) {
 		screens = new ArrayList<GameScreen>();
+		this.game = game;
 		this.x = x;
 		this.y = y;
 		this.width = width;
