@@ -14,6 +14,7 @@ public class GuardAnimation extends GameObject{
 	public float alfa;
 	public SpriteObject guardhead, guardhead360;
 	public GameObject guadHitbox;
+	public boolean isWalking=false;
 	public GuardAnimation(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		// TODO Auto-generated constructor stub
@@ -65,6 +66,7 @@ public class GuardAnimation extends GameObject{
 	public void beginWalking(){
 		
 		guardspritenotWalking.visibility=0;
+		
 		guardspriteisWalking.alfa=this.movement.getVelocity().angle();
 		guardspriteisWalking.visibility= 1;
 	}
@@ -86,12 +88,13 @@ public class GuardAnimation extends GameObject{
 		wdupe += Gdx.graphics.getDeltaTime();
 		delta *= 50;
 		movement.updateAfter(delta/40);
-		beginWalking();
 		guardspriteisWalking.updateFrames(delta/20);
+		if (isWalking){
 		guardspriteisWalking.alfa=(parent.movement.getVelocity().angle()+180);
 		guardhead.alfa=(parent.movement.getVelocity().angle()+180);
 		guardhead360.alfa=(parent.movement.getVelocity().angle()+180);
-		//guardspritenotWalking.updateFrames(delta);
+		}
+		guardspritenotWalking.updateFrames(delta);
 		guardhead360.updateFrames(delta/2);
 		
 		if(wdupe >= 5){
