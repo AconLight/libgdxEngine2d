@@ -12,6 +12,11 @@ public class Kafelek extends GameObject{
 		origin, normal, path, covered
 	}
 	
+	
+	public Guard guard;
+	
+	public int alfa_biurko;
+	
 	public KafelekType type;
 	
 	SpriteObject sprite;

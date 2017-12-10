@@ -3,14 +3,36 @@ package com.redartedgames.libgdxengine2d.main;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.redartedgames.libgdxengine2d.gameWorld.GameWorld;
 
 public class InputHandler implements InputProcessor{
 
+	GameWorld world;
+	public InputHandler(GameWorld world) {
+		this.world = world;
+	}
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
 		case  Keys.ESCAPE: {
 			Gdx.app.exit();
+			break;
+		}
+		
+		case  Keys.DOWN: {
+			world.camVel.y -= 200;
+			break;
+		}
+		case  Keys.UP: {
+			world.camVel.y += 200;
+			break;
+		}
+		case  Keys.RIGHT: {
+			world.camVel.x += 200;
+			break;
+		}
+		case  Keys.LEFT: {
+			world.camVel.x -= 200;
 			break;
 		}
 		}
@@ -19,7 +41,29 @@ public class InputHandler implements InputProcessor{
 
 	@Override
 	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
+		switch (keycode) {
+		case  Keys.ESCAPE: {
+			Gdx.app.exit();
+			break;
+		}
+		
+		case  Keys.DOWN: {
+			world.camVel.y += 200;
+			break;
+		}
+		case  Keys.UP: {
+			world.camVel.y -= 200;
+			break;
+		}
+		case  Keys.RIGHT: {
+			world.camVel.x -= 200;
+			break;
+		}
+		case  Keys.LEFT: {
+			world.camVel.x += 200;
+			break;
+		}
+		}
 		return false;
 	}
 
