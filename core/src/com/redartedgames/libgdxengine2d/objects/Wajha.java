@@ -1,19 +1,24 @@
 package com.redartedgames.libgdxengine2d.objects;
 
 import com.redartedgames.libgdxengine2d.assets.Biurko;
+import com.redartedgames.libgdxengine2d.main.GameObject;
+import com.redartedgames.libgdxengine2d.main.SpriteObject;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Wajha {
+public class Wajha extends GameObject{
     public int x;
     public int y;
     public ArrayList<Biurko> biurka;
     public ArrayList<Connection2> polaczenia;
+    private SpriteObject wajhaSprite;
 
     public Wajha(int x, int y, ArrayList<Biurko> wszystkieBiurka){
+        super(0,0,null,false);
         this.x=x;
         this.y=y;
+        wajhaSprite = new SpriteObject(x,y,this,true);
         biurka = new ArrayList<Biurko>();
         polaczenia = new ArrayList<Connection2>();
         for(Biurko b : wszystkieBiurka){
@@ -25,6 +30,8 @@ public class Wajha {
         for(Biurko b : biurka){
             polaczenia.add(new Connection2(this,b));
         }
+        addSprite(wajhaSprite);
+        wajhaSprite.addTexture("graphic/press.png");
     }
 
     public void press(){ polaczenia.size();
