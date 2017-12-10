@@ -7,6 +7,7 @@ import com.redartedgames.libgdxengine2d.main.SpriteObject;
 import com.redartedgames.libgdxengine2d.sound.MySound;
 import com.redartedgames.libgdxengine2d.sound.SoundGlitch;
 import com.redartedgames.libgdxengine2d.utilities.HitText;
+import com.redartedgames.libgdxengine2d.utilities.RandomizeRandomTextToAutomat;
 
 
 import java.util.Random;
@@ -19,10 +20,20 @@ public class Automat extends GameObject {
     SpriteObject AutomatGlitch2;
     boolean IsEnabled=false;
     HitText tekst;
+    RandomizeRandomTextToAutomat rnd;
+    String stringi;
+    private float x;
+    private float y;
+    private GameObject parent;
 
     public Automat(float x, float y, int alfa, GameObject parent, boolean isAttached){
         super(x, y, parent, isAttached);
+        this.x = x;
+        this.y = y;
+        this.parent = parent;
         Hitbox AutomatHitbox;
+        rnd = new RandomizeRandomTextToAutomat();
+        stringi = rnd.getRandomTekst();
         switch (alfa){
             case 0:
                 AutomatHitbox = new Hitbox(x,y,148,156, Hitbox.BehaviorMode.kinematic);
@@ -45,8 +56,8 @@ public class Automat extends GameObject {
                 AutomatGlitch2.addTexture("graphic/automat/automatGlitch2.png");
                 AutomatGlitch2.visibility = 0f;
 
-                tekst = new HitText(x,y,this,true,-1,"NullPointerExcepiton",0,50);
-                addSprite(tekst);
+                //tekst = rnd.migoconcyTekst(x,y,this,5,0);
+                //addSprite(tekst);
 
                 break;
 
@@ -150,6 +161,9 @@ public class Automat extends GameObject {
                 AutomatGlitch2.visibility = 0f;
                 break;
         }
+
+
+
     }
 
     public void setIsEnabled(boolean set){
@@ -183,11 +197,14 @@ public class Automat extends GameObject {
         Random generrrrator = new Random();
         float colourr = generrrrator.nextFloat();
 
-        //Random generrrrrator = new Random();
-        //int interator = generrrrrator.nextInt(5000)+1;
+        Random generrrrrator = new Random();
+        int miganie = generrrrrator.nextInt(2500)+1;
 
         Random generrrrrrator = new Random();
         int poddzielna = generrrrrrator.nextInt(1000)+1;
+
+        Random randTimeGen = new Random();
+        int randTimeEnd = randTimeGen.nextInt(2)+1;
 
         if (AutomatGlitch.visibility == 1f) AutomatGlitch.visibility = 0f;
         if (licznik%podzielna == 0){
@@ -219,6 +236,12 @@ public class Automat extends GameObject {
             if (AutomatGlitch2.visibility==1f) AutomatGlitch2.visibility=0f;
         }
 
+        if (licznik%miganie==0){
+            //tekst.endTime=(float)randTimeEnd;
+            tekst = rnd.migoconcyTekst(x,y,parent,(float)randTimeEnd,1);
+            //tekst.visibility=1;
+            addSprite(tekst);
+        }
         licznik++;
     }
 }
