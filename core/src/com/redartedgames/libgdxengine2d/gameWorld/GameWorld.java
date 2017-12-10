@@ -43,6 +43,9 @@ public class GameWorld extends World{
 		for (int i = 0; i < kafelekWorld.biurka.size(); i++) {
 			addGameObject(new Biurko(kafelekWorld.biurka.get(i).x*100, kafelekWorld.biurka.get(i).y*100, kafelekWorld.biurka.get(i).alfa_biurko, null, false));
 		}
+		for (int i = 0; i < kafelekWorld.origins.size(); i++) {
+			addGameObject(new Biurko(kafelekWorld.origins.get(i).x*100, kafelekWorld.origins.get(i).y*100, 180, null, false));
+		}
 		//addGameObject(b = new Biurko(0, 0, 0, null, false));
 		//addGameObject(g = new Guard(400, 0, null, false));
 		//b.collidableObjects.add(g);
