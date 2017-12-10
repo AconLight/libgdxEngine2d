@@ -1,6 +1,8 @@
 package com.redartedgames.libgdxengine2d.generation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 import com.redartedgames.libgdxengine2d.objects.Kafelek;
 import com.redartedgames.libgdxengine2d.objects.Kafelek.KafelekType;
@@ -9,26 +11,66 @@ public class KafelekWorld {
 	public ArrayList<ArrayList<Kafelek>> kafelki;
 	public ArrayList<Kafelek> origins;
 	public ArrayList<Kafelek> paths;
-	
+	private Random g;
 	
 	public KafelekWorld(int width) {
+		g = new Random();
 		kafelki = new ArrayList<ArrayList<Kafelek>>();
 		origins = new ArrayList<Kafelek>();
 		generate(width);
-		generateOrigins(width, 0, 25);
+		generateOrigins(width, 0, 60);
+		Collections.shuffle(origins);
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 20);
+			generateSquares(k.x, k.y, 30 + g.nextInt(4));
 		}
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 15);
+			generateSquares(k.x, k.y, 18 + g.nextInt(2));
 		}
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 10);
-		}
-		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 5);
+			generateSquares(k.x, k.y, 7 + g.nextInt(2));
 		}
 		
+	}
+	
+	void genP(int x, int y, int width, int m) {
+		for (int i = -3; i < width*2+4 ; i++) {
+			kafelki.get(x-m*width-m*1).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*2).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*3).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*4).get(y-width+i).type = KafelekType.path;
+		}
+		
+		for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
+			int a = g.nextInt(4) + 4;
+			
+			
+			for (int i = 1; i < a-1; i++) {
+				kafelki.get(x-m*width-m*1).get(j+i-5).type = KafelekType.covered;
+				kafelki.get(x-m*width-m*2).get(j+i-5).type = KafelekType.covered;
+				kafelki.get(x-m*width-m*3).get(j+i-5).type = KafelekType.covered;
+			}
+			int b = g.nextInt(a-1)+1;
+			
+			kafelki.get(x-m*width-m*1).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*2).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*3).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*4).get(j+b-5).type = KafelekType.covered;
+			
+			kafelki.get(x-m*width-m*1).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*2).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*3).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*4).get(j+b-6).type = KafelekType.covered;
+			
+			int c = g.nextInt(5);
+			for (int i = 0; i < c+1; i++) {
+				kafelki.get(x-m*width-m*1).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*2).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*3).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*4).get(j+i-5+a).type = KafelekType.path;
+			}
+			
+			j += a + c+1;
+		}
 	}
 	
 	public void generateSquares(int x, int y, int width) {
@@ -63,6 +105,24 @@ public class KafelekWorld {
 				//if (i >= 0 && i < kafelki.get(i).size())
 			kafelki.get(j).get(y-width).type = KafelekType.path;
 		}
+		/////////////////////////////////
+		//dol
+		genP(x, y, width, 1);
+		
+		////////////////////////////////
+		//gora
+		
+		
+		
+		
+		
+		//////////////////////////////////////////////
+		//////////////////////////////
+		///lewo prawo
+		
+		
+/////////////////////////////////
+
 		
 	}
 	public void myCover(int x, int y) {
@@ -133,8 +193,8 @@ public class KafelekWorld {
 			
 	
 	public void generateOrigins(int width, int randomness, int delta) {
-		for(int i = delta; i < width; i+=delta) {
-			for(int j = delta; j < width; j+=delta) {
+		for(int i = 40; i < width; i+=delta) {
+			for(int j = 40; j < width; j+=delta) {
 				kafelki.get(i).get(j).type = KafelekType.origin;
 				origins.add(kafelki.get(i).get(j));
 			}

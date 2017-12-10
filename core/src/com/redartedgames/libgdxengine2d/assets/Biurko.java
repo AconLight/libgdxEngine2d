@@ -1,19 +1,26 @@
 package com.redartedgames.libgdxengine2d.assets;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 import com.redartedgames.libgdxengine2d.main.Hitbox;
 import com.redartedgames.libgdxengine2d.main.SpriteObject;
+import com.redartedgames.libgdxengine2d.objects.Connection;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Biurko extends GameObject {
-    SpriteObject biurkoSprite;
+    public SpriteObject biurkoSprite;
     SpriteObject biurko_poswiata;
+
+	private float time=0;
+	private float licznik=0;
+    public ArrayList<Connection> connections;
+
     public Biurko (float x, float y, int alfa, GameObject parent,boolean isAttached){
 		super(x, y, parent,isAttached);
 		Hitbox biurkoHitbox;
+		connections = new ArrayList<Connection>();
         //SpriteObject poswiata = new SpriteObject(0,0,null,false);
 		switch(alfa){
 		case 0:
@@ -72,8 +79,16 @@ public class Biurko extends GameObject {
 		}
 	}
 
-	private float time=0;
-	private float licznik=0;
+	public void addConnecton(Biurko target){
+    	connections.add(new Connection(this,target));
+	}
+
+	public void changeConnectionStatus(Biurko target){
+    	for(Connection c : connections) {
+			if (c.getFinishPosition() == target) ;
+				c.changeStatus();
+    	}
+	}
 
 	public void update(float delta){
         super.update(delta);
