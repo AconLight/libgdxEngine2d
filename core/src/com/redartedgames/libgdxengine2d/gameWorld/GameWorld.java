@@ -33,8 +33,8 @@ public class GameWorld extends World{
 		super(cam, gameScreen);
 		camVel = new Vector2(0, 0);
 		biurka = new ArrayList<Biurko>();
-		gameScreen.camPosition.x = 1000;
-		gameScreen.camPosition.y = 1000;
+		gameScreen.camPosition.x = 2000;
+		gameScreen.camPosition.y = 2000;
 		kafelekWorld = new KafelekWorld(80);
 		wall = new Wall(0, 0, null, false, null, kafelekWorld);
 		

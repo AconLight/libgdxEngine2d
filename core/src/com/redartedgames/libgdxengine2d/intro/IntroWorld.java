@@ -75,9 +75,9 @@ public class IntroWorld extends World{
 		if (time > 3 && time <= 7 && i < 20) { 
 			i++;
 			//time = 7.8f;
-			gameScreen.screenShaker.shakePosition(10);
-			gameScreen.screenShaker.shakeAlfa(10);
-			gameScreen.screenShaker.shakeDeep(10);
+			//gameScreen.screenShaker.shakePosition(10);
+			//gameScreen.screenShaker.shakeAlfa(10);
+			//gameScreen.screenShaker.shakeDeep(10);
 		}
 	}
 
