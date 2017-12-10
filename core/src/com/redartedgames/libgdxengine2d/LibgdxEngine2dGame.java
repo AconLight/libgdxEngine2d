@@ -17,7 +17,7 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 	boolean isVerticalBlack = true;
 	IntroWindow introWin;
 	GameWindow gw;
-	float gameWidth = 1280*1.5f*4, gameHeight = 720*1.5f*4f;
+	float gameWidth = 1280*1.5f, gameHeight = 720*1.5f;
 	ArrayList<Window> windows;
 	
 	@Override
