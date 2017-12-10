@@ -130,11 +130,11 @@ public class KafelekWorld {
 			biurka.add(kafelki.get(x-m*width-m*1).get(j+-3));
 			if (m == -1) {
 				kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 0;
-				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, 120, null, true, 0);
+				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, 120, null, true, 90);
 			}
 			else {
 				kafelki.get(x-m*width-m*1).get(j+-3).alfa_biurko = 180;
-				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, -120, null, true, 0);
+				kafelki.get(x-m*width-m*1).get(j+-3).guard = new Guard(0, -120, null, true, 270);
 			}
 			
 			int c = g.nextInt(5);

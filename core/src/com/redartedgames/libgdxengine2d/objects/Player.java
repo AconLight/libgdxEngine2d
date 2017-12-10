@@ -9,6 +9,8 @@ public class Player extends GameObject{
 
 	public ArrayList<Biurko> biurka;
 	
+	Biurko biurko;
+	
 	public boolean isInPerson;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached, ArrayList<Biurko> biurka) {
@@ -17,10 +19,16 @@ public class Player extends GameObject{
 	
 	public void update(float delta) {
 		super.update(delta);
-		
+		for(Biurko b : biurka) {
+			
+		}
 	}
 	
-	public void goin(GameObject obj) {
+	public void goinPerson(GameObject obj) {
+		parent = obj;
+	}
+	
+	public void goinBiurko(GameObject obj) {
 		parent = obj;
 	}
 

@@ -37,5 +37,8 @@ public class SoundGlitch {
 	public void setVol(float vol){
 		list.get(soundNum).setVolume(soundNum, vol);
 	}
+	public void stop(){
+		list.get(soundNum).pause();
+	}
 	
 }
