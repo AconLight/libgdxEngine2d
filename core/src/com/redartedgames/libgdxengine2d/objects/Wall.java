@@ -1,7 +1,6 @@
 package com.redartedgames.libgdxengine2d.objects;
 
 import com.badlogic.gdx.math.Vector2;
-import com.redartedgames.libgdxengine2d.assets.Biurko;
 import com.redartedgames.libgdxengine2d.generation.KafelekWorld;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 
@@ -19,12 +18,12 @@ public class Wall extends GameObject{
 	private WallElement we1, we2, we3, we4; // poszczególne kawalki kafelka 50x50
 	private WallElement pom;
 	private int rotation;
-	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map2, KafelekWorld kafelekWorld) {
+	public Wall(float x, float y, GameObject parent, boolean isAttached/*args*/,ArrayList<ArrayList<Boolean>> map, KafelekWorld kafelekWorld) {
 		super(x, y, parent, isAttached);
 
 		defChangeY = (int)y;
 		changeX = (int)x;
-		changeY = (int)y;
+		changeY = 0;
 
 		e1 = false;
 		e2 = false;
@@ -49,17 +48,13 @@ public class Wall extends GameObject{
 		mapMap(kafelekWorld);
 
 		generate(map);
-		
-		//for(Kafelek k : kafelekWorld.biurka)
-			//plansza.get(k.x).get(k.y).get(0).addGameObject(new Biurko(k.x*100, k.y*100, k.alfa_biurko, null, true));
-		
 	}
 
 	private void mapMap(KafelekWorld kafelekWorld){
 		for(int i=0; i<kafelekWorld.kafelki.size(); i++) {
 			map.add(new ArrayList<Boolean>());
-			for (int j = 0; j < kafelekWorld.kafelki.get(i).size(); j++) {
-				if (kafelekWorld.kafelki.get(i).get(j).type == Kafelek.KafelekType.path)
+			for (int j = 0; i < kafelekWorld.kafelki.get(i).size(); j++) {
+				if (kafelekWorld.kafelki.get(1).get(1).type == Kafelek.KafelekType.path)
 					map.get(i).add(new Boolean(true));
 				else
 					map.get(i).add(new Boolean(false));

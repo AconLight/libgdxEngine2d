@@ -30,14 +30,21 @@ public class Connection extends GameObject{
     }
 
     public void changeStatus(){
-        if(isActive) isActive = false;
-        else isActive = true;
+        if(isActive) {
+            isActive = false;
+            for(Connection c : finishPosition.connections)
+                if(c.finishPosition==this.startingPosition) c.isActive=false;
+        }
+        else {
+                isActive = true;
+                for(Connection c : finishPosition.connections)
+                    if(c.finishPosition==this.startingPosition) c.isActive=true;
+        }
     }
 
     private void drawInactive(ShapeRenderer shape){
         shape.setAutoShapeType(true);
         Gdx.gl20.glLineWidth(20);
-        //shape.setColor(183,177,20,1);
         shape.setColor(Color.GRAY);
         shape.rectLine(x1+1,y1+1,x2+1,y2+1,10);
         shape.setAutoShapeType(false);
@@ -46,7 +53,6 @@ public class Connection extends GameObject{
     private void drawActive(ShapeRenderer shape){
         shape.setAutoShapeType(true);
         Gdx.gl20.glLineWidth(20);
-        //shape.setColor(72,72,72,1);
         shape.setColor(Color.GOLD);
         shape.rectLine(x1+1,y1+1,x2+1,y2+1,10);
         shape.setAutoShapeType(false);
