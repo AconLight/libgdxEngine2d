@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.redartedgames.libgdxengine2d.LibgdxEngine2dGame;
 import com.redartedgames.libgdxengine2d.assets.Biurko;
 import com.redartedgames.libgdxengine2d.main.GameScreen;
 import com.redartedgames.libgdxengine2d.main.Window;
@@ -12,8 +13,8 @@ import com.redartedgames.libgdxengine2d.objects.Guard;
 
 public class IntroWindow extends Window{
 	
-	public IntroWindow(float x, float y, int width, int height) {
-		super(x, y, width, height);
+	public IntroWindow(float x, float y, int width, int height, LibgdxEngine2dGame game) {
+		super(x, y, width, height, game);
 		viewport = new FillViewport(width, height, new OrthographicCamera(100, 100));
 		addScreen(new IntroScreen(viewport, x, y, width, height, this));
 	}
