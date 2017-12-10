@@ -20,7 +20,7 @@ public class GameScreen {
 	public Vector2 camPosition;
 	private Vector2 screenPosition;
 	public ScreenShaker screenShaker;
-	protected Window window;
+	public Window window;
 	
 	public GameScreen(Viewport viewport, float visibility, float x, float y, int width, int height, Window window) {
 		this.window = window;
