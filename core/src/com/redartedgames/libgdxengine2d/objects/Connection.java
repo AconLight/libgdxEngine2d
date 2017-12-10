@@ -75,4 +75,9 @@ public class Connection extends GameObject{
         if(isActive) drawActive(batch);
         else drawInactive(batch);
     }
+  //Jebane kurwa gówno jebaæ to dwa dni robory i nawet najprostrzeych rzeczy nie
+  	//mo¿na implementowac poprost kurwicy dostajê wszyscy coœ robi¹ a ja 
+  	//siedzê na d jakims gównemi nie wiem jak to nawet ugry¿æ ca³a praca jak 
+  	//krew w piach i nawet w Guitar Hero nie mo¿na by³o zagrac a chocia¿
+  	//to chcia³em na otarcie ³ez ale kurwa nie.
 }
