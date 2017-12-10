@@ -21,7 +21,7 @@ public class GameWorld extends World{
 	
 	public GameWorld(OrthographicCamera cam, GameScreen gameScreen) {
 		super(cam, gameScreen);
-		kafelekWorld = new KafelekWorld(150);
+		kafelekWorld = new KafelekWorld(200);
 		for (ArrayList<Kafelek> k : kafelekWorld.kafelki) {
 			gameObjects.addAll(k);
 		}

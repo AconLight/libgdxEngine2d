@@ -18,18 +18,59 @@ public class KafelekWorld {
 		kafelki = new ArrayList<ArrayList<Kafelek>>();
 		origins = new ArrayList<Kafelek>();
 		generate(width);
-		generateOrigins(width, 0, 45);
+		generateOrigins(width, 0, 60);
 		Collections.shuffle(origins);
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 25);
+			generateSquares(k.x, k.y, 30 + g.nextInt(4));
 		}
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 10 + g.nextInt(4));
+			generateSquares(k.x, k.y, 18 + g.nextInt(2));
 		}
 		for (Kafelek k : origins) {
-			generateSquares(k.x, k.y, 4 + g.nextInt(2));
+			generateSquares(k.x, k.y, 7 + g.nextInt(2));
 		}
 		
+	}
+	
+	void genP(int x, int y, int width, int m) {
+		for (int i = -3; i < width*2+4 ; i++) {
+			kafelki.get(x-m*width-m*1).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*2).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*3).get(y-width+i).type = KafelekType.path;
+			kafelki.get(x-m*width-m*4).get(y-width+i).type = KafelekType.path;
+		}
+		
+		for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
+			int a = g.nextInt(4) + 4;
+			
+			
+			for (int i = 1; i < a-1; i++) {
+				kafelki.get(x-m*width-m*1).get(j+i-5).type = KafelekType.covered;
+				kafelki.get(x-m*width-m*2).get(j+i-5).type = KafelekType.covered;
+				kafelki.get(x-m*width-m*3).get(j+i-5).type = KafelekType.covered;
+			}
+			int b = g.nextInt(a-1)+1;
+			
+			kafelki.get(x-m*width-m*1).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*2).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*3).get(j+b-5).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*4).get(j+b-5).type = KafelekType.covered;
+			
+			kafelki.get(x-m*width-m*1).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*2).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*3).get(j+b-6).type = KafelekType.covered;
+			kafelki.get(x-m*width-m*4).get(j+b-6).type = KafelekType.covered;
+			
+			int c = g.nextInt(5);
+			for (int i = 0; i < c+1; i++) {
+				kafelki.get(x-m*width-m*1).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*2).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*3).get(j+i-5+a).type = KafelekType.path;
+				kafelki.get(x-m*width-m*4).get(j+i-5+a).type = KafelekType.path;
+			}
+			
+			j += a + c+1;
+		}
 	}
 	
 	public void generateSquares(int x, int y, int width) {
@@ -66,78 +107,12 @@ public class KafelekWorld {
 		}
 		/////////////////////////////////
 		//dol
-		for (int i = -3; i < width*2+4 ; i++) {
-			kafelki.get(x-width-1).get(y-width+i).type = KafelekType.path;
-			kafelki.get(x-width-2).get(y-width+i).type = KafelekType.path;
-			kafelki.get(x-width-3).get(y-width+i).type = KafelekType.path;
-		}
-		
-		for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
-			int a = g.nextInt(4) + 4;
-			
-			
-			for (int i = 1; i < a-1; i++) {
-				kafelki.get(x-width-1).get(j+i-5).type = KafelekType.covered;
-				kafelki.get(x-width-2).get(j+i-5).type = KafelekType.covered;
-				//kafelki.get(x-width-3).get(j+i-5).type = KafelekType.path;
-			}
-			int b = g.nextInt(a-1)+1;
-			
-			kafelki.get(x-width-1).get(j+b-5).type = KafelekType.covered;
-			kafelki.get(x-width-2).get(j+b-5).type = KafelekType.covered;
-			kafelki.get(x-width-3).get(j+b-5).type = KafelekType.covered;
-			
-			kafelki.get(x-width-1).get(j+b-6).type = KafelekType.covered;
-			kafelki.get(x-width-2).get(j+b-6).type = KafelekType.covered;
-			kafelki.get(x-width-3).get(j+b-6).type = KafelekType.covered;
-			
-			int c = g.nextInt(5);
-			for (int i = 0; i < c+1; i++) {
-				kafelki.get(x-width-1).get(j+i-5+a).type = KafelekType.path;
-				kafelki.get(x-width-2).get(j+i-5+a).type = KafelekType.path;
-				kafelki.get(x-width-3).get(j+i-5+a).type = KafelekType.path;
-			}
-			
-			j += a + c+1;
-		}
+		genP(x, y, width, 1);
 		
 		////////////////////////////////
 		//gora
 		
-		for (int i = -3; i < width*2+4 ; i++) {
-			kafelki.get(x+width+1).get(y-width+i).type = KafelekType.path;
-			kafelki.get(x+width+2).get(y-width+i).type = KafelekType.path;
-			kafelki.get(x+width+3).get(y-width+i).type = KafelekType.path;
-		}
 		
-		for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
-			int a = g.nextInt(4) + 4;
-			
-			
-			for (int i = 1; i < a-1; i++) {
-				kafelki.get(x+width+1).get(j+i-5).type = KafelekType.covered;
-				kafelki.get(x+width+2).get(j+i-5).type = KafelekType.covered;
-				//kafelki.get(x-width-3).get(j+i-5).type = KafelekType.path;
-			}
-			int b = g.nextInt(a-1)+1;
-			
-			kafelki.get(x+width+1).get(j+b-5).type = KafelekType.covered;
-			kafelki.get(x+width+2).get(j+b-5).type = KafelekType.covered;
-			kafelki.get(x+width+3).get(j+b-5).type = KafelekType.covered;
-			
-			kafelki.get(x+width+1).get(j+b-6).type = KafelekType.covered;
-			kafelki.get(x+width+2).get(j+b-6).type = KafelekType.covered;
-			kafelki.get(x+width+3).get(j+b-6).type = KafelekType.covered;
-			
-			int c = g.nextInt(5);
-			for (int i = 0; i < c+1; i++) {
-				kafelki.get(x+width+1).get(j+i-5+a).type = KafelekType.path;
-				kafelki.get(x+width+2).get(j+i-5+a).type = KafelekType.path;
-				kafelki.get(x+width+3).get(j+i-5+a).type = KafelekType.path;
-			}
-			
-			j += a + c+1;
-		}
 		
 		
 		
@@ -147,80 +122,8 @@ public class KafelekWorld {
 		
 		
 /////////////////////////////////
-//dol
-for (int i = -3; i < width*2+4 ; i++) {
-kafelki.get(y-width+i).get(x-width-1).type = KafelekType.path;
-kafelki.get(y-width+i).get(x-width-2).type = KafelekType.path;
-kafelki.get(y-width+i).get(x-width-3).type = KafelekType.path;
-}
 
-for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
-int a = g.nextInt(4) + 4;
-
-
-for (int i = 1; i < a-1; i++) {
-kafelki.get(j+i-5).get(x-width-1).type = KafelekType.covered;
-kafelki.get(j+i-5).get(x-width-2).type = KafelekType.covered;
-//kafelki.get(x-width-3).get(j+i-5).type = KafelekType.path;
-}
-int b = g.nextInt(a-1)+1;
-
-kafelki.get(j+b-5).get(x-width-1).type = KafelekType.covered;
-kafelki.get(j+b-5).get(x-width-2).type = KafelekType.covered;
-kafelki.get(j+b-5).get(x-width-3).type = KafelekType.covered;
-
-kafelki.get(j+b-6).get(x-width-1).type = KafelekType.covered;
-kafelki.get(j+b-6).get(x-width-2).type = KafelekType.covered;
-kafelki.get(j+b-6).get(x-width-3).type = KafelekType.covered;
-
-int c = g.nextInt(5);
-for (int i = 0; i < c+1; i++) {
-kafelki.get(j+i-5+a).get(x-width-1).type = KafelekType.path;
-kafelki.get(j+i-5+a).get(x-width-2).type = KafelekType.path;
-kafelki.get(j+i-5+a).get(x-width-3).type = KafelekType.path;
-}
-
-j += a + c+1;
-}
-
-////////////////////////////////
-//gora
-/*
-for (int i = -3; i < width*2+4 ; i++) {
-kafelki.get(x+width+1).get(y-width+i).type = KafelekType.path;
-kafelki.get(x+width+2).get(y-width+i).type = KafelekType.path;
-kafelki.get(x+width+3).get(y-width+i).type = KafelekType.path;
-}
-
-for (int j = y-width + 5 + g.nextInt(3); j < y+width;) {
-int a = g.nextInt(4) + 4;
-
-
-for (int i = 1; i < a-1; i++) {
-kafelki.get(x+width+1).get(j+i-5).type = KafelekType.covered;
-kafelki.get(x+width+2).get(j+i-5).type = KafelekType.covered;
-//kafelki.get(x-width-3).get(j+i-5).type = KafelekType.path;
-}
-int b = g.nextInt(a-1)+1;
-
-kafelki.get(x+width+1).get(j+b-5).type = KafelekType.covered;
-kafelki.get(x+width+2).get(j+b-5).type = KafelekType.covered;
-kafelki.get(x+width+3).get(j+b-5).type = KafelekType.covered;
-
-kafelki.get(x+width+1).get(j+b-6).type = KafelekType.covered;
-kafelki.get(x+width+2).get(j+b-6).type = KafelekType.covered;
-kafelki.get(x+width+3).get(j+b-6).type = KafelekType.covered;
-
-int c = g.nextInt(5);
-for (int i = 0; i < c+1; i++) {
-kafelki.get(x+width+1).get(j+i-5+a).type = KafelekType.path;
-kafelki.get(x+width+2).get(j+i-5+a).type = KafelekType.path;
-kafelki.get(x+width+3).get(j+i-5+a).type = KafelekType.path;
-}
-
-j += a + c+1;
-}
-	*/	
+		
 	}
 	public void myCover(int x, int y) {
 		
@@ -290,8 +193,8 @@ j += a + c+1;
 			
 	
 	public void generateOrigins(int width, int randomness, int delta) {
-		for(int i = 30; i < width; i+=delta) {
-			for(int j = 30; j < width; j+=delta) {
+		for(int i = 40; i < width; i+=delta) {
+			for(int j = 40; j < width; j+=delta) {
 				kafelki.get(i).get(j).type = KafelekType.origin;
 				origins.add(kafelki.get(i).get(j));
 			}
