@@ -11,7 +11,7 @@ import com.redartedgames.libgdxengine2d.main.Hitbox.BehaviorMode;
 public class GameObject {
 	protected CollisionHandle c;
 	protected boolean isAttached;
-	protected Movement movement;
+	public Movement movement;
 	protected GameObject parent;
 	protected ArrayList<GameObject> gameObjects;
 	protected Hitbox hitbox;
@@ -90,13 +90,13 @@ public class GameObject {
 	}
 	
 	public float getRealpositionX(float oldx) {
-		oldx = this.movement.getPosition().x;
-		if(this.parent != null) parent.getRealpositionX(oldx) ;
+		oldx += this.movement.getPosition().x;
+		if(this.parent != null) this.parent.getRealpositionX(oldx);
 		return oldx;
 	}
 	public float getRealpositionY(float oldy) {
-		oldy = this.movement.getPosition().y;
-		if(this.parent != null) parent.getRealpositionX(oldy) ;
+		oldy += this.movement.getPosition().y;
+		if(this.parent != null) this.parent.getRealpositionY(oldy) ;
 		return oldy;
 	}
 	
