@@ -8,6 +8,7 @@ import com.redartedgames.libgdxengine2d.gameWorld.GameWorld;
 public class InputHandler implements InputProcessor{
 
 	GameWorld world;
+	World world2;
 	public InputHandler(GameWorld world) {
 		this.world = world;
 	}
@@ -16,6 +17,11 @@ public class InputHandler implements InputProcessor{
 		switch (keycode) {
 		case  Keys.ESCAPE: {
 			Gdx.app.exit();
+			break;
+		}
+		
+		case  Keys.N: {
+			world2.update(0);
 			break;
 		}
 		
