@@ -10,10 +10,12 @@ public class Connection extends GameObject{
     private Biurko startingPosition;
     private Biurko finishPosition;
     private Boolean isActive;
+    private SpriteBatch batch;
     private ShapeRenderer shape;
 
     public Connection(Biurko startingPosition, Biurko finishPosition){
         super(0,0,null,false);
+        batch = new SpriteBatch();
         shape = new ShapeRenderer();
         isActive = false;
         this.startingPosition = startingPosition;
@@ -27,10 +29,12 @@ public class Connection extends GameObject{
     }
 
     private void drawActive(){
+        //batch.draw(rect,1,1,1,1);
         Gdx.gl20.glLineWidth(10);
         shape.begin(ShapeRenderer.ShapeType.Line);
         shape.setColor(183,177,20,1);
-        shape.line(startingPosition.getMovement().getPosition(),finishPosition.getMovement().getPosition());
+        shape.line(startingPosition.getMovement().getPosition().x+400,startingPosition.getMovement().getPosition().y+400,
+                    finishPosition.getMovement().getPosition().x+400,finishPosition.getMovement().getPosition().y+400);
         shape.end();
     }
 
@@ -38,7 +42,8 @@ public class Connection extends GameObject{
         Gdx.gl20.glLineWidth(10);
         shape.begin(ShapeRenderer.ShapeType.Line);
         shape.setColor(72,72,72,1);
-        shape.line(startingPosition.getMovement().getPosition(),finishPosition.getMovement().getPosition());
+        shape.line(startingPosition.getMovement().getPosition().x+400,startingPosition.getMovement().getPosition().y+400,
+                finishPosition.getMovement().getPosition().x+400,finishPosition.getMovement().getPosition().y+400);
         shape.end();
     }
 
