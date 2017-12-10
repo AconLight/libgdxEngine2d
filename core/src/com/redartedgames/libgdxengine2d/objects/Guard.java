@@ -11,12 +11,13 @@ public class Guard extends GameObject{
 	
 	private GuardAnimation guardAnimation;
 	
-	public Guard(float x, float y, GameObject parent, boolean isAttached) {
+	public Guard(float x, float y, GameObject parent, boolean isAttached, float alfa) {
 		super(x, y, parent, isAttached);
 		guardAnimation = new GuardAnimation(0, 0, this, true);
+		guardAnimation.setalfa(alfa);
 		setHitbox(new Hitbox(x,y,80,Hitbox.dynamic));
 		addGameObject(guardAnimation);
-		movement.setVelocity(new Vector2(-80, 0));
+		//movement.setVelocity(new Vector2(-80, 0));
 		//guardAnimation.beginWalking(new Vector2(-80,0));
 	}
 	

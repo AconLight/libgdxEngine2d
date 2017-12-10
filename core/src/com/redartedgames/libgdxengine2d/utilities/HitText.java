@@ -12,8 +12,8 @@ import java.util.Random;
 public class HitText extends Text{
 
     private float time=0;
-    private float endTime;
-    private float visibility;
+    public float endTime;
+    public float visibility;
     private int licznik=0;
 
     public  HitText(float x, float y, GameObject parent, boolean isAttached, int size, String tekst, float visibility, float endTime){

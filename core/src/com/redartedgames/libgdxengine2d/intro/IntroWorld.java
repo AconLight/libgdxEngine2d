@@ -23,9 +23,9 @@ public class IntroWorld extends World{
 		red.addTexture("graphic/intro/red.png");
 		addSpriteObject(made).visibility = 0;
 		addSpriteObject(red).visibility = 0;
-		addGameObject(b = new Biurko(0, 0, 0, null, false));
-		addGameObject(b2 = new Biurko(600, 0, 0, null, false));
-		addGameObject(g = new Guard(400, 0, null, false));
+		addGameObject(b = new Biurko(0, 0, 0, null, false, null));
+		addGameObject(b2 = new Biurko(600, 0, 0, null, false, null));
+		addGameObject(g = new Guard(400, 0, null, false, 0));
 		b.collidableObjects.add(g);
 		g.collidableObjects.add(b);
 		g.collidableObjects.add(b2);
