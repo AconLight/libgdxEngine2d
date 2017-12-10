@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.objects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.redartedgames.libgdxengine2d.assets.Biurko;
@@ -10,17 +11,21 @@ public class Connection extends GameObject{
     private Biurko startingPosition;
     private Biurko finishPosition;
     private Boolean isActive;
-    private SpriteBatch batch;
-    private ShapeRenderer shape;
+    //private SpriteBatch batch;
+    //private ShapeRenderer shape;
+    private int x1,y1,x2,y2;
 
     public Connection(Biurko startingPosition, Biurko finishPosition){
-        super(0,0,null,false);
-        batch = new SpriteBatch();
-        shape = new ShapeRenderer();
+        super(0,0,startingPosition,true);
+        //batch = new SpriteBatch();
+        //shape = new ShapeRenderer();
         isActive = false;
         this.startingPosition = startingPosition;
         this.finishPosition = finishPosition;
-        drawInactive();
+        x1 = (int)startingPosition.getMovement().getPosition().x;
+        y1 = (int)startingPosition.getMovement().getPosition().y;
+        x2 = (int)finishPosition.getMovement().getPosition().x;
+        y2 = (int)finishPosition.getMovement().getPosition().y;
     }
 
     public void changeStatus(){
@@ -28,23 +33,24 @@ public class Connection extends GameObject{
         else isActive = true;
     }
 
-    private void drawActive(){
-        //batch.draw(rect,1,1,1,1);
+    private void drawActive(ShapeRenderer shape){
+        shape.setAutoShapeType(true);
         Gdx.gl20.glLineWidth(10);
-        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.begin();
         shape.setColor(183,177,20,1);
-        shape.line(startingPosition.getMovement().getPosition().x+400,startingPosition.getMovement().getPosition().y+400,
-                    finishPosition.getMovement().getPosition().x+400,finishPosition.getMovement().getPosition().y+400);
+        shape.line(x1,y1,x2,y2);
         shape.end();
+        shape.setAutoShapeType(false);
     }
 
-    private void drawInactive(){
+    private void drawInactive(ShapeRenderer shape){
+        shape.setAutoShapeType(true);
         Gdx.gl20.glLineWidth(10);
-        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.begin();
         shape.setColor(72,72,72,1);
-        shape.line(startingPosition.getMovement().getPosition().x+400,startingPosition.getMovement().getPosition().y+400,
-                finishPosition.getMovement().getPosition().x+400,finishPosition.getMovement().getPosition().y+400);
+        shape.line(x1,y1,x2,y2);
         shape.end();
+        shape.setAutoShapeType(false);
     }
 
     public Boolean getIsActive() {
@@ -61,7 +67,7 @@ public class Connection extends GameObject{
 
     public void render(ShapeRenderer batch, int priority, float dx, float dy, float visibility){
         super.render(batch, priority, dx, dy, visibility);
-        if(isActive) drawActive();
-        else drawInactive();
+        if(isActive) drawActive(batch);
+        else drawInactive(batch);
     }
 }
