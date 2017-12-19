@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.redartedgames.libgdxengine2d.assets.Biurko;
 import com.redartedgames.libgdxengine2d.main.GameObject;
 
-import java.util.ArrayList;
 
 public class Connection2 extends GameObject{
     public Wajha wajha;

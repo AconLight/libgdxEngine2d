@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import com.redartedgames.libgdxengine2d.assets.Automat;
+import com.redartedgames.libgdxengine2d.assets.Doniczkowiec;
 import com.redartedgames.libgdxengine2d.objects.Guard;
 import com.redartedgames.libgdxengine2d.objects.Kafelek;
 import com.redartedgames.libgdxengine2d.objects.Kafelek.KafelekType;
+import com.redartedgames.libgdxengine2d.objects.Wajha;
 
 public class KafelekWorld {
 	public ArrayList<ArrayList<Kafelek>> kafelki;
@@ -96,18 +99,21 @@ public class KafelekWorld {
 			kafelki.get(x-width+i).get(y-m*width-m*3).type = KafelekType.path;
 			kafelki.get(x-width+i).get(y-m*width-m*4).type = KafelekType.path;
 		}
+		//losuj obiekt
+		Kafelek kaf = kafelki.get(x-width+2).get(y-m*width-m*(7));
+		kaf.randomObj = new Guard(kaf.x*100, kaf.y*100, null, false, 0);
+		randomy.add(kaf);
+
+		kaf = kafelki.get(x-width+0).get(y-m*width-m*(5));
+		kaf.randomObj = new Automat(kaf.x*100-50,kaf.y*100,90,null,false);
+		randomy.add(kaf);
+
+		kaf = kafelki.get(x-width+0).get(y-m*width-m*(2));
+		kaf.randomObj = new Doniczkowiec(kaf.x*100-50,kaf.y*100,90,null,false);
+		randomy.add(kaf);
 		
 		for (int j = x-width + 5 + g.nextInt(3); j < x+width;) {
 			int a = g.nextInt(4) + 4;
-			
-			
-			//losuj obiekt
-			Kafelek kaf = kafelki.get(x-width+0).get(y-m*width-m*(5 + g.nextInt(3)));
-			kaf.randomObj = new Guard(kaf.x*100, kaf.y*100, null, false, 0);
-			randomy.add(kaf);
-			
-			
-			
 			
 			for (int i = 1; i < a-1; i++) {
 				kafelki.get(j+i-5).get(y-m*width-m*1).type = KafelekType.covered;

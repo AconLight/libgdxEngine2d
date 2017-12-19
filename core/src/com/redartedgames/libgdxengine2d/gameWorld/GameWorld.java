@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.redartedgames.libgdxengine2d.assets.Biurko;
@@ -19,6 +20,7 @@ import javax.swing.plaf.ViewportUI;
 
 public class GameWorld extends World{
 
+	GameRenderer gameRenderer;
 	ArrayList<Biurko> biurka;
 
 	Biurko b;
@@ -31,6 +33,7 @@ public class GameWorld extends World{
 	
 	public GameWorld(OrthographicCamera cam, GameScreen gameScreen) {
 		super(cam, gameScreen);
+		gameRenderer = new GameRenderer(cam,gameScreen, 1080, 1920);
 		camVel = new Vector2(0, 0);
 		biurka = new ArrayList<Biurko>();
 		gameScreen.camPosition.x = 2000;
@@ -41,7 +44,7 @@ public class GameWorld extends World{
 		for (int i = 0; i < wall.plansza.size(); i++) {
 			for (int j = 0; j < wall.plansza.get(i).size(); j++) {
 				for (int l = 0; l < wall.plansza.get(i).get(j).size(); l++) {
-					addGameObject(wall.plansza.get(i).get(j).get(l));
+					gameRenderer.addGameObject(wall.plansza.get(i).get(j).get(l));//addGameObject(wall.plansza.get(i).get(j).get(l));
 				}
 			}
 		}
@@ -85,4 +88,9 @@ public class GameWorld extends World{
 		gameScreen.camPosition.y += camVel.y*delta;
 	}
 
+	@Override
+	public void render(SpriteBatch batch, float visibility) {
+		super.render(batch, visibility);
+		gameRenderer.render(batch,visibility);
+	}
 }
