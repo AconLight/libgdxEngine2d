@@ -1,5 +1,7 @@
 package com.redartedgames.libgdxengine2d.hexs;
 
+import com.redartedgames.libgdxengine2d.myhexs.MyHex;
+
 /** Klasa podstawowa, w której trzymamy logikê generowania siê hexów.
  * Klasy rozszerzaj¹ce bêd¹ zawieraæ fikuœne funkcje generuj¹ce odpowiednie hexy,
  * natomiast ta podstawowa klasa po prostu inicjalizycje ka¿dego hexa jako Hex
@@ -16,6 +18,18 @@ public class HexGenerator {
 			}
 		}
 		return hexs;
+	}
+	
+	public void generateVerticalLine(Hex[][] hexs, int width, int height, int x, int a) {
+		for (int y = 0; y < height; y++) {
+			hexs[x][y] = new Hex(x, y, a);
+		}
+	}
+	
+	public void generateHorizontalLine(Hex[][] hexs, int width, int height, int y, int a) {
+		for (int x = 0; x < width; x++) {
+			hexs[x][y] = new Hex(x, y, a);
+		}
 	}
 	
 	/** ustawienie po³¹czeñ miêdzy hexami
@@ -43,8 +57,4 @@ public class HexGenerator {
 		}
 	}
 	
-	//TODO
-	public Hex[] generateVerticalLine() {
-		return null;
-	}
 }

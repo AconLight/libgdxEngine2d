@@ -23,12 +23,17 @@ public class Hex {
 	public Hex leftUp, leftDown, up, down, rightUp, rightDown;
 	
 	public Hex(int x, int y, int a) {
+		this.a = a;
+		set(x, y);
+	}
+	
+	public void set(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.a = a;
 		realX = x*a*2;
 		realY = (float) (y*a*2 + x%2*Math.sqrt(3)/2*a); // co drugi hex na osi X musi byæ przesuniêty do góry
 	}
+	
 	
 	public void render(ShapeRenderer batch) {
 		HexShapeRenderer.drawHex(batch, realX, realY, a);
