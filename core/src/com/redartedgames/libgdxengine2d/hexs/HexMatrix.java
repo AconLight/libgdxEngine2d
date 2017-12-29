@@ -88,7 +88,7 @@ public class HexMatrix {
 		}
 		else if(y < 0) {
 			for(int yy = 0; yy < height; yy++) {
-				for(int xx = 0; xx < height; xx++) {
+				for(int xx = 0; xx < width; xx++) {
 					if (yy+y >= 0) {
 						hexs[xx][yy+y] = hexs[xx][yy];
 						hexs[xx][yy+y].set(xx, yy+y);
