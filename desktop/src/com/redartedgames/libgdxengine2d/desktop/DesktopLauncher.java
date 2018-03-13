@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.redartedgames.libgdxengine2d.HexTest;
 import com.redartedgames.libgdxengine2d.LibgdxEngine2dGame;
 
 public class DesktopLauncher {
@@ -11,5 +12,6 @@ public class DesktopLauncher {
 		config.height = 1080;
 		//config.fullscreen = true;
 		new LwjglApplication(new LibgdxEngine2dGame(), config);
+		//new LwjglApplication(new HexTest(), config);
 	}
 }

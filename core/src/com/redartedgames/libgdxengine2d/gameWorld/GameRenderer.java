@@ -1,4 +1,4 @@
-package com.redartedgames.libgdxengine2d.gameWorld;
+/*package com.redartedgames.libgdxengine2d.gameWorld;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -115,7 +115,7 @@ public class GameRenderer {
                 for(GameObject obj : xdyd.get(i+(int)(cam.position.x/chunkSize)).get(j+(int)cam.position.y/chunkSize))
                     obj.render(batch, 1, 0, 0, visibility);
         */
-
+/*
         for(int i=0; i<=(Math.abs((width)/chunkSize)); i++)
             for(int j=0; j<=(Math.abs((height)/chunkSize)); j++)
                 for(GameObject obj : xdyu.get(i+(int)(cam.position.x/chunkSize)).get(j+(int)(cam.position.y/chunkSize)))
@@ -132,3 +132,4 @@ public class GameRenderer {
                     obj.render(batch, 1, 0, 0, visibility);
     }
 }
+*/
