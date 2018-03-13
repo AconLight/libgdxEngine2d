@@ -1,32 +1,33 @@
 package com.redartedgames.libgdxengine2d.intro;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.redartedgames.libgdxengine2d.LibgdxEngine2dGame;
-import com.redartedgames.libgdxengine2d.assets.Biurko;
-import com.redartedgames.libgdxengine2d.main.GameScreen;
-import com.redartedgames.libgdxengine2d.main.Window;
-import com.redartedgames.libgdxengine2d.objects.Guard;
+import com.redartedgames.libgdxengine2d.scene.Screen;
+import com.redartedgames.libgdxengine2d.scene.ScreenConsts;
+import com.redartedgames.libgdxengine2d.scene.Window;
 
 public class IntroWindow extends Window{
-	
+
 	public IntroWindow(float x, float y, int width, int height, LibgdxEngine2dGame game) {
 		super(x, y, width, height, game);
 		viewport = new FillViewport(width, height, new OrthographicCamera(100, 100));
 		addScreen(new IntroScreen(viewport, x, y, width, height, this));
+		if(ScreenConsts.gameWidth/ScreenConsts.gameHeight < Gdx.graphics.getWidth()/Gdx.graphics.getHeight())
+			resize(Gdx.graphics.getWidth()*ScreenConsts.gameHeight/Gdx.graphics.getHeight(), ScreenConsts.gameHeight);
+		else
+			resize(ScreenConsts.gameWidth, Gdx.graphics.getHeight()*ScreenConsts.gameWidth/Gdx.graphics.getWidth());
 	}
 	
 	public void update(float delta) {
-		for (GameScreen screen : screens) {
+		for (Screen screen : screens) {
 			screen.update(delta);
 		}
 	}
 	
 	public void render() {
-		for (GameScreen screen : screens) {
+		for (Screen screen : screens) {
 			//viewport.setCamera(screen.getCam());
 			screen.render();
 		}
