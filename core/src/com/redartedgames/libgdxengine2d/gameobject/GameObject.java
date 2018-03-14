@@ -18,8 +18,8 @@ public class GameObject {
 	public GameObject parent;
 	protected ArrayList<GameObject> gameObjects;
 	public Hitbox hitbox;
-	protected float collisionAccX;
-	protected float collisionAccY;
+	public float collisionAccX;
+	public float collisionAccY;
 	public ArrayList<GameObject> collidableObjects;
 	
 	public ArrayList<GameObject> getGameObjects() {
