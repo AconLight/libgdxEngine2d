@@ -25,10 +25,10 @@ public class GameWorld extends World{
 		gameObjects.add(c3);
 		gameObjects.add(c4);*/
 
-        PowerMedia p1 = new PowerMedia(450,150,null,false);
-        PowerMedia p2 = new PowerMedia(-450,0,null,false);
-		addGameObject(p1);
-		addGameObject(p2);
+        //PowerMedia p1 = new PowerMedia(450,150,null,false);
+        //PowerMedia p2 = new PowerMedia(-450,0,null,false);
+		//addGameObject(p1);
+		//addGameObject(p2);
 		//gameObjects.addAll(AssetExampleLoader.getObjects());
 	}
 	
