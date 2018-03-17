@@ -6,7 +6,7 @@ public class MovingObjects {
     private static float timeOfFullAnimacion;
     private static float movingMulitilplier;
 
-    public static CollisionHandle animationPosition(float timeOfMoving) {
+    public static CollisionHandle animationUpAndDown(float timeOfMoving) {
         CollisionHandle finalPositionOfObject = new CollisionHandle();
         timeOfFullAnimacion=5.0f;
         movingMulitilplier=1.0f;
@@ -18,10 +18,13 @@ public class MovingObjects {
             finalPositionOfObject.disY = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
         }
 
-
         return finalPositionOfObject;
 
+    }
 
+    public static CollisionHandle animationCurve(float timeOfMoving) {
+        CollisionHandle finalPositionOfObject = new CollisionHandle();
 
+        return finalPositionOfObject;
     }
 }
