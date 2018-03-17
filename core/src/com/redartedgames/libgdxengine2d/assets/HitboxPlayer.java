@@ -28,9 +28,9 @@ public class HitboxPlayer extends ColSpriteObject{
 		//obj.hitbox.update(obj.parent.parent.realPosition.x, obj.parent.parent.realPosition.y);
 		hitbox.update(parent.realPosition.x, parent.realPosition.y);
 		c = hitbox.checkCol(obj.getHitbox());
-		Gdx.app.log("Player: " + parent.realPosition, "Obj: " +obj.parent.parent.realPosition);
+		//Gdx.app.log("Player: " + parent.realPosition, "Obj: " +obj.parent.parent.realPosition);
 		if (c.isTrue) {
-			Gdx.app.log("collqq", "hitboxCharge");
+			//Gdx.app.log("collqq", "hitboxCharge");
 			if (((SpriteObject)obj.parent).isVisible)
 			((Player)parent).life -= 0.01f;
 		}

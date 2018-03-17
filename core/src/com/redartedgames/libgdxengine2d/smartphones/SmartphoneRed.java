@@ -32,17 +32,22 @@ public class SmartphoneRed extends Smartphone{
 		sprite.sclY = scl;
 		timer = 0;
 		
-		//formacje
-		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		none = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+
 		
 		
 		powerMedias = new ArrayList<GameObject>();
 		powerMedias.add(new PowerMedia(100, 0, sprite, true));
 		powerMedias.add(new PowerMedia(-100, 0, sprite, true));
 		powerMedias.add(new PowerMedia(0, 100, sprite, true));
+		
+		//formacje
+		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		none = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		//
+		
+		
 		mediaFormation = none;
 		sprite.getGameObjects().addAll(powerMedias);
 		sprite.getGameObjects().add(mediaFormation);
