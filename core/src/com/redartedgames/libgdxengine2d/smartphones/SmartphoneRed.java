@@ -2,7 +2,6 @@ package com.redartedgames.libgdxengine2d.smartphones;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
 import com.redartedgames.libgdxengine2d.formation.*;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
@@ -41,7 +40,7 @@ public class SmartphoneRed extends Smartphone{
 		
 		//formacje
 		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new FormationSpiral());
-		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new FormationSwordBlade());
+		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new FormationBigCircle());
 		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new FormationShield());
 		none = new Formation(0, 0, powerMedias, this, true, new FormationNone());
 		//
@@ -75,10 +74,12 @@ public class SmartphoneRed extends Smartphone{
 		super.updateLast(delta, vx, vy);
 		if (timer > 4) {
 			mediaFormation = none;
+			stopSparkle();
 		}
 		else {
 			timer += delta;
 		}
+		mediaFormation.translationAlfa = translationAlfa;
 	}
 	
 	public void collide(GameObject obj) {
@@ -98,6 +99,16 @@ public class SmartphoneRed extends Smartphone{
 			for(GameObject p : powerMedias) {
 				if(l.getFirst() == p) {
 					l.start();
+				}
+			}
+		}
+	}
+	
+	public void stopSparkle() {
+		for(Lightning l : lightnings) {
+			for(GameObject p : powerMedias) {
+				if(l.getFirst() == p) {
+					l.stop();
 				}
 			}
 		}

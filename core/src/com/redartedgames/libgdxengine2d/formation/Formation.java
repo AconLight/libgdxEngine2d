@@ -40,6 +40,17 @@ public class Formation extends GameObject{
 		
 		
 	}
+	
+	private float getTranslatedX(float x, float y) {
+		Vector2 v = new Vector2(x, y);
+		float alfa = (float) Math.toRadians(v.angle());
+		return (float) (Math.cos(translationAlfa + alfa)*Math.sqrt(x*x + y*y));
+	}
+	private float getTranslatedY(float x, float y) {
+		Vector2 v = new Vector2(x, y);
+		float alfa = (float) Math.toRadians(v.angle());
+		return (float) (Math.sin(translationAlfa + alfa)*Math.sqrt(x*x + y*y));
+	}
 
 	
 }

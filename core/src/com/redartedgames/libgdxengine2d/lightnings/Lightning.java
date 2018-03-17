@@ -22,11 +22,13 @@ public class Lightning extends GameObject{
     private int animationCounter;
     private int amount;
     private int animationSpeed; //in frames
+    
+    private PowerMedia pm1;
     public ArrayList<Charge> charges;
 
     public Lightning(PowerMedia first, PowerMedia second, GameObject parent, boolean isAttached) {
         super(0,0,parent, isAttached);
-
+        pm1 = first;
         this.first = first;
         this.second = second;
         this.startX = first.movement.getPosition().x;
@@ -118,6 +120,7 @@ public class Lightning extends GameObject{
     @Override
     public void update(float delta) {
         super.update(delta);
+        movement.setPosition(pm1.parent.movement.getPosition());
         updateCharges();
         for(Charge c : charges) {
             c.update(delta);
