@@ -58,7 +58,12 @@ public class Player extends GameObject{
 		movement.addG(new Vector2 (0, -100));
 		sprite.alfa = (float) (movement.getG().angle() - 90);
 	}
-	
+
+	@Override
+	public void update(float delta) {
+		super.update(delta);
+	}
+
 	public void collide(GameObject obj) {
 		if (obj == this) {
 			formation.collide(obj);
