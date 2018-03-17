@@ -3,6 +3,7 @@ package com.redartedgames.libgdxengine2d.assetexample;
 import java.util.ArrayList;
 
 import com.redartedgames.libgdxengine2d.assets.BoardHolder;
+import com.redartedgames.libgdxengine2d.assets.ElectricalElement;
 import com.redartedgames.libgdxengine2d.assets.TeslaTower;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.player.Player;
@@ -23,7 +24,9 @@ public class AssetExampleLoader {
 		gameObjects.add(player1);
 		gameObjects.add(player2);
 		gameObjects.add(tesla);
-		
+
+        ElectricalElement EE = new ElectricalElement(100,100,null,false,0);
+        gameObjects.add(EE);
 
 		return gameObjects;
 	}
