@@ -18,7 +18,7 @@ public class PowerMedia extends GameObject{
 	
 	public void updateLast(float delta, float vx, float vy) {
 		super.updateLast(delta, vx, vy);
-		
+		//sprite.translationAlfa = translationAlfa;
 	}
 
 }

@@ -93,6 +93,7 @@ public class Player extends GameObject{
 
 			obj.translationAlfa = (float) (Math.toRadians(movement.getG().angle()) + Math.PI/2);
 		}
+		//translationAlfa = (float) (Math.toRadians(movement.getG().angle()) + Math.PI/2);;
 		movement.addG(new Vector2 (0, -100));
 		sprite.alfa = (float) (movement.getG().angle() - 90);
 	}
@@ -149,17 +150,26 @@ public class Player extends GameObject{
 			}
 		}
 		if (skill == 1) {
-			for(SmartphoneBlue s: smartphonesBlue) {
-				s.startSkill(i);
-			}
-		}
-		if (skill == 2) {
 			for(SmartphoneYellow s: smartphonesYellow) {
 				s.startSkill(i);
 			}
 		}
+		if (skill == 2) {
+			for(SmartphoneBlue s: smartphonesBlue) {
+				s.startSkill(i);
+			}
+		}
 		skill ++;
-		if (skill > 2) skill = 0;
+		if (skill > 2) {
+			skill = 0;
+			spark();
+		}
+	}
+	
+	public void spark() {
+		for(SmartphoneRed s: smartphonesRed) {
+			s.startSparkle();
+		}
 	}
 
 }

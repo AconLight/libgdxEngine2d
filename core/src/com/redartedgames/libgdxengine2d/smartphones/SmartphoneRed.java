@@ -75,10 +75,12 @@ public class SmartphoneRed extends Smartphone{
 		super.updateLast(delta, vx, vy);
 		if (timer > 4) {
 			mediaFormation = none;
+			stopSparkle();
 		}
 		else {
 			timer += delta;
 		}
+		mediaFormation.translationAlfa = translationAlfa;
 	}
 	
 	public void collide(GameObject obj) {
@@ -98,6 +100,16 @@ public class SmartphoneRed extends Smartphone{
 			for(GameObject p : powerMedias) {
 				if(l.getFirst() == p) {
 					l.start();
+				}
+			}
+		}
+	}
+	
+	public void stopSparkle() {
+		for(Lightning l : lightnings) {
+			for(GameObject p : powerMedias) {
+				if(l.getFirst() == p) {
+					l.stop();
 				}
 			}
 		}

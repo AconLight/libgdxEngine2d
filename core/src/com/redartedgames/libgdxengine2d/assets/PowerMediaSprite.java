@@ -7,7 +7,7 @@ public class PowerMediaSprite extends SpriteObject{
 
 	public PowerMediaSprite(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
-		addTexture("graphic/bluesmartphone.png");
+		addTexture("graphic/redsmartphone.png");
 	}
 
 }

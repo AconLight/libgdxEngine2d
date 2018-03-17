@@ -14,5 +14,12 @@ public class Smartphone extends GameObject{
 		
 	}
 	
+	public void updateLast(float delta, float vx, float vy) {
+		super.updateLast(delta, vx, vy);
+		for(GameObject obj: gameObjects) {
+			//obj.translationAlfa = translationAlfa;
+		}
+	}
+	
 
 }

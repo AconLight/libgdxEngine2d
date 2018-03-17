@@ -41,27 +41,31 @@ public class SmartphoneYellow extends Smartphone{
 	
 	public void updateLast(float delta, float vx, float vy) {
         super.updateLast(delta, vx, vy);
-
+        float d;
 	    if (animationCase == 0) {
             skillTime += 4 * delta;
+            
             c = MovingObjects.animationUpAndDown(skillTime);
 
+            d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
             for (SmartphoneRed s : reds) {
-                s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+            	 s.sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa - Math.PI/2)*d), (float)(Math.sin(translationAlfa - Math.PI/2)*d)));
             }
         }
         if (animationCase == 1) {
             skillTime += 8 *delta;
             c = MovingObjects.animationCurve(skillTime);
+            d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
             for (SmartphoneRed s : reds) {
-                s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+            	 s.sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa - Math.PI/2)*d), (float)(Math.sin(translationAlfa - Math.PI/2)*d)));
             }
         }
         if (animationCase == 2) {
 	        skillTime += 6*delta;
 	        c = MovingObjects.animationTangens(skillTime);
+	        d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
 	        for (SmartphoneRed s : reds) {
-	            s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+	            s.sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa - Math.PI/2)*d), (float)(Math.sin(translationAlfa - Math.PI/2)*d)));
             }
         }
 	}
