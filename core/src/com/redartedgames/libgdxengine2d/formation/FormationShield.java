@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class FormationExperimental implements FormationGenerator {
+public class FormationShield implements FormationGenerator {
     @Override
     public ArrayList<Vector2> generate(int n) {
         ArrayList<Vector2> positions = new ArrayList<>();
