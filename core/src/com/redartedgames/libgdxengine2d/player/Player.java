@@ -53,8 +53,8 @@ public class Player extends GameObject{
 		sy1 = new SmartphoneYellow(0, 0, this);
 		smartphones.add(sb1);
 		smartphones.add(sr1);
-		smartphones.add(sr2);
 		smartphones.add(sy1);
+		smartphones.add(sr2);
 		smartphones.add(sb2);
 		
 		smartphonesRed.add(sr1);
