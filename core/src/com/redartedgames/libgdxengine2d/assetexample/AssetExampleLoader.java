@@ -32,6 +32,9 @@ public class AssetExampleLoader {
 		objects.add(new SmartphoneBlue(-180, -180, null));
 		objects.add(new SmartphoneYellow(-180, -180, null));
 		
+		((SmartphoneYellow)objects.get(4)).addRed((SmartphoneRed) objects.get(1));
+		((SmartphoneYellow)objects.get(4)).addRed((SmartphoneRed) objects.get(2));
+		
 	
 		
 
