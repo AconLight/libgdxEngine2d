@@ -34,6 +34,8 @@ public class Lightning extends GameObject{
         amount = calculateAmount();
         wasStopped = false;
         wasStarted = false;
+        addCharges();
+        stop();
         //Gdx.graphics.getDeltaTime();
     }
 
@@ -63,7 +65,6 @@ public class Lightning extends GameObject{
     }
 
     public void start() {
-        addCharges();
         if(!wasStarted) {
             wasStopped = false;
             wasStarted = true;
@@ -77,8 +78,6 @@ public class Lightning extends GameObject{
             wasStarted = false;
             animationCounter = 0;
         }
-        charges.clear();
-        gameObjects.clear();
     }
 
     @Override
@@ -96,6 +95,11 @@ public class Lightning extends GameObject{
                 charges.get(amount-animationCounter/animationSpeed-1).start();
             }
             animationCounter++;
+        }
+        if(wasStopped && !wasStarted) {
+            for(Charge c : charges) {
+                c.stop();
+            }
         }
     }
 

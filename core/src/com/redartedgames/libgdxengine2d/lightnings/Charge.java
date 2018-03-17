@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.lightnings;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.redartedgames.libgdxengine2d.assets.ChargeSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
 import com.redartedgames.libgdxengine2d.physics.Hitbox;
@@ -45,11 +46,10 @@ public class Charge extends GameObject {
         this.isAbove = isAbove;
         this.lightning = lightning;
         animationSpeed = speed+1;
-        chargeSprite = new SpriteObject(0,0,this,true);
+        chargeSprite = new ChargeSprite(0,0,this,true);
         addSprite(chargeSprite);
         Texture texture = new Texture("graphic/charge/charge2.png");
         scale(chargeSprite,texture);
-        chargeSprite.addTexture(texture);
         chargeSprite.visibility = 1;
         childCharges = new ArrayList<>();
         if(level < 2) {
@@ -59,9 +59,17 @@ public class Charge extends GameObject {
     }
 
     public void start() {
-        if(!wasStarted && !wasStopped) {
+        if(!wasStarted) {
             wasStarted = true;
+            wasStopped = false;
             animationCounter = 1;
+        }
+    }
+
+    public void stop() {
+        if(wasStarted) {
+            wasStarted = false;
+            wasStopped = true;
         }
     }
 
@@ -121,6 +129,9 @@ public class Charge extends GameObject {
     protected void setInvisible() {
         chargeSprite.visibility = 0;
         chargeSprite.isVisible = false;
+        //for(Charge c : childCharges) {
+           // c.setInvisible();
+        //}
     }
 
     protected void setVisible() {
@@ -150,9 +161,10 @@ public class Charge extends GameObject {
             }
             animationCounter++;
         }
-        for(Charge c : childCharges) {
-            if(random.nextInt(10)==0) {
-                c.blink();
+        if(wasStopped && !wasStarted) {
+            setInvisible();
+            for(Charge c : childCharges) {
+                c.stop();
             }
         }
     }
