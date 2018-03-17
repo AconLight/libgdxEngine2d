@@ -35,7 +35,7 @@ public class AssetExampleLoader {
 	
 		
 
-		Formation formation = new Formation(-200, -200, objects, new MyFormationGenerator());
+		Formation formation = new Formation(-200, -200, objects, null, new MyFormationGenerator());
 		gameObjects.addAll(objects);
 		gameObjects.add(formation);
 		return gameObjects;
