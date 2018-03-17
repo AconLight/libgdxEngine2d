@@ -16,8 +16,8 @@ public class ExplosionSprite extends SpriteObject {
     }
 
     private void scale(int size) {
-        this.sclX = size/500;
-        this.sclY = size/500;
+        this.sclX = size/250.0f;
+        this.sclY = size/250.0f;
     }
 
     @Override

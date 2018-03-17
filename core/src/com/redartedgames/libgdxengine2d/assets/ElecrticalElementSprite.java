@@ -14,10 +14,13 @@ public class ElecrticalElementSprite extends SpriteObject{
         super(x, y, parent, isAttached);
         //addTexture("graphic/ukladyElektryczne/u" + type +".png");
         txt = new Texture("graphic/ukladyElektryczne/u" + type +".png");
-        hit = new Hitbox(x,y,txt.getWidth(),txt.getHeight(), Hitbox.BehaviorMode.kinematic);
+        addTexture(txt);
+        hit = new Hitbox(0,0,txt.getWidth(),txt.getHeight(), Hitbox.BehaviorMode.kinematic);
+        setHitbox(hit);
 
         switch (type) {
-            case 0: //dioda LED
+            case 0:
+                //dioda LED
                 //hitboxy
                 break;
             case 1:
