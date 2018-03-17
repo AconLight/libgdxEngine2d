@@ -3,6 +3,7 @@ package com.redartedgames.libgdxengine2d.player;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.assets.PlayerSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
@@ -19,6 +20,8 @@ public class Player extends GameObject{
 	public static final int playerV = 1500;
 	public static final float playerDrag = 0.9f;
 	public SmartphoneRed sr;
+	public static float urLife=80;
+	private LifeBelt playerLifeBelt;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
@@ -29,10 +32,14 @@ public class Player extends GameObject{
 		objects.add(sr);
 		objects.add(new SmartphoneBlue(0, 0, this));
 		objects.add(new SmartphoneYellow(0, 0, this));
-		
+
 		((SmartphoneYellow)objects.get(4)).addRed((SmartphoneRed) objects.get(1));
 		((SmartphoneYellow)objects.get(4)).addRed((SmartphoneRed) objects.get(2));
-		
+
+        playerLifeBelt = new LifeBelt(0,200,this,false);
+        objects.add(playerLifeBelt);
+        //playerLifeBelt.render(new SpriteBatch(),1,0,0,1);
+
 		collidableObjects.add(this); // just to asure that collide is performed
 		
 
@@ -43,6 +50,8 @@ public class Player extends GameObject{
 		
 		sprite = new PlayerSprite(0, 0, this, true);
 		gameObjects.add(sprite);
+
+
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
