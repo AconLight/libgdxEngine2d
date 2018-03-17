@@ -13,12 +13,12 @@ public class ElectricalElement extends GameObject {
         super(x, y, parent, isAttached);
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
-        spriteObjectExplosion = new ExplosionSprite(0,0,this,true);
+        setSize();
+        spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
         spriteObjectExplosion.visibility = 0;
         spriteObjectExplosion.isVisible = false;
-        setSize();
         switch (type) {
             case 0: //dioda LED
                 break;
