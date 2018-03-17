@@ -3,8 +3,6 @@ package com.redartedgames.libgdxengine2d.moveObiect;
 import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.physics.CollisionHandle;
 
-import java.awt.event.FocusAdapter;
-
 public class MovingObjects {
     private static float timeOfFullAnimacion;
     private static float movingMulitilplier;
@@ -40,9 +38,9 @@ public class MovingObjects {
             finalPositionOfObject.disY = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
         }
 
-        Gdx.app.log("czas:",Float.toString(timeOfMoving));
+        /*Gdx.app.log("czas:",Float.toString(timeOfMoving));
         Gdx.app.log("X:", Float.toString(finalPositionOfObject.disX));
-        Gdx.app.log("Y:",Float.toString(finalPositionOfObject.disY));
+        Gdx.app.log("Y:",Float.toString(finalPositionOfObject.disY));*/
 
         return finalPositionOfObject;
     }
