@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
-import com.redartedgames.libgdxengine2d.formation.Formation;
-import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
+import com.redartedgames.libgdxengine2d.formation.*;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.lightnings.Lightning;
 
@@ -41,10 +40,10 @@ public class SmartphoneRed extends Smartphone{
 		powerMedias.add(new PowerMedia(0, 100, sprite, true));
 		
 		//formacje
-		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
-		none = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new FormationSpiral());
+		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new FormationSwordBlade());
+		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new FormationShield());
+		none = new Formation(0, 0, powerMedias, this, true, new FormationNone());
 		//
 		
 		

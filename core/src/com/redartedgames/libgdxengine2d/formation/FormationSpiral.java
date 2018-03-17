@@ -9,7 +9,7 @@ public class FormationSpiral implements FormationGenerator {
     public ArrayList<Vector2> generate(int n) {
         ArrayList<Vector2> positions = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
-            positions.add(new Vector2((float)(i*50*Math.cos(2*Math.PI*i/n)), (float)(i*50*Math.sin(2*Math.PI*i/n))));
+            positions.add(new Vector2((float)(i*75*Math.cos(2*Math.PI*i/n)), (float)(i*75*Math.sin(2*Math.PI*i/n))));
         }
         return positions;
     }
