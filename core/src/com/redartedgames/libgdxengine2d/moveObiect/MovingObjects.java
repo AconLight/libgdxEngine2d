@@ -45,4 +45,22 @@ public class MovingObjects {
 
         return finalPositionOfObject;
     }
+
+    public static CollisionHandle animationTangens(float timeOfMoving) {
+        CollisionHandle finalPositionOfObject = new CollisionHandle();
+
+        float timeOfFullAnimacion=10.5f; //d
+        float movingMulitilplier=10.1f; //k
+
+        if (timeOfMoving>timeOfFullAnimacion) {
+            finalPositionOfObject.disY=disy;
+            finalPositionOfObject.disX=disx;
+        } else {
+            disy = timeOfMoving*movingMulitilplier;
+            disx = (float)Math.sin((double)timeOfMoving)*movingMulitilplier*2;
+            finalPositionOfObject.disX=disx;
+            finalPositionOfObject.disY=disy;
+        }
+        return finalPositionOfObject;
+    }
 }

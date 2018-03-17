@@ -15,7 +15,8 @@ public class SmartphoneYellow extends Smartphone{
 	private float skillTime;
 	private CollisionHandle c;
 	Vector2 deltaPos;
-	
+	private int animationCase=2;
+
 	public SmartphoneYellow(float x, float y, GameObject parent) {
 		super(x, y, parent);
 		
@@ -39,21 +40,47 @@ public class SmartphoneYellow extends Smartphone{
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
-		super.updateLast(delta, vx, vy);
-		skillTime += delta;
-		c = MovingObjects.animationUpAndDown(skillTime);
-	
-		for(SmartphoneRed s: reds) {
-			s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
-		}
+        super.updateLast(delta, vx, vy);
+
+	    if (animationCase == 0) {
+            skillTime += 4 * delta;
+            c = MovingObjects.animationUpAndDown(skillTime);
+
+            for (SmartphoneRed s : reds) {
+                s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+            }
+        }
+        if (animationCase == 1) {
+            skillTime += 8 *delta;
+            c = MovingObjects.animationCurve(skillTime);
+            for (SmartphoneRed s : reds) {
+                s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+            }
+        }
+        if (animationCase == 2) {
+	        skillTime += 6*delta;
+	        c = MovingObjects.animationTangens(skillTime);
+	        for (SmartphoneRed s : reds) {
+	            s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
+            }
+        }
 	}
 	
-	
-	
-	
-	
 	public void startSkill(int i) {
-		
+		switch (i){
+            case 0:
+                animationCase=0;
+                break;
+            case 1:
+                animationCase=1;
+                break;
+            case 2:
+                animationCase=2;
+                break;
+            default:
+                animationCase=-1;
+                break;
+		}
 	}
 
 }
