@@ -19,7 +19,7 @@ public class Charge extends GameObject {
     private boolean isAbove;
     private int animationCounter;
     private int animationSpeed;
-    private SpriteObject chargeSprite;
+    public ChargeSprite chargeSprite;
     private ArrayList<Charge> childCharges;
     private Random random = new Random();
     private Lightning lightning;
@@ -36,6 +36,11 @@ public class Charge extends GameObject {
         scale(chargeSprite,texture);
         chargeSprite.addTexture(texture);
     }*/
+    public void collide(GameObject obj) {
+    	super.collide(obj);
+    	chargeSprite.collide(obj);
+    }
+    
 
     Charge(float x, float y, float size, GameObject parent, boolean isAttached, int level, int speed, Lightning lightning, boolean isAbove) {
         super(x,y,parent,isAttached);

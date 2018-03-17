@@ -13,7 +13,7 @@ public class SmartphoneRed extends Smartphone{
 
 	ArrayList<GameObject> powerMedias;
 	
-	ArrayList<Lightning> lightnings;
+	public ArrayList<Lightning> lightnings;
 	
 	Formation mediaFormation;
 	
@@ -33,6 +33,8 @@ public class SmartphoneRed extends Smartphone{
 		sprite.getGameObjects().addAll(powerMedias);
 		sprite.getGameObjects().add(mediaFormation);
 		collidableObjects.add(this); // just to perform collide once
+		
+		
 		
 		for(GameObject p: powerMedias) {
 			for(GameObject p2: powerMedias) {
@@ -57,6 +59,9 @@ public class SmartphoneRed extends Smartphone{
 		}
 		else {
 			super.collide(obj);
+			for(Lightning l : lightnings) {
+				l.collide(obj);
+			}
 		}
 	}
 	

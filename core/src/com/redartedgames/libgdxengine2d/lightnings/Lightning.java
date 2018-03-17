@@ -22,7 +22,7 @@ public class Lightning extends GameObject{
     private int animationCounter;
     private int amount;
     private int animationSpeed; //in frames
-    private ArrayList<Charge> charges;
+    public ArrayList<Charge> charges;
 
     public Lightning(PowerMedia first, PowerMedia second, GameObject parent, boolean isAttached) {
         super(0,0,parent, isAttached);
@@ -43,6 +43,13 @@ public class Lightning extends GameObject{
         addCharges();
         stop();
         //Gdx.graphics.getDeltaTime();
+    }
+    public void collide(GameObject obj) {
+    	super.collide(obj);
+    	for(GameObject obj2: charges) {
+    		obj2.collide(obj);
+    	}
+    	
     }
 
     private float calculateDistance() {
