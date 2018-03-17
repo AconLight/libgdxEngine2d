@@ -53,7 +53,7 @@ public class Charge extends GameObject {
         chargeSprite.visibility = 1;
         childCharges = new ArrayList<>();
         if(level < 2) {
-            addChildren();
+            //addChildren();
         }
         setHitbox(new Hitbox(this.movement.getPosition().x, this.movement.getPosition().y, size/2, Hitbox.BehaviorMode.kinematic));
     }
@@ -124,6 +124,11 @@ public class Charge extends GameObject {
         float scale = size/texture.getHeight();
         spriteObject.sclX = scale;
         spriteObject.sclY = scale;
+    }
+
+    public void rescale(float size) {
+        chargeSprite.sclX*=size;
+        chargeSprite.sclY*=size;
     }
 
     protected void setInvisible() {

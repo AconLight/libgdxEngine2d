@@ -26,9 +26,9 @@ public class SmartphoneRed extends Smartphone{
 		sprite.sclY = scl;
 		
 		powerMedias = new ArrayList<GameObject>();
-		powerMedias.add(new PowerMedia(0, 0, sprite, true));
-		powerMedias.add(new PowerMedia(0, 0, sprite, true));
-		powerMedias.add(new PowerMedia(0, 0, sprite, true));
+		powerMedias.add(new PowerMedia(100, 0, sprite, true));
+		powerMedias.add(new PowerMedia(-100, 0, sprite, true));
+		powerMedias.add(new PowerMedia(0, 100, sprite, true));
 		mediaFormation = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
 		sprite.getGameObjects().addAll(powerMedias);
 		sprite.getGameObjects().add(mediaFormation);
@@ -37,7 +37,15 @@ public class SmartphoneRed extends Smartphone{
 		for(GameObject p: powerMedias) {
 			for(GameObject p2: powerMedias) {
 				if(p != p2) {
-					//lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, true));
+					boolean b = true;
+					for(Lightning l : lightnings) {
+						if((l.getFirst() == p && l.getSecond() == p2) || (l.getSecond() == p && l.getFirst() == p2))
+							b = false;
+					}
+					if(b) {
+						lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, false));
+					}
+					addGameObject(lightnings.get(lightnings.size()-1));
 				}
 			}
 		}
@@ -54,7 +62,13 @@ public class SmartphoneRed extends Smartphone{
 	}
 	
 	public void startSparkle() {
-		
+		for(Lightning l : lightnings) {
+			for(GameObject p : powerMedias) {
+				if(l.getFirst() == p) {
+					l.start();
+				}
+			}
+		}
 	}
 
 }
