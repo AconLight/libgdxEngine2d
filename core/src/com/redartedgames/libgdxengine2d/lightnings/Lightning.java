@@ -138,6 +138,9 @@ public class Lightning extends GameObject{
             }
             animationCounter++;
         }
+        if(animationCounter==200) {
+            stop();
+        }
         if(wasStopped && !wasStarted) {
             for(Charge c : charges) {
                 c.stop();

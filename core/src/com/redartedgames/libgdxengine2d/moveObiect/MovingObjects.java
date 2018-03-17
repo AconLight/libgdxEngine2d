@@ -29,15 +29,19 @@ public class MovingObjects {
         //t(t-d)*k
         float timeOfFullAnimacion=10.0f; //d
         float movingMulitilplier=2.0f; //k
-        if (timeOfMoving>timeOfFullAnimacion) {
-            finalPositionOfObject.disY=disy;
-            finalPositionOfObject.disX=disx;
+        if (timeOfMoving>timeOfFullAnimacion && timeOfMoving<1.5*timeOfFullAnimacion) {
+            finalPositionOfObject.disY= disy-Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
+            finalPositionOfObject.disX=0;
+        } else if (timeOfMoving>=1.5*timeOfFullAnimacion) {
+            finalPositionOfObject.disX=0;
+            finalPositionOfObject.disY=0;
         } else {
-            disy = timeOfMoving * timeOfMoving;
-            disx = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
-            finalPositionOfObject.disX=disx;
-            finalPositionOfObject.disY=disy;
-        }
+                disy = timeOfMoving * timeOfMoving;
+                disx = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
+                finalPositionOfObject.disX=disx;
+                finalPositionOfObject.disY=disy;
+            }
+
 
         /*Gdx.app.log("czas:",Float.toString(timeOfMoving));
         Gdx.app.log("X:", Float.toString(finalPositionOfObject.disX));
@@ -52,9 +56,12 @@ public class MovingObjects {
         float timeOfFullAnimacion=10.5f; //d
         float movingMulitilplier=10.1f; //k
 
-        if (timeOfMoving>timeOfFullAnimacion) {
-            finalPositionOfObject.disY=disy;
-            finalPositionOfObject.disX=disx;
+        if (timeOfMoving>timeOfFullAnimacion && timeOfMoving<1.1*timeOfFullAnimacion) {
+            finalPositionOfObject.disY=disy-Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
+            finalPositionOfObject.disX=0;
+        } else if (timeOfMoving>=1.1*timeOfFullAnimacion) {
+            finalPositionOfObject.disX=0;
+            finalPositionOfObject.disY=0;
         } else {
             disy = timeOfMoving*movingMulitilplier;
             disx = (float)Math.sin((double)timeOfMoving)*movingMulitilplier*2;
