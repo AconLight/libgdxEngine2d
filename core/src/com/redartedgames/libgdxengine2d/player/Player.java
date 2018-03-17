@@ -19,9 +19,11 @@ public class Player extends GameObject{
 	public static final int playerV = 1500;
 	public static final float playerDrag = 0.9f;
 	public SmartphoneRed sr;
+	private Vector2 direction;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
+		direction = new Vector2();
 		ArrayList<GameObject> objects = new ArrayList<>();
 		sr = new SmartphoneRed(0, 0, this);
 		objects.add(new SmartphoneBlue(0, 0, this));
@@ -46,14 +48,18 @@ public class Player extends GameObject{
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
+		movement.setG(new Vector2((direction.x + movement.getG().x*9)/10, (direction.y + movement.getG().y*9)/10));
 		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
+		for(GameObject obj: gameObjects) {
+
+			obj.translationAlfa = (float) (Math.toRadians(movement.getG().angle()) + Math.PI/2);
+		}
 	}
 	
 	public void collide(GameObject obj) {
 		if (obj == this) {
 			formation.collide(obj);
 			for(GameObject obj1 :gameObjects) {
-				Gdx.app.log("collide Formation1", "");
 				obj1.collide(obj);
 			}
 		}
@@ -64,10 +70,10 @@ public class Player extends GameObject{
 	
 	public void moveVel(int x, int y) {
 		if (Math.abs(x) > 0 && Math.abs(y) > 0) {
-			movement.addG(new Vector2(x/1.47f, y/1.47f));
+			direction.add(new Vector2(x/1.47f, y/1.47f));
 		}
 		else {
-			movement.addG(new Vector2(x, y));
+			direction.add(new Vector2(x, y));
 		}
 		
 	}

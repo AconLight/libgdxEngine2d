@@ -53,7 +53,6 @@ public class SmartphoneRed extends Smartphone{
 	
 	public void collide(GameObject obj) {
 		if (obj == parent) {
-			Gdx.app.log("collide Formation2", "");
 			mediaFormation.collide(obj);
 		}
 		else {
