@@ -18,15 +18,16 @@ public class HitboxCharge extends ColSpriteObject{
 	public void updateLast(float delta, float vx, float vy) { 
 		super.updateLast(delta, vx, vy);
 		// we need to update hitbox to match in our case the position of super parent
-		hitbox.update(parent.realPosition.x, parent.realPosition.y);
+		//hitbox.update(parent.parent.realPosition.x, parent.parent.realPosition.y);
+		Gdx.app.log("hitbox", parent.parent.realPosition.x + parent.realPosition.x+ "");
 	}
 	
 	public void collide(GameObject obj) {
 
 		c = hitbox.checkCol(obj.getHitbox());
-		Gdx.app.log("charge: " + realPosition, "Obj: " +obj.realPosition);
+		//Gdx.app.log("charge: " + realPosition, "Obj: " +obj.realPosition);
 		if (c.isTrue) {
-			Gdx.app.log("coll", "hitboxCharge");
+			//Gdx.app.log("coll", "hitboxCharge");
 			((Player)obj.parent).life -= 1f;
 			
 		}

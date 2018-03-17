@@ -60,7 +60,7 @@ public class Charge extends GameObject {
         if(level < 2) {
             //addChildren();
         }
-        setHitbox(new Hitbox(this.movement.getPosition().x, this.movement.getPosition().y, size/2, Hitbox.BehaviorMode.kinematic));
+        //setHitbox(new Hitbox(this.movement.getPosition().x, this.movement.getPosition().y, size/2, Hitbox.BehaviorMode.kinematic));
     }
 
     public void start() {

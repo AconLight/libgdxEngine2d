@@ -17,6 +17,12 @@ public class SmartphoneRed extends Smartphone{
 	
 	Formation mediaFormation;
 	
+	Formation mediaFormation1, mediaFormation2, mediaFormation3;
+	
+	Formation none;
+	
+	float timer;
+	
 	public SmartphoneRed(float x, float y, GameObject parent) {
 		super(x, y, parent);
 		lightnings = new ArrayList<Lightning>();
@@ -24,12 +30,20 @@ public class SmartphoneRed extends Smartphone{
 		gameObjects.add(sprite);
 		sprite.sclX = scl;
 		sprite.sclY = scl;
+		timer = 0;
+		
+		//formacje
+		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation2 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation3 = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		none = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		
 		
 		powerMedias = new ArrayList<GameObject>();
 		powerMedias.add(new PowerMedia(100, 0, sprite, true));
 		powerMedias.add(new PowerMedia(-100, 0, sprite, true));
 		powerMedias.add(new PowerMedia(0, 100, sprite, true));
-		mediaFormation = new Formation(0, 0, powerMedias, this, true, new MyFormationGenerator());
+		mediaFormation = none;
 		sprite.getGameObjects().addAll(powerMedias);
 		sprite.getGameObjects().add(mediaFormation);
 		collidableObjects.add(this); // just to perform collide once
@@ -53,6 +67,16 @@ public class SmartphoneRed extends Smartphone{
 		}
 	}
 	
+	public void updateLast(float delta, float vx, float vy) {
+		super.updateLast(delta, vx, vy);
+		if (timer > 4) {
+			mediaFormation = none;
+		}
+		else {
+			timer += delta;
+		}
+	}
+	
 	public void collide(GameObject obj) {
 		if (obj == parent) {
 			mediaFormation.collide(obj);
@@ -73,6 +97,19 @@ public class SmartphoneRed extends Smartphone{
 				}
 			}
 		}
+	}
+	
+	public void startSkill(int i) {
+		if (i == 0) {
+			mediaFormation = mediaFormation1;
+		}
+		if (i == 1) {
+			mediaFormation = mediaFormation2;
+		}
+		if (i == 2) {
+			mediaFormation = mediaFormation3;
+		}
+		timer = 0;
 	}
 
 	@Override

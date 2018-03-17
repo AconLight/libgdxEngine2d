@@ -18,8 +18,10 @@ public class LifeBelt extends SpriteObject{
     }
 
     public void render(ShapeRenderer batch, int priority, float dx, float dy,float visibility) {
+    	float pointsOfLife2 = pointsOfLife;
+    	if (pointsOfLife2 < 0) pointsOfLife2 = 0;
         batch.rect(dx + x-width/2, dy + y-height/2, width, height, Color.RED, Color.RED, Color.RED, Color.RED);
-        batch.rect(dx + x+width/2, dy + y-height/2,-width/100*(100-pointsOfLife),height,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE);
+        batch.rect(dx + x+width/2, dy + y-height/2,-width/100*(100-pointsOfLife2),height,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE);
     }
 
     public void updateLast(float delta, float vx, float vy) {

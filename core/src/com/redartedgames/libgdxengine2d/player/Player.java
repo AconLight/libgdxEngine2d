@@ -16,13 +16,16 @@ import com.redartedgames.libgdxengine2d.smartphones.SmartphoneRed;
 import com.redartedgames.libgdxengine2d.smartphones.SmartphoneYellow;
 
 public class Player extends GameObject{
-
+	
+	public int skill = 0;
 	public HitboxPlayer hitboxPlayer;
 	Formation formation;
 	PlayerSprite sprite;
 	public static final int playerV = 1500;
 	public static final float playerDrag = 0.9f;
 	public ArrayList<SmartphoneRed> smartphonesRed;
+	public ArrayList<SmartphoneYellow> smartphonesYellow;
+	public ArrayList<SmartphoneBlue> smartphonesBlue;
 	public SmartphoneRed sr1, sr2;
 	public SmartphoneYellow sy1;
 	public SmartphoneBlue sb1, sb2;
@@ -41,6 +44,8 @@ public class Player extends GameObject{
 		direction = new Vector2();
 		smartphones = new ArrayList<>();
 		smartphonesRed = new ArrayList<>();
+		smartphonesYellow = new ArrayList<>();
+		smartphonesBlue = new ArrayList<>();
 		sr1 = new SmartphoneRed(0, 0, this);
 		sr2 = new SmartphoneRed(0, 0, this);
 		sb1 = new SmartphoneBlue(0, 0, this);
@@ -54,6 +59,11 @@ public class Player extends GameObject{
 		
 		smartphonesRed.add(sr1);
 		smartphonesRed.add(sr2);
+		
+		smartphonesBlue.add(sb1);
+		smartphonesBlue.add(sb2);
+		
+		smartphonesYellow.add(sy1);
 
 		
 		
@@ -105,6 +115,7 @@ public class Player extends GameObject{
 				//obj1.collide(obj);
 			}
 		}
+		//Gdx.app.log("end", "");
 	}
 	
 	public ArrayList<GameObject> getHitboxes() {
@@ -116,6 +127,7 @@ public class Player extends GameObject{
 				}
 			}
 		}
+		Gdx.app.log("end", "" + h.size());
 		return h;
 	}
 	
@@ -127,6 +139,26 @@ public class Player extends GameObject{
 			direction.add(new Vector2(x, y));
 		}
 		
+	}
+	
+	public void startSkill(int i) {
+		if (skill == 0) {
+			for(SmartphoneRed s: smartphonesRed) {
+				s.startSkill(i);
+			}
+		}
+		if (skill == 1) {
+			for(SmartphoneBlue s: smartphonesBlue) {
+				s.startSkill(i);
+			}
+		}
+		if (skill == 2) {
+			for(SmartphoneYellow s: smartphonesYellow) {
+				s.startSkill(i);
+			}
+		}
+		skill ++;
+		if (skill > 2) skill = 0;
 	}
 
 }

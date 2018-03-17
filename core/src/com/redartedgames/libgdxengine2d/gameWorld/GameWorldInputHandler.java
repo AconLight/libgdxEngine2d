@@ -37,6 +37,18 @@ public class GameWorldInputHandler implements InputProcessor{
 			AssetExampleLoader.player1.moveVel(-Player.playerV, 0);
 			break;
 		}
+		case  Keys.R: {
+			AssetExampleLoader.player1.startSkill(0);
+			break;
+		}
+		case  Keys.T: {
+			AssetExampleLoader.player1.startSkill(1);
+			break;
+		}
+		case  Keys.Y: {
+			AssetExampleLoader.player1.startSkill(2);
+			break;
+		}
 		case  Keys.UP: {
 			AssetExampleLoader.player2.moveVel(0, Player.playerV);
 			break;
@@ -53,8 +65,24 @@ public class GameWorldInputHandler implements InputProcessor{
 			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
 			break;
 		}
+		case  Keys.I: {
+			AssetExampleLoader.player2.startSkill(0);
+			break;
+		}
+		case  Keys.O: {
+			AssetExampleLoader.player2.startSkill(1);
+			break;
+		}
+		case  Keys.P: {
+			AssetExampleLoader.player2.startSkill(2);
+			break;
+		}
+		case  Keys.ENTER: {
+			//AssetExampleLoader.player2.startSkill(2);
+			break;
+		}
 		case  Keys.SPACE: {
-			AssetExampleLoader.player1.sr1.startSparkle();
+			//AssetExampleLoader.player1.sr1.startSparkle();
 			break;
 		}
 		}

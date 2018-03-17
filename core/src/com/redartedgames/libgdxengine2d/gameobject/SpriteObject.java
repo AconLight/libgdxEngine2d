@@ -118,7 +118,7 @@ public class SpriteObject extends GameObject {
 	}
 	
 	public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
-		
+		realPosition.set(movement.getPosition().x, movement.getPosition().y);
 		
 		//batch.draw(regionList.get(frameNum), position.x - regionList.get(frameNum).getRegionWidth()/2,
 				//position.y - regionList.get(frameNum).getRegionHeight()/2);
