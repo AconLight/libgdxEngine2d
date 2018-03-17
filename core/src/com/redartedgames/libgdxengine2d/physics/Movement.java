@@ -103,4 +103,9 @@ public class Movement {
 		this.acceleration = acceleration;
 	}
 
+	public void addPosition(Vector2 vector2) {
+		this.position.add(vector2);
+		
+	}
+
 }

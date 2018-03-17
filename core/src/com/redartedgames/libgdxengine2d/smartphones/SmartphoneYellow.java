@@ -14,15 +14,19 @@ public class SmartphoneYellow extends Smartphone{
 	private SmartphoneYellowSprite sprite;
 	private float skillTime;
 	private CollisionHandle c;
+	Vector2 deltaPos;
 	
 	public SmartphoneYellow(float x, float y, GameObject parent) {
 		super(x, y, parent);
+		
 		reds = new ArrayList<SmartphoneRed>();
 		sprite = new SmartphoneYellowSprite(0, 0, this, true);
 		gameObjects.add(sprite);
 		sprite.sclX = scl;
 		sprite.sclY = scl;
 		skillTime = 0;
+		c = new CollisionHandle();
+		deltaPos = new Vector2(0, 0);
 	}
 	
 	public void setReds(ArrayList<SmartphoneRed> reds) {
@@ -38,6 +42,7 @@ public class SmartphoneYellow extends Smartphone{
 		super.updateLast(delta, vx, vy);
 		skillTime += delta;
 		c = MovingObjects.animationUpAndDown(skillTime);
+	
 		for(SmartphoneRed s: reds) {
 			s.sprite.movement.setPosition(new Vector2(c.disX, c.disY));
 		}

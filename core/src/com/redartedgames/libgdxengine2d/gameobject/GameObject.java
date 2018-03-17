@@ -136,6 +136,13 @@ public class GameObject {
 		return gameObjects.get(gameObjects.size()-1);
 	}
 	
+	public Vector2 getFinalPosition() {
+		if (parent != null)
+			return movement.getPosition().add(parent.getFinalPosition());
+		else 
+			return movement.getPosition();
+	}
+	
 	public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
 		for(int i=0; i<gameObjects.size();i++)
 			if (isAttached) gameObjects.get(i).render(batch, priority, dx + movement.getPosition().x, dy + movement.getPosition().y, visibility);

@@ -9,7 +9,7 @@ public class MovingObjects {
     public static CollisionHandle animationUpAndDown(float timeOfMoving) {
         //-t(t-d)*k
         CollisionHandle finalPositionOfObject = new CollisionHandle();
-        float timeOfFullAnimacion=5.0f;
+        float timeOfFullAnimacion=50.0f;
         float movingMulitilplier=1.0f;
 
         finalPositionOfObject.disX=0;

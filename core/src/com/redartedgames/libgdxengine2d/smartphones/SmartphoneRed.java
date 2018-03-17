@@ -21,12 +21,12 @@ public class SmartphoneRed extends Smartphone{
 		sprite.sclY = scl;
 		
 		powerMedias = new ArrayList<GameObject>();
-		powerMedias.add(new PowerMedia(0, 0, this, true));
-		powerMedias.add(new PowerMedia(0, 0, this, true));
-		powerMedias.add(new PowerMedia(0, 0, this, true));
+		powerMedias.add(new PowerMedia(0, 0, sprite, true));
+		powerMedias.add(new PowerMedia(0, 0, sprite, true));
+		powerMedias.add(new PowerMedia(0, 0, sprite, true));
 		mediaFormation = new Formation(0, 0, powerMedias, this, new MyFormationGenerator());
-		gameObjects.addAll(powerMedias);
-		gameObjects.add(mediaFormation);
+		sprite.getGameObjects().addAll(powerMedias);
+		sprite.getGameObjects().add(mediaFormation);
 		collidableObjects.add(this); // just to perform collide once
 	}
 	
