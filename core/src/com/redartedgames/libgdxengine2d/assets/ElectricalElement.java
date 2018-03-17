@@ -1,6 +1,5 @@
 package com.redartedgames.libgdxengine2d.assets;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.redartedgames.libgdxengine2d.effects.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
@@ -13,6 +12,8 @@ public class ElectricalElement extends GameObject {
     private int size;
     private Random rng;
     private int type;
+    private int counterBoom;
+    private boolean hasExploded;
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
@@ -21,11 +22,13 @@ public class ElectricalElement extends GameObject {
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
         setSize();
+        counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
         spriteObjectExplosion.visibility = 0;
         spriteObjectExplosion.isVisible = false;
+        hasExploded = false;
         switch (type) {
             case 0: //dioda LED
                 for (int i=0;i<500;i++) {
@@ -75,11 +78,13 @@ public class ElectricalElement extends GameObject {
     }
 
     public void explode() {
+        hasExploded = true;
         spriteObject.visibility = 0;
         spriteObject.isVisible = false;
         addSprite(spriteObjectExplosion);
         spriteObjectExplosion.visibility = 1;
         spriteObjectExplosion.isVisible = true;
+        counterBoom = 0;
     }
 
     public void update(float delta) {
@@ -104,6 +109,10 @@ public class ElectricalElement extends GameObject {
                     spriteObject.B = 0;
                     break;
             }
+        }
+        if(counterBoom == 200 && hasExploded) {
+            spriteObject = new ElecrticalElementSprite(0,0,this,true,rng.nextInt(6));
+            hasExploded = false;
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.redartedgames.libgdxengine2d.assets;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.math.Vector2;
-import com.redartedgames.libgdxengine2d.effects.Explosion;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 
 import java.io.BufferedReader;
@@ -25,7 +23,7 @@ public class ElectricalElementsHandler {
         addElements();
     }
 
-    public void addElements() {
+    private void addElements() {
         for(Vector2 v : punkty) {
             if(random.nextInt(10)==0) {
                 elements.add(new ElectricalElement(v.x-1920,v.y-1080,null,false,random.nextInt(6)));
