@@ -1,4 +1,4 @@
-package com.redartedgames.libgdxengine2d.assets;
+package com.redartedgames.libgdxengine2d.effects;
 
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;

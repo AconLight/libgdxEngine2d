@@ -1,7 +1,6 @@
 package com.redartedgames.libgdxengine2d.effects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.redartedgames.libgdxengine2d.assets.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
 
