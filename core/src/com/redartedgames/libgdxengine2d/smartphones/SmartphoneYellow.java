@@ -15,7 +15,7 @@ public class SmartphoneYellow extends Smartphone{
 	private float skillTime;
 	private CollisionHandle c;
 	Vector2 deltaPos;
-	private int animationCase=2;
+	private int animationCase=-1;
 
 	public SmartphoneYellow(float x, float y, GameObject parent) {
 		super(x, y, parent);
@@ -81,6 +81,7 @@ public class SmartphoneYellow extends Smartphone{
                 animationCase=-1;
                 break;
 		}
+		skillTime = 0;
 	}
 
 }

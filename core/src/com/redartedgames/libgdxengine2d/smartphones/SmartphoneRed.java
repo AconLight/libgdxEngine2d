@@ -73,7 +73,6 @@ public class SmartphoneRed extends Smartphone{
 	
 	public void updateLast(float delta, float vx, float vy) {
 		super.updateLast(delta, vx, vy);
-		Gdx.app.log("asd", "");
 		if (timer > 4) {
 			mediaFormation = none;
 		}
