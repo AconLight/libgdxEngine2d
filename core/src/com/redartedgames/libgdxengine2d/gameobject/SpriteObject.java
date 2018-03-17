@@ -131,9 +131,9 @@ public class SpriteObject extends GameObject {
 				sclX, sclY, alfa);
 			//Gdx.app.log("rendered", "spriteobject");
 		}
-		for (GameObject obj : getGameObjects()) {
-			obj.render(batch, priority, dx, dy, visibility);
-		}
+		for(int i=0; i<gameObjects.size();i++)
+			if (isAttached) gameObjects.get(i).render(batch, priority, dx + movement.getPosition().x, dy + movement.getPosition().y, visibility);
+			else gameObjects.get(i).render(batch, priority, movement.getPosition().x, movement.getPosition().y, visibility);
 		batch.setColor(1, 1, 1, visibility);
 	}
 	
