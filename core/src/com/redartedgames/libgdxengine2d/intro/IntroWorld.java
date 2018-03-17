@@ -7,7 +7,7 @@ import com.redartedgames.libgdxengine2d.scene.World;
 
 public class IntroWorld extends World{
 	float time;
-	float speed = 20;
+	float speed = 2;
 	SpriteObject made, red, title;
 	public IntroWorld(OrthographicCamera cam, Screen gameScreen) {
 		super(cam, gameScreen);

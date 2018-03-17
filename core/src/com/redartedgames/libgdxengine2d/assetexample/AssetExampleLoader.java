@@ -6,13 +6,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
+import com.redartedgames.libgdxengine2d.smartphones.SmartphoneBlue;
+import com.redartedgames.libgdxengine2d.smartphones.SmartphoneRed;
+import com.redartedgames.libgdxengine2d.smartphones.SmartphoneYellow;
 
 public class AssetExampleLoader {
 	
 	
 	public static ArrayList<GameObject> getObjects() {
 		ArrayList<GameObject> gameObjects = new ArrayList<>();
-		AssetExample e1 = new AssetExample(-180, 180);
+		AssetExample e1 = new AssetExample(-180, -180);
 		AssetExample e2 = new AssetExample(180, 180);
 		e1.movement.setVelocity(new Vector2(40, 40));
 		e2.movement.setVelocity(new Vector2(-30, -30));
@@ -22,12 +25,16 @@ public class AssetExampleLoader {
 		gameObjects.add(e2);
 		
 		ArrayList<GameObject> objects = new ArrayList<>();
-		objects.add(new AssetExample(-180, -180));
-		objects.add(new AssetExample(-180, -180));
-		objects.add(new AssetExample(-180, -180));
-		objects.add(new AssetExample(-180, -180));
-		objects.add(new AssetExample(-180, -180));
-		objects.add(new AssetExample(-180, -180));
+		
+		objects.add(new SmartphoneBlue(-180, -180, null));
+		objects.add(new SmartphoneRed(-180, -180, null));
+		objects.add(new SmartphoneRed(-180, -180, null));
+		objects.add(new SmartphoneBlue(-180, -180, null));
+		objects.add(new SmartphoneYellow(-180, -180, null));
+		
+	
+		
+
 		Formation formation = new Formation(-200, -200, objects, new MyFormationGenerator());
 		gameObjects.addAll(objects);
 		gameObjects.add(formation);
