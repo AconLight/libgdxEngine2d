@@ -15,9 +15,8 @@ public class Formation extends GameObject{
 	ArrayList<Vector2> positions;
 	FormationGenerator generator;
 	
-	public Formation(float x, float y, ArrayList<GameObject> objects, GameObject parent, FormationGenerator generator) {
-		super(x, y, parent, false);
-		addSprite(new AssetExampleSpriteHead(0, 0, this, true));
+	public Formation(float x, float y, ArrayList<GameObject> objects, GameObject parent, boolean isAttached, FormationGenerator generator) {
+		super(x, y, parent, isAttached);
 		positions = generator.generate(objects.size());
 		this.objects = objects;
 		collidableObjects.add(this); // just to asure that collide is performed

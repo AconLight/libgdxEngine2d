@@ -1,0 +1,12 @@
+diff a/core/src/com/redartedgames/libgdxengine2d/moveObiect/MovingObjects.java b/core/src/com/redartedgames/libgdxengine2d/moveObiect/MovingObjects.java	(rejected hunks)
+@@ -27,8 +27,8 @@
+     public static CollisionHandle animationCurve(float timeOfMoving) {
+         CollisionHandle finalPositionOfObject = new CollisionHandle();
+         //t(t-d)*k
+-        float timeOfFullAnimacion=5.0f; //d
+-        float movingMulitilplier=1.0f; //k
++        timeOfFullAnimacion=5.0f; //d
++        movingMulitilplier=1.0f; //k
+ 
+         if (timeOfMoving>=timeOfFullAnimacion) {
+             finalPositionOfObject.disY=0;
