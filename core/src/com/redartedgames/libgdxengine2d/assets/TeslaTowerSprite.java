@@ -8,7 +8,7 @@ public class TeslaTowerSprite extends SpriteObject {
         super(x, y, parent, isAttached);
         for(int i = 0; i < 8;i++){
         addTexture("graphic/tesla_animacja/Tesla_animacja_"+i+".png");
-        setIsPingpong(true);
         }
+        setIsPingpong(true);
     }
 }
