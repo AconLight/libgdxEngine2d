@@ -6,15 +6,19 @@ import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
+import com.redartedgames.libgdxengine2d.lightnings.Lightning;
 
 public class SmartphoneRed extends Smartphone{
 
 	ArrayList<GameObject> powerMedias;
 	
+	ArrayList<Lightning> lightnings;
+	
 	Formation mediaFormation;
 	
 	public SmartphoneRed(float x, float y, GameObject parent) {
 		super(x, y, parent);
+		lightnings = new ArrayList<Lightning>();
 		sprite = new SmartphoneRedSprite(0, 0, this, true);
 		gameObjects.add(sprite);
 		sprite.sclX = scl;
@@ -28,6 +32,13 @@ public class SmartphoneRed extends Smartphone{
 		sprite.getGameObjects().addAll(powerMedias);
 		sprite.getGameObjects().add(mediaFormation);
 		collidableObjects.add(this); // just to perform collide once
+		
+		for(GameObject p: powerMedias) {
+			for(GameObject p2: powerMedias) {
+				if(p != p2)
+				lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, true));
+			}
+		}
 	}
 	
 	public void collide(GameObject obj) {
@@ -37,6 +48,10 @@ public class SmartphoneRed extends Smartphone{
 		else {
 			super.collide(obj);
 		}
+	}
+	
+	public void startSparkle() {
+		
 	}
 
 }
