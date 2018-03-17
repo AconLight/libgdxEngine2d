@@ -157,7 +157,7 @@ public class Charge extends GameObject {
     @Override
     public void update(float delta) {
         super.update(delta);
-        chargeSprite.update(delta);
+        chargeSprite.updateLast(delta,0,0);
         if(wasStarted && !wasStopped) {
             if (animationCounter % animationSpeed == 0) {
                 for (Charge c : childCharges) {

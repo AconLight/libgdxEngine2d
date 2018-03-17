@@ -26,7 +26,7 @@ public class IntroWorld extends World{
 	int i = 0;
 	public void update(float delta) {
 		super.update(delta);
-		time += delta*speed;
+		time += delta*speed*20;
 		
 		if (time > 2 && time <= 3) {
 			red.visibility = (time-2)*(time-2);

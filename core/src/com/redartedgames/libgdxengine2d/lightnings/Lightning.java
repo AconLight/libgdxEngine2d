@@ -75,7 +75,7 @@ public class Lightning extends GameObject{
                 f=(i*2.0f/amount);
             }
             else f=(amount/2.0f-(i-amount/2.0f))/(amount/2.0f);
-            charges.get(i).rescale(1+(f)*2);
+            charges.get(i).rescale(1+(f)*4);
             addGameObject(charges.get(i));
         }
     }

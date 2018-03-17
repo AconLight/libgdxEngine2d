@@ -16,4 +16,10 @@ public class ChargeSprite extends SpriteObject {
         }
         setFrameTime(0.05f);
     }
+
+    @Override
+    public void updateLast(float delta, float vx, float vy) {
+        super.updateLast(delta, vx, vy);
+        System.out.println("hiiii");
+    }
 }
