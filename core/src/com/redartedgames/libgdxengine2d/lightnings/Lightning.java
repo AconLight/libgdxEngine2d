@@ -10,6 +10,8 @@ public class Lightning extends GameObject{
 
     private float startX;
     private float startY;
+    private PowerMedia first;
+    private PowerMedia second;
     private float endX;
     private float endY;
     private float chargeSize;
@@ -23,6 +25,8 @@ public class Lightning extends GameObject{
     public Lightning(PowerMedia first, PowerMedia second, GameObject parent, boolean isAttached) {
         super(0,0,parent, isAttached);
 
+        this.first = first;
+        this.second = second;
         this.startX = first.movement.getPosition().x;
         this.startY = first.movement.getPosition().y;
         this.endX = second.movement.getPosition().x;
@@ -45,7 +49,7 @@ public class Lightning extends GameObject{
 
     private int calculateAmount() {
         Texture texture = new Texture("graphic/charge/charge.png");
-        float f = calculateDistance()/texture.getHeight();
+        float f = calculateDistance()/5;///texture.getHeight();
         if(f != (int)f) f+=1;
         return (int)f;
     }
@@ -54,12 +58,22 @@ public class Lightning extends GameObject{
         return (int)calculateDistance()/calculateAmount();
     }
 
+    public PowerMedia getSecond() {
+        return second;
+    }
+
     private void addCharges() {
         for(int i = 0; i < amount; i++) {
             float x = startX + (endX-startX)*(amount*2-(i*2+1))/(amount*2);//((((startX-endX)/(float)(2.0*amount))*i*2+1));
             float y = startY + (endY-startY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
             charges.add(new Charge(x,y,chargeSize,this,true,0,animationSpeed,this,false));
             charges.get(i).setInvisible();
+            float f;
+            if(i<amount/2) {
+                f=(i*2.0f/amount);
+            }
+            else f=(amount/2.0f-(i-amount/2.0f))/(amount/2.0f);
+            charges.get(i).rescale(1+(f)*2);
             addGameObject(charges.get(i));
         }
     }
@@ -117,5 +131,9 @@ public class Lightning extends GameObject{
 
     public float getEndY() {
         return endY;
+    }
+
+    public PowerMedia getFirst() {
+        return first;
     }
 }
