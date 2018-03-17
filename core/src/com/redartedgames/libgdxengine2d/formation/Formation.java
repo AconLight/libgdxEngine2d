@@ -28,7 +28,7 @@ public class Formation extends GameObject{
 	}
 	
 	public void collide(GameObject obj) {
-		Gdx.app.log("collide Formation", "");
+		
 		super.collide(obj);
 		for (int i = 0; i < objects.size(); i++) {
 			objects.get(i).movement.addCollisionAcc(new Vector2(k*(movement.getPosition().x + positions.get(i).x - objects.get(i).movement.getPosition().x), 
