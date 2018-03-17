@@ -3,6 +3,7 @@ package com.redartedgames.libgdxengine2d.lightnings;
 import com.badlogic.gdx.graphics.Texture;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
+import com.redartedgames.libgdxengine2d.physics.Hitbox;
 
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
@@ -10,8 +11,6 @@ import java.util.Random;
 
 public class Charge extends GameObject {
 
-    private float x;
-    private float y;
     private float size;
     private int level;
     private boolean wasStarted;
@@ -24,10 +23,8 @@ public class Charge extends GameObject {
     private Random random = new Random();
     private Lightning lightning;
 
-    public Charge(float x, float y, float size, GameObject parent, boolean isAttached) {
+    /*public Charge(float x, float y, float size, GameObject parent, boolean isAttached) {
         super(x,y,parent,isAttached);
-        this.x = x;
-        this.y = y;
         this.size = size;
         wasStarted = false;
         wasStopped = false;
@@ -37,19 +34,16 @@ public class Charge extends GameObject {
         Texture texture = new Texture("graphic/charge/charge.png");
         scale(chargeSprite,texture);
         chargeSprite.addTexture(texture);
-    }
+    }*/
 
-    public Charge(float x, float y, float size, GameObject parent, boolean isAttached, int level, int speed, Lightning lightning, boolean isAbove) {
+    Charge(float x, float y, float size, GameObject parent, boolean isAttached, int level, int speed, Lightning lightning, boolean isAbove) {
         super(x,y,parent,isAttached);
-        this.x = x;
-        this.y = y;
         this.size = size;
         this.level = level;
         wasStarted = false;
         wasStopped = false;
         this.isAbove = isAbove;
         this.lightning = lightning;
-        animationCounter = 0;
         animationSpeed = speed+1;
         chargeSprite = new SpriteObject(0,0,this,true);
         addSprite(chargeSprite);
@@ -61,20 +55,13 @@ public class Charge extends GameObject {
         if(level < 2) {
             addChildren();
         }
+        setHitbox(new Hitbox(this.movement.getPosition().x, this.movement.getPosition().y, size/2, Hitbox.BehaviorMode.kinematic));
     }
 
     public void start() {
         if(!wasStarted && !wasStopped) {
             wasStarted = true;
             animationCounter = 1;
-        }
-    }
-
-    public void stop() {
-        if(wasStarted && !wasStopped) {
-            wasStopped = true;
-            wasStarted = false;
-            animationCounter = 0;
         }
     }
 
@@ -126,10 +113,10 @@ public class Charge extends GameObject {
         }
     }
 
-    private void scale(SpriteObject s, Texture t) {
-        float scale = size/t.getHeight();
-        s.sclX = scale;
-        s.sclY = scale;
+    private void scale(SpriteObject spriteObject, Texture texture) {
+        float scale = size/texture.getHeight();
+        spriteObject.sclX = scale;
+        spriteObject.sclY = scale;
     }
 
     protected void setInvisible() {
@@ -144,12 +131,11 @@ public class Charge extends GameObject {
     public void update(float delta) {
         super.update(delta);
         if(wasStarted && !wasStopped) {
-            if(animationCounter%animationSpeed == 0) {
-                for(Charge c : childCharges) {
+            if (animationCounter % animationSpeed == 0) {
+                for (Charge c : childCharges) {
                     c.setVisible();
                     c.start();
                 }
-                stop();
             }
             animationCounter++;
         }

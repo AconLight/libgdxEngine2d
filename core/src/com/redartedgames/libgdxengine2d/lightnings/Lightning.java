@@ -17,8 +17,7 @@ public class Lightning extends GameObject{
     private int animationCounter;
     private int amount;
     private int animationSpeed; //in frames
-    private float distance;
-    public ArrayList<Charge> charges;
+    private ArrayList<Charge> charges;
 
     public Lightning(float startX, float startY, float endX, float endY, GameObject parent, boolean isAttached) {
         super(0,0,parent, isAttached);
@@ -32,7 +31,6 @@ public class Lightning extends GameObject{
         chargeSize = calculateSize();
         animationCounter = 0;
         amount = calculateAmount();
-        distance = calculateDistance();
         addCharges();
         for(Charge c : charges) {
             gameObjects.add(c);
@@ -60,12 +58,6 @@ public class Lightning extends GameObject{
         return (int)calculateDistance()/calculateAmount();
     }
 
-    private void render() {
-        for(Charge c : charges) {
-            addGameObject(c);
-        }
-    }
-
     private void addCharges() {
         for(int i = 0; i < amount; i++) {
             float x = startX + (endX-startX)*(amount*2-(i*2+1))/(amount*2);//((((startX-endX)/(float)(2.0*amount))*i*2+1));
@@ -87,6 +79,8 @@ public class Lightning extends GameObject{
             wasStarted = false;
             animationCounter = 0;
         }
+        charges.clear();
+        gameObjects.clear();
     }
 
     @Override
@@ -97,13 +91,13 @@ public class Lightning extends GameObject{
                 charges.get(amount/2).setVisible();
                 charges.get(amount/2).start();
             }
-            else if(animationCounter%animationSpeed == 0 && animationCounter/animationSpeed != amount/2) {
+            else if(animationCounter%animationSpeed == 0 && animationCounter/animationSpeed < amount/2) {
                 charges.get(animationCounter/animationSpeed).setVisible();
                 charges.get(animationCounter/animationSpeed).start();
                 charges.get(amount-animationCounter/animationSpeed-1).setVisible();
                 charges.get(amount-animationCounter/animationSpeed-1).start();
             }
-            if(animationCounter/animationSpeed == amount/2+1) {
+            if(animationCounter/animationSpeed == amount*2) {
                 stop();
             }
             animationCounter++;
