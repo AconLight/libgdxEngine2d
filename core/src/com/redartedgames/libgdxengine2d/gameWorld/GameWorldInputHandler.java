@@ -3,10 +3,13 @@ package com.redartedgames.libgdxengine2d.gameWorld;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.redartedgames.libgdxengine2d.assetexample.AssetExampleLoader;
+import com.redartedgames.libgdxengine2d.player.Player;
 
 public class GameWorldInputHandler implements InputProcessor{
 
 	GameWorld world;
+	
 
 	public GameWorldInputHandler(GameWorld world) {
 		this.world = world;
@@ -18,6 +21,38 @@ public class GameWorldInputHandler implements InputProcessor{
 			Gdx.app.exit();
 			break;
 		}
+		case  Keys.W: {
+			AssetExampleLoader.player1.moveVel(0, Player.playerV);
+			break;
+		}
+		case  Keys.S: {
+			AssetExampleLoader.player1.moveVel(0, -Player.playerV);
+			break;
+		}
+		case  Keys.D: {
+			AssetExampleLoader.player1.moveVel(Player.playerV, 0);
+			break;
+		}
+		case  Keys.A: {
+			AssetExampleLoader.player1.moveVel(-Player.playerV, 0);
+			break;
+		}
+		case  Keys.UP: {
+			AssetExampleLoader.player2.moveVel(0, Player.playerV);
+			break;
+		}
+		case  Keys.DOWN: {
+			AssetExampleLoader.player2.moveVel(0, -Player.playerV);
+			break;
+		}
+		case  Keys.RIGHT: {
+			AssetExampleLoader.player2.moveVel(Player.playerV, 0);
+			break;
+		}
+		case  Keys.LEFT: {
+			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
+			break;
+		}
 		}
 		return false;
 	}
@@ -27,6 +62,38 @@ public class GameWorldInputHandler implements InputProcessor{
 		switch (keycode) {
 		case  Keys.ESCAPE: {
 			Gdx.app.exit();
+			break;
+		}
+		case  Keys.W: {
+			AssetExampleLoader.player1.moveVel(0, -Player.playerV);
+			break;
+		}
+		case  Keys.S: {
+			AssetExampleLoader.player1.moveVel(0, Player.playerV);
+			break;
+		}
+		case  Keys.D: {
+			AssetExampleLoader.player1.moveVel(-Player.playerV, 0);
+			break;
+		}
+		case  Keys.A: {
+			AssetExampleLoader.player1.moveVel(Player.playerV, 0);
+			break;
+		}
+		case  Keys.UP: {
+			AssetExampleLoader.player2.moveVel(0, -Player.playerV);
+			break;
+		}
+		case  Keys.DOWN: {
+			AssetExampleLoader.player2.moveVel(0, Player.playerV);
+			break;
+		}
+		case  Keys.RIGHT: {
+			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
+			break;
+		}
+		case  Keys.LEFT: {
+			AssetExampleLoader.player2.moveVel(Player.playerV, 0);
 			break;
 		}
 		}

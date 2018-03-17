@@ -3,6 +3,7 @@ package com.redartedgames.libgdxengine2d.player;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.assets.PlayerSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
@@ -15,6 +16,8 @@ public class Player extends GameObject{
 
 	Formation formation;
 	PlayerSprite sprite;
+	public static final int playerV = 1500;
+	public static final float playerDrag = 0.9f;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
@@ -40,6 +43,11 @@ public class Player extends GameObject{
 		sprite = new PlayerSprite(0, 0, this, true);
 		gameObjects.add(sprite);
 	}
+	
+	public void updateLast(float delta, float vx, float vy) {
+		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
+	}
+	
 	public void collide(GameObject obj) {
 		if (obj == this) {
 			formation.collide(obj);
@@ -51,6 +59,16 @@ public class Player extends GameObject{
 		else {
 			super.collide(obj);
 		}
+	}
+	
+	public void moveVel(int x, int y) {
+		if (Math.abs(x) > 0 && Math.abs(y) > 0) {
+			movement.addG(new Vector2(x/1.47f, y/1.47f));
+		}
+		else {
+			movement.addG(new Vector2(x, y));
+		}
+		
 	}
 
 }

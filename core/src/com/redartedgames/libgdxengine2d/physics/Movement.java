@@ -108,4 +108,18 @@ public class Movement {
 		
 	}
 
+	public void addAcceleration(Vector2 vector2) {
+		this.acceleration.add(vector2);
+	}
+
+	public void addVelocity(Vector2 vector2) {
+		this.velocity.add(vector2);
+		
+	}
+
+	public void addG(Vector2 vector2) {
+		g.add(vector2);
+		
+	}
+
 }

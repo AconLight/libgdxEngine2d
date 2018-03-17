@@ -21,6 +21,7 @@ public class GameObject {
 	public float collisionAccX;
 	public float collisionAccY;
 	public ArrayList<GameObject> collidableObjects;
+	public float translationAlfa = 0;
 	
 	public ArrayList<GameObject> getGameObjects() {
 		return gameObjects;
@@ -145,8 +146,8 @@ public class GameObject {
 	
 	public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
 		for(int i=0; i<gameObjects.size();i++)
-			if (isAttached) gameObjects.get(i).render(batch, priority, dx + movement.getPosition().x, dy + movement.getPosition().y, visibility);
-			else gameObjects.get(i).render(batch, priority, movement.getPosition().x, movement.getPosition().y, visibility);
+			if (isAttached) gameObjects.get(i).render(batch, priority, dx + getTranslatedX(), dy + getTranslatedY(), visibility);
+			else gameObjects.get(i).render(batch, priority, getTranslatedX(), getTranslatedY(), visibility);
 	}
 	
 	public void render(ShapeRenderer batch, int priority, float dx, float dy, float visibility) {
@@ -158,6 +159,19 @@ public class GameObject {
 	public void dispose(){
 		for(int i=0; i<gameObjects.size();i++)
 			gameObjects.get(i).dispose();
+	}
+	
+	private float getTranslatedX() {
+		float x = movement.getPosition().x;
+		float y = movement.getPosition().y;
+		float alfa = (float) Math.toRadians(movement.getPosition().angle());
+		return (float) (Math.cos(translationAlfa + alfa)*Math.sqrt(x*x + y*y));
+	}
+	private float getTranslatedY() {
+		float x = movement.getPosition().x;
+		float y = movement.getPosition().y;
+		float alfa = (float) Math.toRadians(movement.getPosition().angle());
+		return (float) (Math.sin(translationAlfa + alfa)*Math.sqrt(x*x + y*y));
 	}
 }
 
