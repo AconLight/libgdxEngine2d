@@ -27,7 +27,7 @@ public class Lightning extends GameObject{
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
-        animationSpeed = 20;
+        animationSpeed = 10;
         charges = new ArrayList<>();
         chargeSize = calculateSize();
         animationCounter = 0;
@@ -69,8 +69,8 @@ public class Lightning extends GameObject{
     private void addCharges() {
         for(int i = 0; i < amount; i++) {
             float x = startX + (endX-startX)*(amount*2-(i*2+1))/(amount*2);//((((startX-endX)/(float)(2.0*amount))*i*2+1));
-            float y = startY + (startY-endY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
-            charges.add(new Charge(x,y,chargeSize,this,true));
+            float y = startY + (endY-startY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
+            charges.add(new Charge(x,y,chargeSize,this,true,0,animationSpeed,this,false));
         }
     }
 
@@ -93,15 +93,36 @@ public class Lightning extends GameObject{
     public void update(float delta) {
         super.update(delta);
         if(wasStarted && !wasStopped) {
-            if(animationCounter%animationSpeed == 0 && animationCounter/animationSpeed != amount/2) {
-                charges.get(animationCounter/animationSpeed).setVisible();
-                charges.get(amount-animationCounter/animationSpeed-1).setVisible();
-
+            if(amount%2==1 && animationCounter/animationSpeed==amount/2) {
+                charges.get(amount/2).setVisible();
+                charges.get(amount/2).start();
             }
-            animationCounter++;
-            if(animationCounter/animationSpeed == amount/2) {
+            else if(animationCounter%animationSpeed == 0 && animationCounter/animationSpeed != amount/2) {
+                charges.get(animationCounter/animationSpeed).setVisible();
+                charges.get(animationCounter/animationSpeed).start();
+                charges.get(amount-animationCounter/animationSpeed-1).setVisible();
+                charges.get(amount-animationCounter/animationSpeed-1).start();
+            }
+            if(animationCounter/animationSpeed == amount/2+1) {
                 stop();
             }
+            animationCounter++;
         }
+    }
+
+    public float getStartX() {
+        return startX;
+    }
+
+    public float getStartY() {
+        return startY;
+    }
+
+    public float getEndX() {
+        return endX;
+    }
+
+    public float getEndY() {
+        return endY;
     }
 }
