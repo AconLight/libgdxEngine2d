@@ -79,25 +79,25 @@ public class Charge extends GameObject {
     }
 
     private float countChildX(int i, int bound) {
-        int diff = 90/(bound);
+        int diff = 40;
         float angle = (float) Math.toDegrees(Math.atan2(lightning.getEndX() - lightning.getStartX(), lightning.getEndY() - lightning.getStartY()));
         if(angle < 0){
             angle += 360;
         }
         double[] pt = {size/3*2, 0};
-        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+(bound-1)*30), 0, 0)
+        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+diff*(bound-1)/2), 0, 0)
                 .transform(pt, 0, pt, 0, 1);
         return (float)pt[0];
     }
 
     private float countChildY(int i, int bound) {
-        int diff = 90/(bound);
+        int diff = 40;
         float angle = (float) Math.toDegrees(Math.atan2(lightning.getEndX() - lightning.getStartX(), lightning.getEndY() - lightning.getStartY()));
         if(angle < 0){
             angle += 360;
         }
         double[] pt = {size/3*2, 0};
-        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+(bound-1)*30), 0, 0)
+        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+diff*(bound-1)/2), 0, 0)
                 .transform(pt, 0, pt, 0, 1);
         return (float)pt[1];
     }
