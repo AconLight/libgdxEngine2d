@@ -150,11 +150,7 @@ public class Charge extends GameObject {
         }
         for(Charge c : childCharges) {
             if(random.nextInt(10)==0) {
-                //c.setVisible();
-                //c.blink();
-            }
-            if(random.nextInt(10)==0) {
-                c.setInvisible();
+                c.blink();
             }
         }
     }
