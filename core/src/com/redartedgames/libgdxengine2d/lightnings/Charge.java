@@ -131,7 +131,9 @@ public class Charge extends GameObject {
     protected void blink() {
         chargeSprite.visibility = Math.abs(chargeSprite.visibility-1);
         for(Charge c : childCharges) {
-            if(chargeSprite.visibility == 1) c.setInvisible();
+            if(chargeSprite.isVisible) {
+                c.setInvisible();
+            }
             else c.setVisible();
         }
     }
