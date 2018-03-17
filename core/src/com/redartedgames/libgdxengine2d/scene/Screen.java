@@ -42,7 +42,7 @@ public class Screen {
 		cam.up.set(0, 1, 0);
 		cam.rotate(screenShaker.getAlfaDeep().x);
 
-		cam.zoom = 1 + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
+		cam.zoom = 2 + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
 
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);

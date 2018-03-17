@@ -1,5 +1,6 @@
 package com.redartedgames.libgdxengine2d.assets;
 
+import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.effects.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
@@ -12,8 +13,9 @@ public class ElectricalElement extends GameObject {
     private int size;
     private Random rng;
     private int type;
-    private int counterBoom;
+    private float counterBoom;
     private boolean hasExploded;
+    public HitboxElectricalElement hitboxElectricalElement;
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
@@ -21,6 +23,7 @@ public class ElectricalElement extends GameObject {
         rng = new Random();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
+        hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
@@ -89,6 +92,8 @@ public class ElectricalElement extends GameObject {
 
     public void update(float delta) {
         super.update(delta);
+        if(hasExploded)counterBoom += delta;
+        Gdx.app.log("dupa " + hasExploded, "asd " + counterBoom);
         float losujWolniej = rng.nextInt(100);
         if (type==0 && losujWolniej%5==0) {
             int wylosowanyNumerInt = rng.nextInt(3) + 1;
@@ -110,9 +115,15 @@ public class ElectricalElement extends GameObject {
                     break;
             }
         }
-        if(counterBoom == 200 && hasExploded) {
-            spriteObject = new ElecrticalElementSprite(0,0,this,true,rng.nextInt(6));
+        if(counterBoom >= 10 && hasExploded) {
+            spriteObject.isVisible = true;
+            spriteObject.visibility = 1;
             hasExploded = false;
         }
+    }
+
+    public void collide(GameObject obj) {
+        super.collide(obj);
+        if (!hasExploded)hitboxElectricalElement.collide(obj);
     }
 }

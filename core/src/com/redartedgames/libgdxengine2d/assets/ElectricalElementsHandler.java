@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.assets;
 
 import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
+import com.redartedgames.libgdxengine2d.player.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,27 +16,35 @@ public class ElectricalElementsHandler {
 
     public ArrayList<GameObject> elements;
 
-    public ElectricalElementsHandler() {
+    public ElectricalElementsHandler(Player player1, Player player2) {
         random = new Random();
         elements = new ArrayList<>();
         punkty = new ArrayList<>();
         read();
-        addElements();
+        addElements(player1, player2);
     }
 
-    private void addElements() {
+    private void addElements(Player player1, Player player2) {
         for(Vector2 v : punkty) {
             if(random.nextInt(10)==0) {
                 elements.add(new ElectricalElement(v.x-1920,v.y-1080,null,false,random.nextInt(6)));
+                elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
+                elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
             if(random.nextInt(10)==0) {
                 elements.add(new ElectricalElement(1920-v.x,v.y-1080,null,false,random.nextInt(6)));
+                elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
+                elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
             if(random.nextInt(10)==0) {
                 elements.add(new ElectricalElement(v.x-1920,-v.y+1080,null,false,random.nextInt(6)));
+                elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
+                elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
             if(random.nextInt(10)==0) {
                 elements.add(new ElectricalElement(-v.x+1920,-v.y+1080,null,false,random.nextInt(6)));
+                elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
+                elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
         }
     }

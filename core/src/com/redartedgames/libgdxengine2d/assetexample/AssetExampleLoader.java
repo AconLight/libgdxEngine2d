@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.redartedgames.libgdxengine2d.assets.BoardHolder;
 import com.redartedgames.libgdxengine2d.assets.ElectricalElement;
+import com.redartedgames.libgdxengine2d.assets.ElectricalElementsHandler;
 import com.redartedgames.libgdxengine2d.assets.TeslaTower;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.player.Player;
@@ -24,6 +25,10 @@ public class AssetExampleLoader {
 		gameObjects.add(player1);
 		gameObjects.add(player2);
 		gameObjects.add(tesla);
+		ElectricalElementsHandler eh = new ElectricalElementsHandler(player1,player2);
+		for(GameObject go : eh.elements) {
+			gameObjects.add(go);
+		}
 
         ElectricalElement EE = new ElectricalElement(100,100,null,false,0);
         gameObjects.add(EE);
