@@ -12,7 +12,7 @@ public class ExplosionSprite extends SpriteObject {
         }
         scale(size);
         isOnce = true;
-        setFrameTime(0.05f);
+        setFrameTime(0.25f);
     }
 
     private void scale(int size) {
