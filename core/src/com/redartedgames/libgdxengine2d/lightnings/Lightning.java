@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.lightnings;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
+import com.redartedgames.libgdxengine2d.smartphones.PowerMedia;
 
 import java.util.ArrayList;
 
@@ -19,13 +20,13 @@ public class Lightning extends GameObject{
     private int animationSpeed; //in frames
     private ArrayList<Charge> charges;
 
-    public Lightning(float startX, float startY, float endX, float endY, GameObject parent, boolean isAttached) {
+    public Lightning(PowerMedia first, PowerMedia second, GameObject parent, boolean isAttached) {
         super(0,0,parent, isAttached);
 
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
+        this.startX = first.movement.getPosition().x;
+        this.startY = first.movement.getPosition().y;
+        this.endX = second.movement.getPosition().x;
+        this.endY = second.movement.getPosition().y;
         animationSpeed = 10;
         charges = new ArrayList<>();
         chargeSize = calculateSize();
@@ -96,9 +97,6 @@ public class Lightning extends GameObject{
                 charges.get(animationCounter/animationSpeed).start();
                 charges.get(amount-animationCounter/animationSpeed-1).setVisible();
                 charges.get(amount-animationCounter/animationSpeed-1).start();
-            }
-            if(animationCounter/animationSpeed == amount*2) {
-                stop();
             }
             animationCounter++;
         }
