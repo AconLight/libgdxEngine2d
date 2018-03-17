@@ -27,7 +27,7 @@ public class AssetExampleLoader {
 		gameObjects.add(tesla);
 		ElectricalElementsHandler eh = new ElectricalElementsHandler(player1,player2);
 		for(GameObject go : eh.elements) {
-			gameObjects.add(go);
+			//gameObjects.add(go);
 		}
 
         ElectricalElement EE = new ElectricalElement(100,100,null,false,0);

@@ -78,11 +78,11 @@ public class GameWorldInputHandler implements InputProcessor{
 			break;
 		}
 		case  Keys.ENTER: {
-			AssetExampleLoader.player2.spark();
+
 			break;
 		}
 		case  Keys.SPACE: {
-			AssetExampleLoader.player1.spark();
+
 			break;
 		}
 		}

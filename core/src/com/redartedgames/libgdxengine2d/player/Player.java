@@ -24,11 +24,12 @@ public class Player extends GameObject{
 	public static final int playerV = 1500;
 	public static final float playerDrag = 0.9f;
 	public ArrayList<SmartphoneRed> smartphonesRed;
-	public ArrayList<SmartphoneYellow> smartphonesYellow;
-	public ArrayList<SmartphoneBlue> smartphonesBlue;
+	public ArrayList<SmartphoneRed> smartphonesYellow;
+	public ArrayList<SmartphoneRed> smartphonesBlue;
+	public ArrayList<SmartphoneRed> current;
 	public SmartphoneRed sr1, sr2;
-	public SmartphoneYellow sy1;
-	public SmartphoneBlue sb1, sb2;
+	public SmartphoneRed sy1;
+	public SmartphoneRed sb1, sb2;
 	private Vector2 direction;
 	ArrayList<GameObject> smartphones;
 	private LifeBelt belt;
@@ -48,9 +49,9 @@ public class Player extends GameObject{
 		smartphonesBlue = new ArrayList<>();
 		sr1 = new SmartphoneRed(0, 0, this);
 		sr2 = new SmartphoneRed(0, 0, this);
-		sb1 = new SmartphoneBlue(0, 0, this);
-		sb2 = new SmartphoneBlue(0, 0, this);
-		sy1 = new SmartphoneYellow(0, 0, this);
+		sb1 = new SmartphoneRed(0, 0, this);
+		sb2 = new SmartphoneRed(0, 0, this);
+		sy1 = new SmartphoneRed(0, 0, this);
 		smartphones.add(sb1);
 		smartphones.add(sr1);
 		smartphones.add(sy1);
@@ -66,9 +67,6 @@ public class Player extends GameObject{
 		smartphonesYellow.add(sy1);
 
 		
-		
-		sy1.addRed(sr1);
-		sy1.addRed(sr2);
 		
 		collidableObjects.add(this); // just to asure that collide is performed
 		
@@ -145,30 +143,29 @@ public class Player extends GameObject{
 	
 	public void startSkill(int i) {
 		if (skill == 0) {
-			for(SmartphoneRed s: smartphonesRed) {
-				s.startSkill(i);
+			if(i == 0) {
+				current = smartphonesRed;
+			}
+			if(i == 1) {
+				current = smartphonesYellow;
+			}
+			if(i == 2) {
+				current = smartphonesBlue;
 			}
 		}
 		if (skill == 1) {
-			for(SmartphoneYellow s: smartphonesYellow) {
-				s.startSkill(i);
+			for(SmartphoneRed s: current) {
+				s.startSkill1(i);
 			}
 		}
 		if (skill == 2) {
-			for(SmartphoneBlue s: smartphonesBlue) {
-				s.startSkill(i);
+			for(SmartphoneRed s: current) {
+				s.startSkill2(i);
 			}
 		}
 		skill ++;
 		if (skill > 2) {
 			skill = 0;
-			spark();
-		}
-	}
-	
-	public void spark() {
-		for(SmartphoneRed s: smartphonesRed) {
-			s.startSparkle();
 		}
 	}
 

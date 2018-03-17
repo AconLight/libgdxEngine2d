@@ -2,10 +2,13 @@ package com.redartedgames.libgdxengine2d.smartphones;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
 import com.redartedgames.libgdxengine2d.formation.*;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.lightnings.Lightning;
+import com.redartedgames.libgdxengine2d.moveObiect.MovingObjects;
+import com.redartedgames.libgdxengine2d.physics.CollisionHandle;
 
 public class SmartphoneRed extends Smartphone{
 
@@ -20,6 +23,15 @@ public class SmartphoneRed extends Smartphone{
 	Formation none;
 	
 	float timer;
+	
+	
+	
+	private float skillTime;
+	private CollisionHandle c;
+	private int animationCase=-1;
+	
+	
+	
 	
 	public SmartphoneRed(float x, float y, GameObject parent) {
 		super(x, y, parent);
@@ -80,6 +92,25 @@ public class SmartphoneRed extends Smartphone{
 			timer += delta;
 		}
 		mediaFormation.translationAlfa = translationAlfa;
+		
+		float d = 0;
+	    if (animationCase == 0) {
+            skillTime += 4 * delta;
+            c = MovingObjects.animationUpAndDown(skillTime);
+            d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+        }
+        if (animationCase == 1) {
+            skillTime += 8 *delta;
+            c = MovingObjects.animationCurve(skillTime);
+            d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+        }
+        if (animationCase == 2) {
+	        skillTime += 6*delta;
+	        c = MovingObjects.animationTangens(skillTime);
+	        d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+        }
+        sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa - Math.PI/2)*d), (float)(Math.sin(translationAlfa - Math.PI/2)*d)));
+		
 	}
 	
 	public void collide(GameObject obj) {
@@ -114,7 +145,20 @@ public class SmartphoneRed extends Smartphone{
 		}
 	}
 	
-	public void startSkill(int i) {
+	public void startSkill1(int i) {
+		if (i == 0) {
+			animationCase=0;
+		}
+		if (i == 1) {
+			animationCase=1;
+		}
+		if (i == 2) {
+			animationCase=2;
+		}
+
+	}
+	
+	public void startSkill2(int i) {
 		if (i == 0) {
 			mediaFormation = mediaFormation1;
 		}
@@ -125,6 +169,7 @@ public class SmartphoneRed extends Smartphone{
 			mediaFormation = mediaFormation3;
 		}
 		timer = 0;
+		startSparkle();
 	}
 
 	@Override
