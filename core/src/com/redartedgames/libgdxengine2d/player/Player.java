@@ -48,12 +48,15 @@ public class Player extends GameObject{
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
-		movement.setG(new Vector2((direction.x + movement.getG().x*9)/10, (direction.y + movement.getG().y*9)/10));
+		movement.setG(new Vector2((direction.x + movement.getG().x*29)/30, (direction.y + movement.getG().y*29)/30));
 		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
+		movement.addG(new Vector2 (0, 100));
 		for(GameObject obj: gameObjects) {
 
 			obj.translationAlfa = (float) (Math.toRadians(movement.getG().angle()) + Math.PI/2);
 		}
+		movement.addG(new Vector2 (0, -100));
+		sprite.alfa = (float) (movement.getG().angle() - 90);
 	}
 	
 	public void collide(GameObject obj) {
