@@ -42,6 +42,14 @@ public class Charge extends GameObject {
         return size;
     }
 
+    protected void setInvisible() {
+        chargeSprite.visibility = 0;
+    }
+
+    protected void setVisible() {
+        chargeSprite.visibility = 1;
+    }
+
     @Override
     public void update(float delta) {
         super.update(delta);
