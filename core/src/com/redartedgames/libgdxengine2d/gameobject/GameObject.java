@@ -22,6 +22,7 @@ public class GameObject {
 	public float collisionAccY;
 	public ArrayList<GameObject> collidableObjects;
 	public float translationAlfa = 0;
+	public Vector2 realPosition;
 	
 	public ArrayList<GameObject> getGameObjects() {
 		return gameObjects;
@@ -34,6 +35,7 @@ public class GameObject {
 	public GameObject(float x, float y, GameObject parent, boolean isAttached) {
 		movement = new Movement(new Vector2(x, y));			
 		this.parent = parent;
+		realPosition = new Vector2();
 		gameObjects = new ArrayList<GameObject>();
 		collidableObjects = new ArrayList<GameObject>();
 		hitbox = new Hitbox();
@@ -145,6 +147,7 @@ public class GameObject {
 	}
 	
 	public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
+		realPosition.set(movement.getPosition().x, movement.getPosition().y);
 		for(int i=0; i<gameObjects.size();i++)
 			if (isAttached) gameObjects.get(i).render(batch, priority, dx + getTranslatedX(), dy + getTranslatedY(), visibility);
 			else gameObjects.get(i).render(batch, priority, getTranslatedX(), getTranslatedY(), visibility);
