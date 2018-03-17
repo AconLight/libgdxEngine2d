@@ -22,15 +22,16 @@ public class ElectricalElement extends GameObject {
         switch (type) {
             case 0: //dioda LED
                 break;
-            case 1:
+            case 1: //kondensator
+                //efekty
                 break;
-            case 2:
+            case 2: //tranzystor
                 break;
-            case 3:
+            case 3: //rezystor
                 break;
-            case 4:
+            case 4: //Pentium P5
                 break;
-            case 5:
+            case 5: //LM75
                 break;
             case 6: //LCD
                 break;
