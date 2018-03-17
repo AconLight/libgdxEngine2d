@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.smartphones;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
@@ -35,14 +36,16 @@ public class SmartphoneRed extends Smartphone{
 		
 		for(GameObject p: powerMedias) {
 			for(GameObject p2: powerMedias) {
-				if(p != p2)
-				lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, true));
+				if(p != p2) {
+					//lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, true));
+				}
 			}
 		}
 	}
 	
 	public void collide(GameObject obj) {
-		if (obj == this) {
+		if (obj == parent) {
+			Gdx.app.log("collide Formation2", "");
 			mediaFormation.collide(obj);
 		}
 		else {

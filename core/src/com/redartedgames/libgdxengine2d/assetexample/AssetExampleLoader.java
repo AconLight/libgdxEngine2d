@@ -13,10 +13,14 @@ import com.redartedgames.libgdxengine2d.smartphones.SmartphoneYellow;
 
 public class AssetExampleLoader {
 	
-	
+	public static Player player1, player2;
 	public static ArrayList<GameObject> getObjects() {
 		ArrayList<GameObject> gameObjects = new ArrayList<>();
-		gameObjects.add(new Player(-200, -200, null, false));
+		player1 = new Player(-200, -200, null, false);
+		player2 = new Player(200, -200, null, false);
+		gameObjects.add(player1);
+		gameObjects.add(player2);
+		
 		
 
 		return gameObjects;

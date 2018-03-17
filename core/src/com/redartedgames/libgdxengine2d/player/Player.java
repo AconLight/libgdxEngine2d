@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.player;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.assets.PlayerSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
@@ -42,6 +43,10 @@ public class Player extends GameObject{
 	public void collide(GameObject obj) {
 		if (obj == this) {
 			formation.collide(obj);
+			for(GameObject obj1 :gameObjects) {
+				Gdx.app.log("collide Formation1", "");
+				obj1.collide(obj);
+			}
 		}
 		else {
 			super.collide(obj);
