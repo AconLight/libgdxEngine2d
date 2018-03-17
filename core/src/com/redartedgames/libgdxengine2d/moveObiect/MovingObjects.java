@@ -26,15 +26,15 @@ public class MovingObjects {
     public static CollisionHandle animationCurve(float timeOfMoving) {
         CollisionHandle finalPositionOfObject = new CollisionHandle();
         //t(t-d)*k
-        float timeOfFullAnimacion=5.0f; //d
-        float movingMulitilplier=1.0f; //k
+        float timeOfFullAnimacion=10.0f; //d
+        float movingMulitilplier=8.0f; //k
 
         if (timeOfMoving>=timeOfFullAnimacion) {
             finalPositionOfObject.disY=0;
             finalPositionOfObject.disX=0;
         } else {
-            finalPositionOfObject.disX = timeOfMoving;
-            finalPositionOfObject.disY = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
+            finalPositionOfObject.disY = timeOfMoving*timeOfMoving;
+            finalPositionOfObject.disX = Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);
         }
 
         /*Gdx.app.log("czas:",Float.toString(timeOfMoving));
