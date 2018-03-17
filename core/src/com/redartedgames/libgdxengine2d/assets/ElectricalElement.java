@@ -12,9 +12,11 @@ public class ElectricalElement extends GameObject {
     private SpriteObject spriteObjectExplosion;
     private int size;
     private Random rng;
+    private int type;
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
+        this.type=type;
         rng = new Random();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
@@ -80,5 +82,28 @@ public class ElectricalElement extends GameObject {
         spriteObjectExplosion.isVisible = true;
     }
 
-
+    public void update(float delta) {
+        super.update(delta);
+        float losujWolniej = rng.nextInt(100);
+        if (type==0 && losujWolniej%5==0) {
+            int wylosowanyNumerInt = rng.nextInt(3) + 1;
+            switch (wylosowanyNumerInt) {
+                case 1:
+                    spriteObject.R = 0;
+                    spriteObject.G = 0;
+                    spriteObject.B = 1;
+                    break;
+                case 2:
+                    spriteObject.R = 0;
+                    spriteObject.G = 1;
+                    spriteObject.B = 0;
+                    break;
+                case 3:
+                    spriteObject.R = 1;
+                    spriteObject.G = 0;
+                    spriteObject.B = 0;
+                    break;
+            }
+        }
+    }
 }
