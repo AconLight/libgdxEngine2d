@@ -14,6 +14,7 @@ public class ElectricalElement extends GameObject {
     private int type;
     private int counterBoom;
     private boolean hasExploded;
+    public HitboxElectricalElement hitboxElectricalElement;
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
@@ -21,6 +22,7 @@ public class ElectricalElement extends GameObject {
         rng = new Random();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
+        hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
@@ -114,5 +116,10 @@ public class ElectricalElement extends GameObject {
             spriteObject = new ElecrticalElementSprite(0,0,this,true,rng.nextInt(6));
             hasExploded = false;
         }
+    }
+
+    public void collide(GameObject obj) {
+        super.collide(obj);
+        hitboxElectricalElement.collide(obj);
     }
 }
