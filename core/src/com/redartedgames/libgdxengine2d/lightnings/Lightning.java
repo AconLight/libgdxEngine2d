@@ -27,20 +27,13 @@ public class Lightning extends GameObject{
         this.startY = first.movement.getPosition().y;
         this.endX = second.movement.getPosition().x;
         this.endY = second.movement.getPosition().y;
-        animationSpeed = 10;
+        animationSpeed = 3;
         charges = new ArrayList<>();
         chargeSize = calculateSize();
         animationCounter = 0;
         amount = calculateAmount();
-        addCharges();
-        for(Charge c : charges) {
-            gameObjects.add(c);
-            c.setInvisible();
-        }
         wasStopped = false;
-        wasStarted = true;
-
-        start();
+        wasStarted = false;
         //Gdx.graphics.getDeltaTime();
     }
 
@@ -64,17 +57,21 @@ public class Lightning extends GameObject{
             float x = startX + (endX-startX)*(amount*2-(i*2+1))/(amount*2);//((((startX-endX)/(float)(2.0*amount))*i*2+1));
             float y = startY + (endY-startY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
             charges.add(new Charge(x,y,chargeSize,this,true,0,animationSpeed,this,false));
+            charges.get(i).setInvisible();
+            addGameObject(charges.get(i));
         }
     }
 
-    private void start() {
-        if(!wasStarted && !wasStopped) {
+    public void start() {
+        addCharges();
+        if(!wasStarted) {
+            wasStopped = false;
             wasStarted = true;
             animationCounter = 0;
         }
     }
 
-    private void stop() {
+    public void stop() {
         if(wasStarted && !wasStopped) {
             wasStopped = true;
             wasStarted = false;

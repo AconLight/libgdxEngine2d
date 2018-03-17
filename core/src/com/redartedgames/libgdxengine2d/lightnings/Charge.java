@@ -47,7 +47,7 @@ public class Charge extends GameObject {
         animationSpeed = speed+1;
         chargeSprite = new SpriteObject(0,0,this,true);
         addSprite(chargeSprite);
-        Texture texture = new Texture("graphic/charge/charge.png");
+        Texture texture = new Texture("graphic/charge/charge2.png");
         scale(chargeSprite,texture);
         chargeSprite.addTexture(texture);
         chargeSprite.visibility = 1;
@@ -65,48 +65,47 @@ public class Charge extends GameObject {
         }
     }
 
-    private float countChildX(int i, int bound) {
-        int diff = 40;
+    private float countChildX(int i, int bound, int radius) {
         float angle = (float) Math.toDegrees(Math.atan2(lightning.getEndX() - lightning.getStartX(), lightning.getEndY() - lightning.getStartY()));
         if(angle < 0){
             angle += 360;
         }
         double[] pt = {size/3*2, 0};
-        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+diff*(bound-1)/2), 0, 0)
+        AffineTransform.getRotateInstance(Math.toRadians(-angle-radius*i+radius*(bound-1)/2), 0, 0)
                 .transform(pt, 0, pt, 0, 1);
         return (float)pt[0];
     }
 
-    private float countChildY(int i, int bound) {
-        int diff = 40;
+    private float countChildY(int i, int bound, int radius) {
         float angle = (float) Math.toDegrees(Math.atan2(lightning.getEndX() - lightning.getStartX(), lightning.getEndY() - lightning.getStartY()));
         if(angle < 0){
             angle += 360;
         }
         double[] pt = {size/3*2, 0};
-        AffineTransform.getRotateInstance(Math.toRadians(-angle-diff*i+diff*(bound-1)/2), 0, 0)
+        AffineTransform.getRotateInstance(Math.toRadians(-angle-radius*i+radius*(bound-1)/2), 0, 0)
                 .transform(pt, 0, pt, 0, 1);
         return (float)pt[1];
     }
 
     private void addChildren() {
         int bound = random.nextInt(3)+1;
+        int radius = random.nextInt(40)+20;
         for(int i = 0; i < bound; i++) {
             if(level==0) {
-                childCharges.add(new Charge(countChildX(i, bound), countChildY(i, bound), size / 2, this, true, level + 1, animationSpeed, lightning, false));
+                childCharges.add(new Charge(countChildX(i, bound, radius), countChildY(i, bound, radius), size / 2, this, true, level + 1, animationSpeed, lightning, false));
                 childCharges.get(i*2).setInvisible();
                 addGameObject(childCharges.get(i*2));
-                childCharges.add(new Charge(-countChildX(i, bound), -countChildY(i, bound), size / 2, this, true, level + 1, animationSpeed, lightning,true));
+                childCharges.add(new Charge(-countChildX(i, bound, radius), -countChildY(i, bound, radius), size / 2, this, true, level + 1, animationSpeed, lightning,true));
                 childCharges.get(i*2+1).setInvisible();
                 addGameObject(childCharges.get(i*2+1));
             }
             else if(!isAbove) {
-                childCharges.add(new Charge(countChildX(i, bound), countChildY(i, bound), size / 2, this, true, level + 1, animationSpeed, lightning, false));
+                childCharges.add(new Charge(countChildX(i, bound, radius), countChildY(i, bound, radius), size / 2, this, true, level + 1, animationSpeed, lightning, false));
                 childCharges.get(i).setInvisible();
                 addGameObject(childCharges.get(i));
             }
             else if(isAbove) {
-                childCharges.add(new Charge(-countChildX(i, bound), -countChildY(i, bound), size / 2, this, true, level + 1, animationSpeed, lightning,true));
+                childCharges.add(new Charge(-countChildX(i, bound, radius), -countChildY(i, bound, radius), size / 2, this, true, level + 1, animationSpeed, lightning,true));
                 childCharges.get(i).setInvisible();
                 addGameObject(childCharges.get(i));
             }
@@ -121,10 +120,20 @@ public class Charge extends GameObject {
 
     protected void setInvisible() {
         chargeSprite.visibility = 0;
+        chargeSprite.isVisible = false;
     }
 
     protected void setVisible() {
         chargeSprite.visibility = 1;
+        chargeSprite.isVisible = true;
+    }
+
+    protected void blink() {
+        chargeSprite.visibility = Math.abs(chargeSprite.visibility-1);
+        for(Charge c : childCharges) {
+            if(chargeSprite.visibility == 1) c.setInvisible();
+            else c.setVisible();
+        }
     }
 
     @Override
@@ -138,6 +147,15 @@ public class Charge extends GameObject {
                 }
             }
             animationCounter++;
+        }
+        for(Charge c : childCharges) {
+            if(random.nextInt(10)==0) {
+                //c.setVisible();
+                //c.blink();
+            }
+            if(random.nextInt(10)==0) {
+                c.setInvisible();
+            }
         }
     }
 }
