@@ -1,6 +1,8 @@
 package com.redartedgames.libgdxengine2d.lightnings;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.smartphones.PowerMedia;
 
@@ -78,6 +80,18 @@ public class Lightning extends GameObject{
         }
     }
 
+    private void updateCharges() {
+        for(int i = 0; i < amount; i++) {
+            startX = first.realPosition.x;
+            endX = second.realPosition.x;
+            startY = first.realPosition.y;
+            endY = second.realPosition.y;
+            float x = startX + (endX-startX)*(amount*2-(i*2+1))/(amount*2);//((((startX-endX)/(float)(2.0*amount))*i*2+1));
+            float y = startY + (endY-startY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
+            charges.get(i).getMovement().setPosition(new Vector2(x,y));
+        }
+    }
+
     public void start() {
         if(!wasStarted) {
             wasStopped = false;
@@ -97,6 +111,10 @@ public class Lightning extends GameObject{
     @Override
     public void update(float delta) {
         super.update(delta);
+        updateCharges();
+        for(Charge c : charges) {
+            c.update(delta);
+        }
         if(wasStarted && !wasStopped) {
             if(amount%2==1 && animationCounter/animationSpeed==amount/2) {
                 charges.get(amount/2).setVisible();

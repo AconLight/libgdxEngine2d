@@ -48,7 +48,12 @@ public class Player extends GameObject{
 	public void updateLast(float delta, float vx, float vy) {
 		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
 	}
-	
+
+	@Override
+	public void update(float delta) {
+		super.update(delta);
+	}
+
 	public void collide(GameObject obj) {
 		if (obj == this) {
 			formation.collide(obj);

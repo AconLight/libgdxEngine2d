@@ -43,9 +43,9 @@ public class SmartphoneRed extends Smartphone{
 							b = false;
 					}
 					if(b) {
-						lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, false));
+						lightnings.add(new Lightning((PowerMedia)p, (PowerMedia)p2, this, true));
+						addGameObject(lightnings.get(lightnings.size()-1));
 					}
-					addGameObject(lightnings.get(lightnings.size()-1));
 				}
 			}
 		}
@@ -71,4 +71,10 @@ public class SmartphoneRed extends Smartphone{
 		}
 	}
 
+	@Override
+	public void update(float delta) {
+		for(Lightning l : lightnings) {
+			l.update(delta);
+		}
+	}
 }
