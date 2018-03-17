@@ -10,9 +10,9 @@ public class Explosion extends GameObject{
 
     public Explosion(float x, float y, GameObject parent, boolean isAttached, int size) {
         super(x, y, parent, isAttached);
-        spriteObject = new ExplosionSprite(0,0,this,true);
+        spriteObject = new ExplosionSprite(0,0,this,true,500);
         addSprite(spriteObject);
-        //scale(size);
+        scale(size);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
     }
