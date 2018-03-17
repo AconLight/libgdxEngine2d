@@ -84,6 +84,7 @@ public class Player extends GameObject{
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
+		super.updateLast(delta, vx, vy);
 		belt.pointsOfLife = life;
 		movement.setG(new Vector2((direction.x + movement.getG().x*29)/30, (direction.y + movement.getG().y*29)/30));
 		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
