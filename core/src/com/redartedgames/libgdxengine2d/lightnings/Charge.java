@@ -48,7 +48,7 @@ public class Charge extends GameObject {
         animationSpeed = speed+1;
         chargeSprite = new ChargeSprite(0,0,this,true);
         addSprite(chargeSprite);
-        Texture texture = new Texture("graphic/charge/charge2.png");
+        Texture texture = new Texture("graphic/charge/Charge_animation/Charge_animation_1.png");
         scale(chargeSprite,texture);
         chargeSprite.visibility = 1;
         childCharges = new ArrayList<>();

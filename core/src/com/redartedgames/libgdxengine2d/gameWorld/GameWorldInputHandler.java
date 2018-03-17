@@ -53,6 +53,10 @@ public class GameWorldInputHandler implements InputProcessor{
 			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
 			break;
 		}
+		case  Keys.SPACE: {
+			AssetExampleLoader.player1.sr.startSparkle();
+			break;
+		}
 		}
 		return false;
 	}

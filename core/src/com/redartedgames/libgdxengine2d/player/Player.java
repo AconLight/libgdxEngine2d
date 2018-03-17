@@ -18,14 +18,15 @@ public class Player extends GameObject{
 	PlayerSprite sprite;
 	public static final int playerV = 1500;
 	public static final float playerDrag = 0.9f;
+	public SmartphoneRed sr;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		ArrayList<GameObject> objects = new ArrayList<>();
-		
+		sr = new SmartphoneRed(0, 0, this);
 		objects.add(new SmartphoneBlue(0, 0, this));
-		objects.add(new SmartphoneRed(0, 0, this));
-		objects.add(new SmartphoneRed(0, 0, this));
+		objects.add(sr);
+		objects.add(sr);
 		objects.add(new SmartphoneBlue(0, 0, this));
 		objects.add(new SmartphoneYellow(0, 0, this));
 		
