@@ -1,0 +1,9 @@
+diff a/core/src/com/redartedgames/libgdxengine2d/physics/Hitbox.java b/core/src/com/redartedgames/libgdxengine2d/physics/Hitbox.java	(rejected hunks)
+@@ -24,6 +24,7 @@
+ 	private Vector2 position, oldPosition;
+ 	public float positionX, positionY, circleR;
+ 	
++	public float k = 50;
+ 	
+ 	public Hitbox() {
+ 		sMode = ShapeMode.none;

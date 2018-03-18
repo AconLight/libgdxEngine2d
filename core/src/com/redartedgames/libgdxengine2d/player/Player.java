@@ -3,6 +3,8 @@ package com.redartedgames.libgdxengine2d.player;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.redartedgames.libgdxengine2d.assets.HitboxPlayer;
 import com.redartedgames.libgdxengine2d.assets.PlayerSprite;
@@ -211,6 +213,23 @@ public class Player extends GameObject{
 		skill ++;
 		if (skill > 2) {
 			skill = 0;
+		}
+	}
+	
+	public void render(SpriteBatch batch, int priority, float dx, float dy, float visibility) {
+		if (life > 0) {
+		realPosition.set(movement.getPosition().x, movement.getPosition().y);
+		for(int i=0; i<gameObjects.size();i++)
+			if (isAttached) gameObjects.get(i).render(batch, priority, dx + getTranslatedX(), dy + getTranslatedY(), visibility);
+			else gameObjects.get(i).render(batch, priority, getTranslatedX(), getTranslatedY(), visibility);
+		}
+	}
+	
+	public void render(ShapeRenderer batch, int priority, float dx, float dy, float visibility) {
+		if (life > 0) {
+		for(int i=0; i<gameObjects.size();i++)
+			if (isAttached) gameObjects.get(i).render(batch, priority, dx + movement.getPosition().x, dy + movement.getPosition().y, visibility);
+			else gameObjects.get(i).render(batch, priority, movement.getPosition().x, movement.getPosition().y, visibility);
 		}
 	}
 

@@ -78,7 +78,7 @@ public class GameWorldInputHandler implements InputProcessor{
 			break;
 		}
 		case  Keys.ENTER: {
-
+			world.restart();
 			break;
 		}
 		case  Keys.SPACE: {

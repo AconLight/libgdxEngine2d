@@ -164,13 +164,13 @@ public class GameObject {
 			gameObjects.get(i).dispose();
 	}
 	
-	private float getTranslatedX() {
+	protected float getTranslatedX() {
 		float x = movement.getPosition().x;
 		float y = movement.getPosition().y;
 		float alfa = (float) Math.toRadians(movement.getPosition().angle());
 		return (float) (Math.cos(translationAlfa + alfa)*Math.sqrt(x*x + y*y));
 	}
-	private float getTranslatedY() {
+	public float getTranslatedY() {
 		float x = movement.getPosition().x;
 		float y = movement.getPosition().y;
 		float alfa = (float) Math.toRadians(movement.getPosition().angle());
