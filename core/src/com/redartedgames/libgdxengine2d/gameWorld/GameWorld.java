@@ -1,6 +1,7 @@
 package com.redartedgames.libgdxengine2d.gameWorld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -24,9 +25,10 @@ import com.redartedgames.libgdxengine2d.smartphones.SmartphoneRed;
 public class GameWorld extends World{
 
 	public static Player player1, player2;
-	public static TeslaTower tesla;
+	//public static TeslaTower tesla;
 	boolean isReady;
 	SpriteObject o;
+	public static Music soundTrack = Gdx.audio.newMusic(Gdx.files.internal("audio/soundtrack/sound.mp3"));
 	
 	public void restart() {
 		player1.movement.setPosition(new Vector2(-300, -200));
@@ -39,13 +41,13 @@ public class GameWorld extends World{
 		gameObjects.add(player1);
 		gameObjects.add(player2);
 		isReady = true;
+
 	}
 	
 	void load() {
 		gameObjects.clear();
 		isReady = true;
 		gameObjects.add(new BoardHolder(0,0,null,false));
-		tesla = new TeslaTower(-400,-300);
 		player1 = new Player(-300, -200, null, false, 0, gameScreen);
 		player2 = new Player(300, -200, null, false, 1, gameScreen);
 
@@ -53,9 +55,10 @@ public class GameWorld extends World{
 		player2.collidableObjects.addAll(player1.getHitboxes());
 		gameObjects.add(player1);
 		gameObjects.add(player2);
-		gameObjects.add(tesla);
 		gameScreen.screenShaker = new ScreenShaker(new Vector3(0.92f, 0.92f, 0.92f), 500, 20);
 		gameScreen.updateCam();
+        soundTrack.setLooping(true);
+        //soundTrack.play();
 		
 	}
     public GameWorld(OrthographicCamera cam, Screen gameScreen) {
@@ -70,8 +73,6 @@ public class GameWorld extends World{
 			gameObjects.add(go);
 		}
 
-        ElectricalElement EE = new ElectricalElement(100,100,null,false,0);
-        gameObjects.add(EE);
 	}
 	
 	public void update(float delta) {
