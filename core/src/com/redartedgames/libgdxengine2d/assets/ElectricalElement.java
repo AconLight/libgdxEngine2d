@@ -22,6 +22,7 @@ public class ElectricalElement extends GameObject {
     private boolean hasExploded;
     public HitboxElectricalElement hitboxElectricalElement;
     private SoundEffect SE;
+    private float volume;
 
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
@@ -35,6 +36,7 @@ public class ElectricalElement extends GameObject {
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
+        volume = ((ExplosionSprite)spriteObjectExplosion).getPower()/20.f;
         addSprite(spriteObjectExplosion);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
@@ -99,7 +101,7 @@ public class ElectricalElement extends GameObject {
         spriteObjectExplosion.isVisible = true;
         counterBoom = 0;
         if (new Random().nextInt(100)%4==1) {
-            SE.play(0.7f);
+            SE.play(volume);
         }
     }
 

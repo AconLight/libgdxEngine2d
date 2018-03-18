@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class ExplosionSprite extends SpriteObject {
 
-    protected float power;
+    private float power;
 
     public ExplosionSprite(float x, float y, GameObject parent, boolean isAttached, int size) {
         super(x, y, parent, isAttached);
@@ -27,6 +27,10 @@ public class ExplosionSprite extends SpriteObject {
     private void scale(int size) {
         this.sclX = size/power;
         this.sclY = size/power;
+    }
+
+    public float getPower() {
+        return power;
     }
 
     @Override
