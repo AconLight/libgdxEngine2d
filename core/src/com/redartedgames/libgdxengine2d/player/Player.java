@@ -8,15 +8,18 @@ import com.redartedgames.libgdxengine2d.assets.HitboxPlayer;
 import com.redartedgames.libgdxengine2d.assets.PlayerSprite;
 import com.redartedgames.libgdxengine2d.formation.Formation;
 import com.redartedgames.libgdxengine2d.formation.MyFormationGenerator;
+import com.redartedgames.libgdxengine2d.gameWorld.GameScreen;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.lightnings.Charge;
 import com.redartedgames.libgdxengine2d.lightnings.Lightning;
+import com.redartedgames.libgdxengine2d.scene.Screen;
 import com.redartedgames.libgdxengine2d.smartphones.SmartphoneBlue;
 import com.redartedgames.libgdxengine2d.smartphones.SmartphoneRed;
 import com.redartedgames.libgdxengine2d.smartphones.SmartphoneYellow;
 
 public class Player extends GameObject{
 	
+
 	public int skill = 0;
 	public HitboxPlayer hitboxPlayer;
 	Formation formation;
@@ -34,10 +37,12 @@ public class Player extends GameObject{
 	ArrayList<GameObject> smartphones;
 	private LifeBelt belt;
 	public float life;
-	float t1 = 0, t2 = 0, t3 = 0;
+	float t1 = 0, t2 = 0, t3 = 0; 
+	public Screen scr;
 	
-	public Player(float x, float y, GameObject parent, boolean isAttached) {
+	public Player(float x, float y, GameObject parent, boolean isAttached, int type, Screen gameScreen) {
 		super(x, y, parent, isAttached);
+		this.scr = gameScreen;
 		life = 70;
 		t1 = 0; t2 = 0; t3 = 0;
 		belt = new LifeBelt(0, 100, this, true);
@@ -78,13 +83,25 @@ public class Player extends GameObject{
 		gameObjects.addAll(smartphones);
 		gameObjects.add(formation);
 		
-		sprite = new PlayerSprite(0, 0, this, true);
+		sprite = new PlayerSprite(0, 0, this, true, type);
 		gameObjects.add(sprite);
 		gameObjects.add(belt);
 	}
 	
 	public void updateLast(float delta, float vx, float vy) {
 		super.updateLast(delta, vx, vy);
+		if (movement.getPosition().x > 1920)
+			movement.getPosition().x = 1920;
+			
+		if (movement.getPosition().y > 1080)
+			movement.getPosition().y = 1080;
+		
+		if (movement.getPosition().x < -1920)
+			movement.getPosition().x = -1920;
+			
+		if (movement.getPosition().y < -1080)
+			movement.getPosition().y = -1080;
+		
 		t1 += delta;
 		t2 += delta;
 		t3 += delta;
@@ -146,7 +163,6 @@ public class Player extends GameObject{
 				}
 			}
 		}
-		Gdx.app.log("end", "" + h.size());
 		return h;
 	}
 	

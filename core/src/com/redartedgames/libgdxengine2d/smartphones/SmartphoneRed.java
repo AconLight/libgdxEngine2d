@@ -126,7 +126,7 @@ public class SmartphoneRed extends Smartphone{
 	        v.set(c.disX, c.disY);
         }
         
-        sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa + Math.toRadians(v.angle()))*d), (float)(Math.sin(translationAlfa - Math.toRadians(v.angle()))*d)));
+        sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa + Math.PI + Math.toRadians(v.angle()))*d), (float)(Math.sin(translationAlfa - Math.toRadians(v.angle()))*d)));
 		
 	}
 	

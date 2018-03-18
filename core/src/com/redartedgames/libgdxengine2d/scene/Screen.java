@@ -19,11 +19,13 @@ public class Screen {
 	private Vector2 screenPosition;
 	public ScreenShaker screenShaker;
 	public Window window;
+	public float zoom;
 	
 	public Screen(Viewport viewport, float visibility, float x, float y, int width, int height, Window window) {
 		this.window = window;
+		zoom = 1;
 		this.viewport = viewport;
-		screenShaker = new ScreenShaker(new Vector3(0.92f, 0.99f, 0.92f), 500, 20);
+		screenShaker = new ScreenShaker(new Vector3(0.92f, 0.92f, 0.92f), 500, 20);
 		screenPosition = new Vector2(x, y);
 		camPosition = new Vector2(-x, -y);
 		batch = new SpriteBatch();
@@ -42,7 +44,7 @@ public class Screen {
 		cam.up.set(0, 1, 0);
 		cam.rotate(screenShaker.getAlfaDeep().x);
 
-		cam.zoom = 2 + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
+		cam.zoom = zoom + (screenShaker.getAlfaDeep().y)/(Math.abs(screenShaker.getAlfaDeep().y)+1);
 
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
