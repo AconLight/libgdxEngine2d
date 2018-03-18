@@ -24,7 +24,7 @@ public class Hitbox {
 	private Vector2 position, oldPosition;
 	public float positionX, positionY, circleR;
 	
-	public float k = 300;
+	public float k = 50;
 	
 	public Hitbox() {
 		sMode = ShapeMode.none;

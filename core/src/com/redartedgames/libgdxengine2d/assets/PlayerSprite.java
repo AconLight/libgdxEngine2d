@@ -5,8 +5,12 @@ import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
 
 public class PlayerSprite extends SpriteObject{
 
-	public PlayerSprite(float x, float y, GameObject parent, boolean isAttached) {
+	public PlayerSprite(float x, float y, GameObject parent, boolean isAttached, int type) {
 		super(x, y, parent, isAttached);
-		addTexture("graphic/player.png");
+		if (type == 0)
+			addTexture("graphic/player.png");
+		else {
+			addTexture("graphic/player2.png");
+		}
 	}
 }

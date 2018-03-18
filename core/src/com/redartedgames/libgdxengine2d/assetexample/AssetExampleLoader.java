@@ -17,8 +17,8 @@ public class AssetExampleLoader {
 		ArrayList<GameObject> gameObjects = new ArrayList<>();
 		gameObjects.add(new BoardHolder(0,0,null,false));
 		tesla = new TeslaTower(-400,-300);
-		player1 = new Player(-200, -200, null, false);
-		player2 = new Player(200, -200, null, false);
+		player1 = new Player(-200, -200, null, false, 0, null);
+		player2 = new Player(200, -200, null, false, 1, null);
 		player1.collidableObjects.addAll(player2.getHitboxes());
 		player2.collidableObjects.addAll(player1.getHitboxes());
 

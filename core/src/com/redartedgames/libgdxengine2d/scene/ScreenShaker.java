@@ -43,27 +43,27 @@ public class ScreenShaker {
 		this.randomness = randomness;
 	}
 	
-	public void shakePosition(int strength) {
+	public void shakePosition(float strength) {
 		strength*=50;
 		float alfa = (float) (g.nextInt(180)/Math.PI);
 		movement.getVelocity().x += Math.cos(alfa)*(strength + g.nextInt(randomness) - randomness/2);
 		movement.getVelocity().y += Math.sin(alfa)*(strength + g.nextInt(randomness) - randomness/2);
 	}
 	
-	public void shakeAlfa(int strength) {
+	public void shakeAlfa(float strength) {
 		strength*=20;
 		float a = (float)(strength/180f*Math.PI*(g.nextInt(randomness) - randomness/2)/(alfaDeepMovement.getPosition().x/50+1));
 		if (alfaDeepMovement.getVelocity().x > 0) alfaDeepMovement.getVelocity().x += a;
 		else alfaDeepMovement.getVelocity().x += a;
 	}
 	
-	public void shakeDeep(int strength) {
+	public void shakeDeep(float strength) {
 		float a = (float)(strength/180f*Math.PI*(g.nextInt(randomness) - randomness/2)/(alfaDeepMovement.getPosition().y/50+1));
 		if (alfaDeepMovement.getVelocity().y > 0) alfaDeepMovement.getVelocity().y += a;
 		else alfaDeepMovement.getVelocity().y += a;
 	}
 	
-	public void shake(int strength) {
+	public void shake(float strength) {
 		shakePosition(strength);
 		shakeAlfa(strength);
 		shakeDeep(strength);

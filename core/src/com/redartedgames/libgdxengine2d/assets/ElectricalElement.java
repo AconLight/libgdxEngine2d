@@ -103,7 +103,6 @@ public class ElectricalElement extends GameObject {
     public void update(float delta) {
         super.update(delta);
         if(hasExploded)counterBoom += delta;
-        Gdx.app.log("dupa " + hasExploded, "asd " + counterBoom);
 
         float losujWolniej = rng.nextInt(100);
         if (type==0 && losujWolniej%5==0) {

@@ -22,59 +22,59 @@ public class GameWorldInputHandler implements InputProcessor{
 			break;
 		}
 		case  Keys.W: {
-			AssetExampleLoader.player1.moveVel(0, Player.playerV);
+			world.player1.moveVel(0, Player.playerV);
 			break;
 		}
 		case  Keys.S: {
-			AssetExampleLoader.player1.moveVel(0, -Player.playerV);
+			world.player1.moveVel(0, -Player.playerV);
 			break;
 		}
 		case  Keys.D: {
-			AssetExampleLoader.player1.moveVel(Player.playerV, 0);
+			world.player1.moveVel(Player.playerV, 0);
 			break;
 		}
 		case  Keys.A: {
-			AssetExampleLoader.player1.moveVel(-Player.playerV, 0);
+			world.player1.moveVel(-Player.playerV, 0);
 			break;
 		}
 		case  Keys.R: {
-			AssetExampleLoader.player1.startSkill(0);
+			world.player1.startSkill(0);
 			break;
 		}
 		case  Keys.T: {
-			AssetExampleLoader.player1.startSkill(1);
+			world.player1.startSkill(1);
 			break;
 		}
 		case  Keys.Y: {
-			AssetExampleLoader.player1.startSkill(2);
+			world.player1.startSkill(2);
 			break;
 		}
 		case  Keys.UP: {
-			AssetExampleLoader.player2.moveVel(0, Player.playerV);
+			world.player2.moveVel(0, Player.playerV);
 			break;
 		}
 		case  Keys.DOWN: {
-			AssetExampleLoader.player2.moveVel(0, -Player.playerV);
+			world.player2.moveVel(0, -Player.playerV);
 			break;
 		}
 		case  Keys.RIGHT: {
-			AssetExampleLoader.player2.moveVel(Player.playerV, 0);
+			world.player2.moveVel(Player.playerV, 0);
 			break;
 		}
 		case  Keys.LEFT: {
-			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
+			world.player2.moveVel(-Player.playerV, 0);
 			break;
 		}
 		case  Keys.I: {
-			AssetExampleLoader.player2.startSkill(0);
+			world.player2.startSkill(0);
 			break;
 		}
 		case  Keys.O: {
-			AssetExampleLoader.player2.startSkill(1);
+			world.player2.startSkill(1);
 			break;
 		}
 		case  Keys.P: {
-			AssetExampleLoader.player2.startSkill(2);
+			world.player2.startSkill(2);
 			break;
 		}
 		case  Keys.ENTER: {
@@ -97,35 +97,35 @@ public class GameWorldInputHandler implements InputProcessor{
 			break;
 		}
 		case  Keys.W: {
-			AssetExampleLoader.player1.moveVel(0, -Player.playerV);
+			world.player1.moveVel(0, -Player.playerV);
 			break;
 		}
 		case  Keys.S: {
-			AssetExampleLoader.player1.moveVel(0, Player.playerV);
+			world.player1.moveVel(0, Player.playerV);
 			break;
 		}
 		case  Keys.D: {
-			AssetExampleLoader.player1.moveVel(-Player.playerV, 0);
+			world.player1.moveVel(-Player.playerV, 0);
 			break;
 		}
 		case  Keys.A: {
-			AssetExampleLoader.player1.moveVel(Player.playerV, 0);
+			world.player1.moveVel(Player.playerV, 0);
 			break;
 		}
 		case  Keys.UP: {
-			AssetExampleLoader.player2.moveVel(0, -Player.playerV);
+			world.player2.moveVel(0, -Player.playerV);
 			break;
 		}
 		case  Keys.DOWN: {
-			AssetExampleLoader.player2.moveVel(0, Player.playerV);
+			world.player2.moveVel(0, Player.playerV);
 			break;
 		}
 		case  Keys.RIGHT: {
-			AssetExampleLoader.player2.moveVel(-Player.playerV, 0);
+			world.player2.moveVel(-Player.playerV, 0);
 			break;
 		}
 		case  Keys.LEFT: {
-			AssetExampleLoader.player2.moveVel(Player.playerV, 0);
+			world.player2.moveVel(Player.playerV, 0);
 			break;
 		}
 		}
