@@ -12,12 +12,12 @@ public class ExplosionSprite extends SpriteObject {
         }
         scale(size);
         isOnce = true;
-        setFrameTime(0.25f);
+        setFrameTime(0.05f);
     }
 
     private void scale(int size) {
-        this.sclX = size/25.0f;
-        this.sclY = size/25.0f;
+        this.sclX = size/10.0f;
+        this.sclY = size/10.0f;
     }
 
     @Override
