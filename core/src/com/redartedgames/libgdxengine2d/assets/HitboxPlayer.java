@@ -32,7 +32,7 @@ public class HitboxPlayer extends ColSpriteObject{
 		if (c.isTrue) {
 			//Gdx.app.log("collqq", "hitboxCharge");
 			if (((SpriteObject)obj.parent).isVisible)
-			((Player)parent).life -= 0.1f;
+			((Player)parent).life -= 0.01f;
 			((Player)parent).movement.addCollisionAcc(new Vector2(c.disX/10, c.disY/10));
 			((Player)parent).scr.screenShaker.shake(0.3f);
 		}

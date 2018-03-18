@@ -45,7 +45,7 @@ public class Player extends GameObject{
 	public Player(float x, float y, GameObject parent, boolean isAttached, int type, Screen gameScreen) {
 		super(x, y, parent, isAttached);
 		this.scr = gameScreen;
-		life = 70;
+		life = 100;
 		t1 = 0; t2 = 0; t3 = 0;
 		belt = new LifeBelt(0, 100, this, true);
 		belt.pointsOfLife = life;

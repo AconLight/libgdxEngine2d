@@ -74,6 +74,7 @@ public class IntroWorld extends World{
 		}
 		if(time > 14 && pressedKey) {
             GameWorld.soundTrack.play();
+            GameWorld.soundTrack.setVolume(0.8f);
 		    title.visibility = 0;
 			changeScreen();
 		}
