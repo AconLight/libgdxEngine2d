@@ -2,6 +2,7 @@ package com.redartedgames.libgdxengine2d.intro;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
 import com.redartedgames.libgdxengine2d.scene.Screen;
@@ -12,6 +13,7 @@ public class IntroWorld extends World{
 	float speed = 1;
 	private boolean pressedKey;
 	SpriteObject made, red, title;
+	Music scrn1, scrn2;
 	public IntroWorld(OrthographicCamera cam, Screen gameScreen) {
 		super(cam, gameScreen);
 		time = 0;
@@ -25,6 +27,8 @@ public class IntroWorld extends World{
 		addSpriteObject(made).visibility = 0;
 		addSpriteObject(red).visibility = 0;
 		addSpriteObject(title).visibility = 0;
+		scrn1 = Gdx.audio.newMusic(Gdx.files.internal("audio/soundEffects/walen2.mp3"));
+		scrn2 = Gdx.audio.newMusic(Gdx.files.internal("audio/soundEffects/walen3.mp3"));
 		
 	}
 	int i = 0;
@@ -33,6 +37,7 @@ public class IntroWorld extends World{
 		time += delta*speed;
 		
 		if (time > 2 && time <= 3) {
+		    scrn1.play();
 			red.visibility = (time-2)*(time-2);
 			
 		}
@@ -46,6 +51,7 @@ public class IntroWorld extends World{
 		if (time > 6 && time <= 7) {
 			red.visibility = 0f;
 			made.visibility = (time-6)*(time-6);
+			scrn2.play();
 		}
 		if (time > 7 && time <= 8) {
 			made.visibility = 1;
