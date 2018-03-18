@@ -45,9 +45,11 @@ public class LibgdxEngine2dGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-
+		float delta = Gdx.graphics.getDeltaTime();
+		if (delta > 0.03f) delta = 0.03f; 
 		for (Window window : windows) {
-			window.update(Gdx.graphics.getDeltaTime());
+			
+			window.update(delta);
 		}
 		
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
