@@ -3,10 +3,17 @@ package com.redartedgames.libgdxengine2d.effects;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
 
+import java.util.Random;
+
 public class ExplosionSprite extends SpriteObject {
+
+    private float power;
+    private Random random;
 
     public ExplosionSprite(float x, float y, GameObject parent, boolean isAttached, int size) {
         super(x, y, parent, isAttached);
+        random = new Random();
+        power = random.nextInt(17)+4;
         for(int i = 0; i < 14;i++){
             addTexture("graphic/explosion/e"+ i +".png");
         }
@@ -16,8 +23,8 @@ public class ExplosionSprite extends SpriteObject {
     }
 
     private void scale(int size) {
-        this.sclX = size/10.0f;
-        this.sclY = size/10.0f;
+        this.sclX = size/power;
+        this.sclY = size/power;
     }
 
     @Override
