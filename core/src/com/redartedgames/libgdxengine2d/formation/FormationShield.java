@@ -10,7 +10,7 @@ public class FormationShield implements FormationGenerator {
         ArrayList<Vector2> positions = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             float temp = (-n/2);
-            positions.add(new Vector2((float)((temp+i)*100), (float)(-(((-(temp+i)*(temp+i))+4)*25))));
+            positions.add(new Vector2((float)((temp+i)*100), (float)(-(((-(temp+i)*(temp+i))+16)*25))));
         }
         return positions;
     }
