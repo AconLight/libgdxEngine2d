@@ -25,23 +25,24 @@ public class ElectricalElementsHandler {
     }
 
     private void addElements(Player player1, Player player2) {
+        int bound = 5;
         for(Vector2 v : punkty) {
-            if(random.nextInt(10)==0) {
+            if(random.nextInt(bound)==0) {
                 elements.add(new ElectricalElement(v.x-1920,v.y-1080,null,false,random.nextInt(6)));
                 elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
                 elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
-            if(random.nextInt(10)==0) {
+            if(random.nextInt(bound)==0) {
                 elements.add(new ElectricalElement(1920-v.x,v.y-1080,null,false,random.nextInt(6)));
                 elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
                 elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
-            if(random.nextInt(10)==0) {
+            if(random.nextInt(bound)==0) {
                 elements.add(new ElectricalElement(v.x-1920,-v.y+1080,null,false,random.nextInt(6)));
                 elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
                 elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());
             }
-            if(random.nextInt(10)==0) {
+            if(random.nextInt(bound)==0) {
                 elements.add(new ElectricalElement(-v.x+1920,-v.y+1080,null,false,random.nextInt(6)));
                 elements.get(elements.size()-1).collidableObjects.addAll(player1.getHitboxes());
                 elements.get(elements.size()-1).collidableObjects.addAll(player2.getHitboxes());

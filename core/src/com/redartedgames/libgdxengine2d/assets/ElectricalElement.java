@@ -27,6 +27,7 @@ public class ElectricalElement extends GameObject {
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
+        addSprite(spriteObjectExplosion);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
         spriteObjectExplosion.visibility = 0;
@@ -84,7 +85,8 @@ public class ElectricalElement extends GameObject {
         hasExploded = true;
         spriteObject.visibility = 0;
         spriteObject.isVisible = false;
-        addSprite(spriteObjectExplosion);
+        spriteObjectExplosion.frameNum = 0;
+        spriteObjectExplosion.setStoped(false);
         spriteObjectExplosion.visibility = 1;
         spriteObjectExplosion.isVisible = true;
         counterBoom = 0;
@@ -119,6 +121,8 @@ public class ElectricalElement extends GameObject {
             spriteObject.isVisible = true;
             spriteObject.visibility = 1;
             hasExploded = false;
+            spriteObjectExplosion.isVisible = false;
+            spriteObjectExplosion.visibility = 0;
         }
     }
 
