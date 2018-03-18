@@ -1,18 +1,20 @@
 package com.redartedgames.libgdxengine2d.effects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
+import com.redartedgames.libgdxengine2d.sound.MySound;
 
 import java.util.Random;
 
 public class ExplosionSprite extends SpriteObject {
 
     private float power;
-    private Random random;
 
     public ExplosionSprite(float x, float y, GameObject parent, boolean isAttached, int size) {
         super(x, y, parent, isAttached);
-        random = new Random();
+        Random random = new Random();
         power = random.nextInt(17)+4;
         for(int i = 0; i < 14;i++){
             addTexture("graphic/explosion/e"+ i +".png");
