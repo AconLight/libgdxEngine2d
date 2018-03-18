@@ -32,10 +32,10 @@ public class GameWorld extends World{
 
 
 
-        PowerMedia p1 = new PowerMedia(450,150,null,false);
+       /* PowerMedia p1 = new PowerMedia(450,150,null,false);
         PowerMedia p2 = new PowerMedia(-450,0,null,false);
 		addGameObject(p1);
-		addGameObject(p2);
+		addGameObject(p2);*/
 
 		e = new ElectricalElement(0,0,null,false,4);
 		addGameObject(e);
