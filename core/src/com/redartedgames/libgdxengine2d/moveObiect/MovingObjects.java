@@ -23,8 +23,23 @@ public class MovingObjects {
         return finalPositionOfObject;
 
     }
-
+    
     public static CollisionHandle animationCurve(float timeOfMoving) {
+    	float timeOfFullAnimacion=15.0f;
+        float movingMulitilplier=5.0f;
+    	CollisionHandle y = animationUpAndDown(timeOfMoving);
+    	CollisionHandle x = animationUpAndDown((2*timeOfMoving)%timeOfFullAnimacion);
+    	CollisionHandle c = new CollisionHandle();
+    	c.disX = x.disY/2;
+    	c.disY = y.disY;
+    	if (timeOfMoving > timeOfFullAnimacion) {
+    		c.disX = 0;
+        	c.disY = 0;
+    	}
+         return c;
+    }
+
+    public static CollisionHandle animationCurve2(float timeOfMoving) {
         CollisionHandle finalPositionOfObject = new CollisionHandle();
         //t(t-d)*k
         float timeOfFullAnimacion=10.0f; //d
@@ -54,7 +69,7 @@ public class MovingObjects {
         CollisionHandle finalPositionOfObject = new CollisionHandle();
 
         float timeOfFullAnimacion=10.5f; //d
-        float movingMulitilplier=10.1f; //k
+        float movingMulitilplier=15.1f; //k
 
         if (timeOfMoving>timeOfFullAnimacion && timeOfMoving<1.1*timeOfFullAnimacion) {
             finalPositionOfObject.disY=disy-Math.abs(-timeOfMoving * (timeOfMoving - timeOfFullAnimacion) * movingMulitilplier);

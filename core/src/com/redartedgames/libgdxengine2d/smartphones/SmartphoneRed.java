@@ -3,7 +3,9 @@ package com.redartedgames.libgdxengine2d.smartphones;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.redartedgames.libgdxengine2d.assets.SmartphoneBlueSprite;
 import com.redartedgames.libgdxengine2d.assets.SmartphoneRedSprite;
+import com.redartedgames.libgdxengine2d.assets.SmartphoneYellowSprite;
 import com.redartedgames.libgdxengine2d.formation.*;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.lightnings.Lightning;
@@ -13,6 +15,7 @@ import com.redartedgames.libgdxengine2d.physics.CollisionHandle;
 public class SmartphoneRed extends Smartphone{
 
 	ArrayList<GameObject> powerMedias;
+	float timer2 = 0;
 	
 	public ArrayList<Lightning> lightnings;
 	
@@ -33,10 +36,16 @@ public class SmartphoneRed extends Smartphone{
 	
 	
 	
-	public SmartphoneRed(float x, float y, GameObject parent) {
+	public SmartphoneRed(float x, float y, GameObject parent, int type) {
 		super(x, y, parent);
+		timer2 = 0;
 		lightnings = new ArrayList<Lightning>();
-		sprite = new SmartphoneRedSprite(0, 0, this, true);
+		if (type == 0)
+			sprite = new SmartphoneRedSprite(0, 0, this, true);
+		if (type == 1)
+			sprite = new SmartphoneYellowSprite(0, 0, this, true);
+		if (type == 2)
+			sprite = new SmartphoneBlueSprite(0, 0, this, true);
 		gameObjects.add(sprite);
 		sprite.sclX = scl;
 		sprite.sclY = scl;
@@ -46,9 +55,13 @@ public class SmartphoneRed extends Smartphone{
 		
 		
 		powerMedias = new ArrayList<GameObject>();
-		powerMedias.add(new PowerMedia(100, 0, sprite, true));
-		powerMedias.add(new PowerMedia(-100, 0, sprite, true));
-		powerMedias.add(new PowerMedia(0, 100, sprite, true));
+		powerMedias.add(new PowerMedia(100, 0, sprite, true, type));
+		powerMedias.add(new PowerMedia(-100, 0, sprite, true, type));
+		powerMedias.add(new PowerMedia(0, 100, sprite, true, type));
+		if (type > 0)
+			powerMedias.add(new PowerMedia(0, 150, sprite, true, type));
+		if (type > 1)
+			powerMedias.add(new PowerMedia(0, 120, sprite, true, type));
 		
 		//formacje
 		mediaFormation1 = new Formation(0, 0, powerMedias, this, true, new FormationSpiral());
@@ -92,24 +105,28 @@ public class SmartphoneRed extends Smartphone{
 			timer += delta;
 		}
 		mediaFormation.translationAlfa = translationAlfa;
-		
+		Vector2 v = new Vector2();
 		float d = 0;
 	    if (animationCase == 0) {
             skillTime += 4 * delta;
             c = MovingObjects.animationUpAndDown(skillTime);
             d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+            v.set(c.disX, c.disY);
         }
         if (animationCase == 1) {
             skillTime += 8 *delta;
             c = MovingObjects.animationCurve(skillTime);
             d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+            v.set(c.disX, c.disY);
         }
         if (animationCase == 2) {
 	        skillTime += 6*delta;
 	        c = MovingObjects.animationTangens(skillTime);
 	        d = (float) Math.sqrt(c.disX*c.disX + c.disY*c.disY);
+	        v.set(c.disX, c.disY);
         }
-        sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa - Math.PI/2)*d), (float)(Math.sin(translationAlfa - Math.PI/2)*d)));
+        
+        sprite.movement.setPosition(new Vector2((float)(Math.cos(translationAlfa + Math.toRadians(v.angle()))*d), (float)(Math.sin(translationAlfa - Math.toRadians(v.angle()))*d)));
 		
 	}
 	
@@ -155,7 +172,7 @@ public class SmartphoneRed extends Smartphone{
 		if (i == 2) {
 			animationCase=2;
 		}
-
+		skillTime = 0;
 	}
 	
 	public void startSkill2(int i) {
