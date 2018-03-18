@@ -23,6 +23,7 @@ public class ElectricalElement extends GameObject {
     public HitboxElectricalElement hitboxElectricalElement;
     private SoundEffect SE;
     private float volume;
+    private Sound sound;
 
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
@@ -31,12 +32,13 @@ public class ElectricalElement extends GameObject {
         rng = new Random();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         SE = new SoundEffect();
+        sound = Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/explosion.mp3"));
         addSprite(spriteObject);
         hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
-        volume = ((ExplosionSprite)spriteObjectExplosion).getPower()/20.f;
+        volume = 1.0f-((ExplosionSprite)spriteObjectExplosion).getPower()/20.f;
         addSprite(spriteObjectExplosion);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
@@ -101,8 +103,9 @@ public class ElectricalElement extends GameObject {
         spriteObjectExplosion.isVisible = true;
         counterBoom = 0;
         if (new Random().nextInt(100)%4==1) {
-            SE.play(volume);
+            SE.play(0.7f);
         }
+        sound.play(volume);
     }
 
     public void update(float delta) {
