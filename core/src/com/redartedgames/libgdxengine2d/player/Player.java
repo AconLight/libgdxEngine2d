@@ -34,10 +34,12 @@ public class Player extends GameObject{
 	ArrayList<GameObject> smartphones;
 	private LifeBelt belt;
 	public float life;
+	float t1 = 0, t2 = 0, t3 = 0;
 	
 	public Player(float x, float y, GameObject parent, boolean isAttached) {
 		super(x, y, parent, isAttached);
 		life = 70;
+		t1 = 0; t2 = 0; t3 = 0;
 		belt = new LifeBelt(0, 100, this, true);
 		belt.pointsOfLife = life;
 		
@@ -47,16 +49,16 @@ public class Player extends GameObject{
 		smartphonesRed = new ArrayList<>();
 		smartphonesYellow = new ArrayList<>();
 		smartphonesBlue = new ArrayList<>();
-		sr1 = new SmartphoneRed(0, 0, this);
-		sr2 = new SmartphoneRed(0, 0, this);
-		sb1 = new SmartphoneRed(0, 0, this);
-		sb2 = new SmartphoneRed(0, 0, this);
-		sy1 = new SmartphoneRed(0, 0, this);
-		smartphones.add(sb1);
+		sr1 = new SmartphoneRed(0, 0, this, 0);
+		sb1 = new SmartphoneRed(0, 0, this, 1);
+		sy1 = new SmartphoneRed(0, 0, this, 2);
+		sb2 = new SmartphoneRed(0, 0, this, 1);
+		sr2 = new SmartphoneRed(0, 0, this, 0);
 		smartphones.add(sr1);
+		smartphones.add(sb1);
 		smartphones.add(sy1);
-		smartphones.add(sr2);
 		smartphones.add(sb2);
+		smartphones.add(sr2);
 		
 		smartphonesRed.add(sr1);
 		smartphonesRed.add(sr2);
@@ -83,6 +85,9 @@ public class Player extends GameObject{
 	
 	public void updateLast(float delta, float vx, float vy) {
 		super.updateLast(delta, vx, vy);
+		t1 += delta;
+		t2 += delta;
+		t3 += delta;
 		belt.pointsOfLife = life;
 		movement.setG(new Vector2((direction.x + movement.getG().x*29)/30, (direction.y + movement.getG().y*29)/30));
 		movement.setVelocity(new Vector2(movement.getVelocity().x*playerDrag, movement.getVelocity().y*playerDrag));
@@ -127,6 +132,20 @@ public class Player extends GameObject{
 				}
 			}
 		}
+		for(SmartphoneRed s: smartphonesBlue) {
+			for(Lightning l: s.lightnings ) {
+				for(Charge c: l.charges ) {
+					h.add(c.chargeSprite.hitboxCharge);
+				}
+			}
+		}
+		for(SmartphoneRed s: smartphonesYellow) {
+			for(Lightning l: s.lightnings ) {
+				for(Charge c: l.charges ) {
+					h.add(c.chargeSprite.hitboxCharge);
+				}
+			}
+		}
 		Gdx.app.log("end", "" + h.size());
 		return h;
 	}
@@ -144,13 +163,23 @@ public class Player extends GameObject{
 	public void startSkill(int i) {
 		if (skill == 0) {
 			if(i == 0) {
-				current = smartphonesRed;
+				if (t1 > 4) {
+					current = smartphonesRed;
+					t1 = 0;
+				}
+				else {return;}
 			}
 			if(i == 1) {
-				current = smartphonesYellow;
+				if (t2 > 4) {
+					current = smartphonesYellow;
+					t2 = 0;
+				}else {return;}
 			}
 			if(i == 2) {
-				current = smartphonesBlue;
+				if (t3 > 4) {
+					current = smartphonesBlue;
+					t3 = 0;
+				}else {return;}
 			}
 		}
 		if (skill == 1) {

@@ -79,6 +79,9 @@ public class Lightning extends GameObject{
             float y = startY + (endY-startY)*(amount*2-(i*2+1))/(amount*2);//((((startY-endY)/(float)(2.0*amount))*i*2+1));
             charges.add(new Charge(x,y,chargeSize,this,true,0,animationSpeed,this,false));
             charges.get(i).setInvisible();
+            charges.get(i).chargeSprite.R = pm1.sprite.R;
+            charges.get(i).chargeSprite.G = pm1.sprite.G;
+            charges.get(i).chargeSprite.B = pm1.sprite.B;
             float f;
             if(i<amount/2) {
                 f=(i*2.0f/amount);
