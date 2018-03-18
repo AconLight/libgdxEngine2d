@@ -18,17 +18,12 @@ public class ElectricalElement extends GameObject {
     private float counterBoom;
     private boolean hasExploded;
     public HitboxElectricalElement hitboxElectricalElement;
-    private HitText tekst;
-    private RandomizeRandomText rrt;
-    private String str;
-    private float licznik=0;
+
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
         this.type=type;
         rng = new Random();
-        rrt = new RandomizeRandomText();
-        str = rrt.getRandomTekst();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
         hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
