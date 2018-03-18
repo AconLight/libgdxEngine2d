@@ -1,12 +1,15 @@
 package com.redartedgames.libgdxengine2d.assets;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.redartedgames.libgdxengine2d.effects.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
+import com.redartedgames.libgdxengine2d.sound.SoundEffect;
 import com.redartedgames.libgdxengine2d.text.HitText;
 import com.redartedgames.libgdxengine2d.text.RandomizeRandomText;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ElectricalElement extends GameObject {
@@ -18,23 +21,24 @@ public class ElectricalElement extends GameObject {
     private float counterBoom;
     private boolean hasExploded;
     public HitboxElectricalElement hitboxElectricalElement;
-    private HitText tekst;
-    private RandomizeRandomText rrt;
-    private String str;
-    private float licznik=0;
+    private SoundEffect SE;
+    private float volume;
+    private Sound sound;
+
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
         this.type=type;
         rng = new Random();
-        rrt = new RandomizeRandomText();
-        str = rrt.getRandomTekst();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
+        SE = new SoundEffect();
+        sound = Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/explosion.mp3"));
         addSprite(spriteObject);
         hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
         setSize();
         counterBoom = 0;
         spriteObjectExplosion = new ExplosionSprite(0,0,this,true,size);
+        volume = 1.0f-((ExplosionSprite)spriteObjectExplosion).getPower()/20.f;
         addSprite(spriteObjectExplosion);
         spriteObject.visibility = 1;
         spriteObject.isVisible = true;
@@ -98,6 +102,10 @@ public class ElectricalElement extends GameObject {
         spriteObjectExplosion.visibility = 1;
         spriteObjectExplosion.isVisible = true;
         counterBoom = 0;
+        if (new Random().nextInt(100)%4==1) {
+            SE.play(0.7f);
+        }
+        sound.play(volume);
     }
 
     public void update(float delta) {
