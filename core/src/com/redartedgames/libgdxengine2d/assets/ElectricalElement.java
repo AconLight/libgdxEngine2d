@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.redartedgames.libgdxengine2d.effects.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
+import com.redartedgames.libgdxengine2d.text.HitText;
+import com.redartedgames.libgdxengine2d.text.RandomizeRandomText;
 
 import java.util.Random;
 
@@ -16,11 +18,17 @@ public class ElectricalElement extends GameObject {
     private float counterBoom;
     private boolean hasExploded;
     public HitboxElectricalElement hitboxElectricalElement;
+    private HitText tekst;
+    private RandomizeRandomText rrt;
+    private String str;
+    private float licznik=0;
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
         this.type=type;
         rng = new Random();
+        rrt = new RandomizeRandomText();
+        str = rrt.getRandomTekst();
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
         addSprite(spriteObject);
         hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
@@ -56,18 +64,18 @@ public class ElectricalElement extends GameObject {
                     }
                 }
                 break;
-            case 1: //kondensator
-                //efekty
-                break;
-            case 2: //tranzystor
-                break;
-            case 3: //rezystor
-                break;
-            case 4: //Pentium P5
-                break;
-            case 5: //LM75
-                break;
-            case 6: //LCD
+            case 6: //
+                int numerek = rng.nextInt(3);
+                switch (numerek){
+                    case 0:
+
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+
                 break;
         }
     }
@@ -96,6 +104,7 @@ public class ElectricalElement extends GameObject {
         super.update(delta);
         if(hasExploded)counterBoom += delta;
         Gdx.app.log("dupa " + hasExploded, "asd " + counterBoom);
+
         float losujWolniej = rng.nextInt(100);
         if (type==0 && losujWolniej%5==0) {
             int wylosowanyNumerInt = rng.nextInt(3) + 1;

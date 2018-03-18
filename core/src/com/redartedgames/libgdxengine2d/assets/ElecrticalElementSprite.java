@@ -21,23 +21,5 @@ public class ElecrticalElementSprite extends SpriteObject{
         hit = new Hitbox(0,0,txt.getWidth(),txt.getHeight(), Hitbox.BehaviorMode.kinematic);
         setHitbox(hit);
 
-        switch (type) {
-            case 0:
-                //dioda LED
-                //hitboxy
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6: //LCD
-                break;
-        }
     }
 }
