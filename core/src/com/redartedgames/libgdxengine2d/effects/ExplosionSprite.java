@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class ExplosionSprite extends SpriteObject {
 
-    private float power;
+    protected float power;
 
     public ExplosionSprite(float x, float y, GameObject parent, boolean isAttached, int size) {
         super(x, y, parent, isAttached);
