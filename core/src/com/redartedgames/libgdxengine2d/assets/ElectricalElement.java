@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.redartedgames.libgdxengine2d.effects.ExplosionSprite;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 import com.redartedgames.libgdxengine2d.gameobject.SpriteObject;
+import com.redartedgames.libgdxengine2d.sound.SoundEffect;
 import com.redartedgames.libgdxengine2d.text.HitText;
 import com.redartedgames.libgdxengine2d.text.RandomizeRandomText;
 
@@ -19,26 +20,16 @@ public class ElectricalElement extends GameObject {
     private int type;
     private float counterBoom;
     private boolean hasExploded;
-    private ArrayList<Sound> sounds;
     public HitboxElectricalElement hitboxElectricalElement;
+    private SoundEffect SE;
 
 
     public ElectricalElement(float x, float y, GameObject parent, boolean isAttached, int type) {
         super(x, y, parent, isAttached);
         this.type=type;
         rng = new Random();
-        sounds = new ArrayList<>();
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/kaszel.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/bulbulbul.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/aua.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/Stachu1.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/walen.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/walen2.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/walen3.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/jjjiiiicha.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/wiktor1.mp3")));
-        sounds.add(Gdx.audio.newSound(Gdx.files.internal("audio/soundEffects/wiktor2.mp3")));
         spriteObject = new ElecrticalElementSprite(0,0,this,true,type);
+        SE = new SoundEffect();
         addSprite(spriteObject);
         hitboxElectricalElement = new HitboxElectricalElement(0,0,spriteObject.regionList.get(0).getRegionWidth(),spriteObject.regionList.get(0).getRegionHeight(),this, true);
         setSize();
@@ -99,7 +90,6 @@ public class ElectricalElement extends GameObject {
     }
 
     public void explode() {
-        sounds.get(rng.nextInt(sounds.size())).play(1.f);
         hasExploded = true;
         spriteObject.visibility = 0;
         spriteObject.isVisible = false;
@@ -108,6 +98,9 @@ public class ElectricalElement extends GameObject {
         spriteObjectExplosion.visibility = 1;
         spriteObjectExplosion.isVisible = true;
         counterBoom = 0;
+        if (new Random().nextInt(100)%4==1) {
+            SE.play(0.7f);
+        }
     }
 
     public void update(float delta) {
