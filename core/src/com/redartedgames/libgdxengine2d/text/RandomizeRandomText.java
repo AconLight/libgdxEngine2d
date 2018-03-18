@@ -6,32 +6,29 @@ import java.util.Random;
 import com.redartedgames.libgdxengine2d.gameobject.GameObject;
 
 
-public class RandomizeRandomTextToAutomat {
+public class RandomizeRandomText {
 
     public ArrayList<String> teksty;
     private String wynik;
     private HitText texxxt;
 
-    public RandomizeRandomTextToAutomat(){
+    public RandomizeRandomText(){
         teksty = new ArrayList<>();
         teksty.add("NullPointerException");
-        teksty.add("dupa do not refer to any variable");
-        teksty.add("Out of range");
         teksty.add("Syntax error");
-        teksty.add("segmantation fault");
+        teksty.add("Segmentation fault");
         teksty.add("; Missing");
-        //teksty.add("");
     }
 
     public String getRandomTekst (){
         Random generator = new Random();
-        int var = generator.nextInt(6);
+        int var = generator.nextInt(4);
         return teksty.get(var);
     }
 
     public HitText migoconcyTekst (float x, float y, GameObject parent, float endTime, float visibility){
         Random generator  = new Random();
-        int type = generator.nextInt(6);
+        int type = generator.nextInt(4);
         switch (type){
             case 0:
                 texxxt = new HitText(x-100,y+100,parent,true,-1,teksty.get(0),visibility,endTime);
@@ -44,12 +41,6 @@ public class RandomizeRandomTextToAutomat {
                 break;
             case 3:
                 texxxt = new HitText(x-150,y-15,parent,true,-1,teksty.get(3),visibility,endTime);
-                break;
-            case 4:
-                texxxt = new HitText(x+50,y+60,parent,true,-1,teksty.get(4),visibility,endTime);
-                break;
-            case 5:
-                texxxt = new HitText(x-140,y+60,parent,true,-1,teksty.get(5),visibility,endTime);
                 break;
             default:
                 texxxt = new HitText(x-120,y+120,parent,true,-1,teksty.get(0),visibility,endTime);
